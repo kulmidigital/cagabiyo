@@ -1,0 +1,529 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+@import '@fontsource-variable/plus-jakarta-sans';
+@import '@fontsource-variable/inter';
+
+@custom-variant dark (&:is(.dark *));
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+/* ==========================================================================
+   CaliberCode brand system
+   BRAND-01 main #10386E · BRAND-02 secondary #F79229
+   The supplied logo is white + secondary orange on transparency, so every
+   surface carrying the mark must stay dark enough for both to hold contrast
+   (BRAND-03, BRAND-07).
+   ========================================================================== */
+
+@theme inline {
+  --font-display:
+    'Plus Jakarta Sans Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-display);
+
+  /* Institutional navy, anchored on the brand blue at --color-ink-600 */
+  --color-ink-50: #eef4fb;
+  --color-ink-100: #d4e2f2;
+  --color-ink-200: #a5c1e2;
+  --color-ink-300: #6d97cd;
+  --color-ink-400: #3b6db3;
+  --color-ink-500: #1c4c8c;
+  --color-ink-600: #10386e;
+  --color-ink-700: #0d2d58;
+  --color-ink-800: #0a2243;
+  --color-ink-900: #07182f;
+  --color-ink-950: #040e1d;
+
+  /* Signal orange, anchored on the brand secondary at --color-signal-500 */
+  --color-signal-50: #fff7ed;
+  --color-signal-100: #ffedd5;
+  --color-signal-200: #fed7aa;
+  --color-signal-300: #fdba74;
+  --color-signal-400: #fba556;
+  --color-signal-500: #f79229;
+  --color-signal-600: #e07714;
+  --color-signal-700: #ba5c0f;
+  --color-signal-800: #944914;
+  --color-signal-900: #783d14;
+
+  --color-sand-50: #fbfaf8;
+  --color-sand-100: #f5f2ed;
+  --color-sand-200: #e9e4da;
+
+  --shadow-lift:
+    0 1px 2px rgb(4 14 29 / 0.04), 0 12px 32px -12px rgb(4 14 29 / 0.14);
+  --shadow-lift-lg:
+    0 1px 2px rgb(4 14 29 / 0.05), 0 32px 64px -24px rgb(4 14 29 / 0.22);
+  --shadow-inset-hairline: inset 0 0 0 1px rgb(4 14 29 / 0.07);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* shadcn token surface */
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: calc(var(--radius) * 0.75);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.5);
+  --radius-2xl: calc(var(--radius) * 2);
+  --radius-3xl: calc(var(--radius) * 3);
+  --radius-4xl: calc(var(--radius) * 4);
+}
+
+:root {
+  --radius: 0.5rem;
+
+  --background: #ffffff;
+  --foreground: #07182f;
+  --card: #ffffff;
+  --card-foreground: #07182f;
+  --popover: #ffffff;
+  --popover-foreground: #07182f;
+
+  --primary: #10386e;
+  --primary-foreground: #ffffff;
+  --secondary: #f5f2ed;
+  --secondary-foreground: #0a2243;
+
+  --muted: #f5f7fa;
+  --muted-foreground: #55657d;
+  --accent: #fff7ed;
+  --accent-foreground: #944914;
+
+  --destructive: #c0392b;
+  --border: #e3e8ef;
+  --input: #d8dfe9;
+  --ring: #f79229;
+
+  --chart-1: #10386e;
+  --chart-2: #f79229;
+  --chart-3: #3b6db3;
+  --chart-4: #ba5c0f;
+  --chart-5: #a5c1e2;
+
+  --sidebar: #07182f;
+  --sidebar-foreground: #d4e2f2;
+  --sidebar-primary: #f79229;
+  --sidebar-primary-foreground: #040e1d;
+  --sidebar-accent: #0d2d58;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #0d2d58;
+  --sidebar-ring: #f79229;
+}
+
+.dark {
+  --background: #040e1d;
+  --foreground: #eef4fb;
+  --card: #07182f;
+  --card-foreground: #eef4fb;
+  --popover: #07182f;
+  --popover-foreground: #eef4fb;
+
+  --primary: #f79229;
+  --primary-foreground: #040e1d;
+  --secondary: #0d2d58;
+  --secondary-foreground: #eef4fb;
+
+  --muted: #0a2243;
+  --muted-foreground: #a5c1e2;
+  --accent: #0d2d58;
+  --accent-foreground: #ffffff;
+
+  --destructive: #e5705f;
+  --border: rgb(255 255 255 / 0.12);
+  --input: rgb(255 255 255 / 0.16);
+  --ring: #f79229;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply font-sans;
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+    font-feature-settings: 'ss01' 1;
+    letter-spacing: -0.022em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+
+  /* A11Y-04: one obvious, high-contrast focus treatment everywhere. */
+  :focus-visible {
+    outline: 2px solid var(--color-signal-500);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: var(--color-signal-500);
+    color: var(--color-ink-950);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* ---- Layout rhythm ---------------------------------------------------- */
+  .shell {
+    width: 100%;
+    margin-inline: auto;
+    max-width: 90rem;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 640px) {
+    .shell {
+      padding-inline: 2rem;
+    }
+  }
+  @media (min-width: 1280px) {
+    .shell {
+      padding-inline: 3.5rem;
+    }
+  }
+
+  .shell-narrow {
+    width: 100%;
+    margin-inline: auto;
+    max-width: 52rem;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 640px) {
+    .shell-narrow {
+      padding-inline: 2rem;
+    }
+  }
+
+  /* ---- Editorial type --------------------------------------------------- */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  .eyebrow::before {
+    content: '';
+    width: 1.75rem;
+    height: 1px;
+    flex: none;
+    background: currentColor;
+    opacity: 0.55;
+  }
+
+  /* Restrained by design — headlines carry weight through tracking and
+     hierarchy, not size. The largest step tops out at 52px. */
+  .display-lg {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    font-size: clamp(1.875rem, 3.6vw, 3.25rem);
+  }
+
+  .display-md {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.026em;
+    line-height: 1.12;
+    font-size: clamp(1.625rem, 2.6vw, 2.25rem);
+  }
+
+  /* Tabular figures for metrics, prices, seat counts and dates. */
+  .numeric {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum' 1;
+  }
+
+  /* ---- Surfaces --------------------------------------------------------- */
+  /* The brand mark needs a dark field; this is the canonical one. */
+  .surface-ink {
+    background-color: var(--color-ink-950);
+    color: var(--color-ink-100);
+    background-image:
+      radial-gradient(
+        80rem 40rem at 15% -10%,
+        rgb(16 56 110 / 0.75),
+        transparent 60%
+      ),
+      radial-gradient(
+        50rem 30rem at 95% 0%,
+        rgb(247 146 41 / 0.11),
+        transparent 62%
+      );
+  }
+
+  .surface-sand {
+    background-color: var(--color-sand-100);
+  }
+
+  /* Hairline modular grid — the site's structural motif, used instead of
+     drop-shadowed cards so dense pages stay calm. */
+  .rule-grid {
+    border-top: 1px solid var(--color-border);
+    border-left: 1px solid var(--color-border);
+  }
+  .rule-grid > * {
+    border-right: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .rule-grid-ink {
+    border-top: 1px solid rgb(255 255 255 / 0.12);
+    border-left: 1px solid rgb(255 255 255 / 0.12);
+  }
+  .rule-grid-ink > * {
+    border-right: 1px solid rgb(255 255 255 / 0.12);
+    border-bottom: 1px solid rgb(255 255 255 / 0.12);
+  }
+
+  /* ---- Interactive accents ---------------------------------------------- */
+  /* Orange underline that wipes in from the left on hover/focus. */
+  .link-wipe {
+    position: relative;
+    display: inline-block;
+  }
+  .link-wipe::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 1.5px;
+    width: 100%;
+    background: var(--color-signal-500);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s var(--ease-out-expo);
+  }
+  .link-wipe:hover::after,
+  .link-wipe:focus-visible::after {
+    transform: scaleX(1);
+  }
+
+  /* Card that reveals an orange edge as the pointer enters. */
+  .edge-card {
+    position: relative;
+    transition:
+      background-color 0.4s var(--ease-out-expo),
+      transform 0.4s var(--ease-out-expo);
+  }
+  .edge-card::before {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    top: -1px;
+    height: 2px;
+    background: var(--color-signal-500);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s var(--ease-out-expo);
+  }
+  .edge-card:hover::before,
+  .edge-card:focus-within::before {
+    transform: scaleX(1);
+  }
+
+  /* Photography treatment: navy duotone wash so images sit inside the
+     palette instead of fighting it. */
+  .photo-wash {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-ink-900);
+  }
+  .photo-wash > img {
+    transition: transform 0.9s var(--ease-out-expo);
+  }
+  .photo-wash::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgb(4 14 29 / 0.88) 0%,
+      rgb(4 14 29 / 0.35) 45%,
+      rgb(4 14 29 / 0.08) 100%
+    );
+    pointer-events: none;
+  }
+  .photo-wash-soft::after {
+    background: linear-gradient(
+      to top,
+      rgb(4 14 29 / 0.55),
+      rgb(4 14 29 / 0.05) 70%
+    );
+  }
+  .group:hover .photo-wash > img,
+  .photo-wash:hover > img {
+    transform: scale(1.045);
+  }
+
+  /* ---- Reveal on scroll -------------------------------------------------
+     Scroll-driven, zero JavaScript. Browsers without animation-timeline
+     simply render the content in its final state, so there is no hidden
+     content for crawlers or for users with motion reduced. */
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .reveal {
+        animation: reveal-in linear both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 22%;
+      }
+    }
+  }
+
+  @keyframes reveal-in {
+    from {
+      opacity: 0;
+      transform: translateY(1.75rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Fills the active segment over one autoplay interval. Duration comes from
+     the component so the bar and the timer share a single value. */
+  .quote-progress {
+    transform-origin: left;
+    animation: quote-progress var(--quote-duration, 7s) linear forwards;
+  }
+
+  @keyframes quote-progress {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  /* Marquee used by the accreditation / partner strip. */
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 42s linear infinite;
+  }
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .mask-edges {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 6rem,
+      black calc(100% - 6rem),
+      transparent
+    );
+  }
+}
+
+@layer utilities {
+  .grain::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.35;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+}
