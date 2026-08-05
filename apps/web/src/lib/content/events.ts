@@ -65,7 +65,7 @@ export const events: Array<SiteEvent> = [
     format: 'In person',
     startsAt: '2026-09-03T08:30:00+03:00',
     endsAt: '2026-09-04T16:00:00+03:00',
-    venue: 'CaliberCode Training Centre, Delta Corner',
+    venue: 'CaliberCode Training Centre, Wabera Street',
     city: 'Nairobi',
     country: 'Kenya',
     summary:
@@ -107,7 +107,7 @@ export const events: Array<SiteEvent> = [
     format: 'In person',
     startsAt: '2026-10-06T08:30:00+03:00',
     endsAt: '2026-10-08T16:30:00+03:00',
-    venue: 'CaliberCode Training Centre, Delta Corner',
+    venue: 'CaliberCode Training Centre, Wabera Street',
     city: 'Nairobi',
     country: 'Kenya',
     summary:
@@ -187,7 +187,7 @@ export const events: Array<SiteEvent> = [
     format: 'In person',
     startsAt: '2026-12-03T08:30:00+03:00',
     endsAt: '2026-12-04T16:00:00+03:00',
-    venue: 'CaliberCode Training Centre, Delta Corner',
+    venue: 'CaliberCode Training Centre, Wabera Street',
     city: 'Nairobi',
     country: 'Kenya',
     summary:

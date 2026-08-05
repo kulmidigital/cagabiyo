@@ -13,14 +13,14 @@ import {
 import { SmartLink } from '@/components/common/smart-link'
 import { Photo } from '@/components/common/photo'
 import { ConversionCta } from '@/components/home/conversion-cta'
-import { services, serviceDisciplines } from '@/lib/content/services'
+import { services, servicePillars } from '@/lib/content/services'
 
 export const Route = createFileRoute('/services/')({
   head: () =>
     seo({
       title: 'Advisory services — tax, audit, governance and digital assets',
       description:
-        'Eight advisory practices covering tax, internal audit, governance risk and compliance, IS audit, cryptocurrency compliance, business and financial advisory, and policy research across East Africa.',
+        'Advisory practices covering tax, internal audit, governance risk and compliance, IS audit, cryptocurrency compliance, forensics, human capital, and business and financial advisory across East Africa.',
       path: '/services',
       image: photos.boardroomWide,
       keywords: [
@@ -45,29 +45,22 @@ function ServicesIndex() {
 
       <PageHero
         eyebrow="Advisory"
-        title="Eight advisory practices."
+        title="Four pillars, nine practices."
         breadcrumb={[{ label: 'Home', href: '/' }, { label: 'Advisory' }]}
         photo={photos.boardroomWide}
       />
 
-      {serviceDisciplines.map((discipline, groupIndex) => {
+      {servicePillars.map((pillar, groupIndex) => {
         const group = services.filter(
-          (service) => service.discipline === discipline,
+          (service) => service.discipline === pillar.name,
         )
         return (
           <Section
-            key={discipline}
+            key={pillar.name}
             tone={groupIndex % 2 === 0 ? 'default' : 'sand'}
           >
             <div className="shell">
-              <SectionHeading
-                eyebrow={discipline}
-                title={
-                  discipline === 'Assurance & risk'
-                    ? 'Audit, governance and compliance.'
-                    : 'Tax, finance and strategy.'
-                }
-              />
+              <SectionHeading eyebrow={pillar.name} title={pillar.title} />
 
               <div className="rule-grid mt-8 grid sm:mt-10 lg:grid-cols-2">
                 {group.map((service) => (

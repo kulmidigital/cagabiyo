@@ -7,6 +7,8 @@
  * BRAND-02).
  */
 
+import { site } from '@/lib/site'
+
 export const brand = {
   ink950: '#040e1d',
   ink900: '#07182f',
@@ -37,3 +39,10 @@ export const LOGO_URL =
 
 export const fontStack =
   "'Plus Jakarta Sans', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif"
+
+/**
+ * Re-exported from the site config so a domain change lands in one place. The
+ * templates used to spell the host out, which meant nine copies to keep in step.
+ */
+export const SITE_URL = site.url
+export const SITE_HOST = site.url.replace(/^https?:\/\//, '')

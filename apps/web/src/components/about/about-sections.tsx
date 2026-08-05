@@ -18,15 +18,19 @@ import { markets } from '@/lib/site'
 import {
   accreditations,
   governanceModel,
+  institution,
+  institutionalImpact,
   leadership,
+  practitionerCredentials,
+  segments,
   vacancies,
 } from '@/lib/content/institution'
 
 const facts = [
   {
-    label: 'Founded on',
-    value: 'Practitioner faculty',
-    detail: 'Every trainer is a working adviser.',
+    label: 'Accredited by',
+    value: 'NITA',
+    detail: 'Training eligible for corporate levy reimbursement.',
   },
   {
     label: 'Operating across',
@@ -36,12 +40,12 @@ const facts = [
   {
     label: 'Two mandates',
     value: 'Advise & train',
-    detail: 'Board advisory and professional certification.',
+    detail: 'Strategic advisory and accredited executive training.',
   },
   {
-    label: 'Credentials',
-    value: 'QR-verifiable',
-    detail: 'Every certificate resolves to a public check.',
+    label: 'Led by',
+    value: 'Credentialed specialists',
+    detail: 'CPA, CFE, CISA, CIA, CRMA, CCCS and ACAMS holders.',
   },
 ]
 
@@ -58,21 +62,23 @@ export function AboutOverview() {
           </div>
 
           <div className="space-y-5 leading-relaxed text-muted-foreground sm:text-lg lg:col-span-6 lg:col-start-7">
+            <p className="text-ink-900">{institution.positioning}</p>
             <p>
-              CaliberCode began as an advisory practice. Engagements kept
-              repeating: a tax dispute resolved or a risk register rebuilt, then
-              the same gap reopening a year or two later because the people
-              running the framework had not been trained on it.
+              CaliberCode is a corporate advisory, governance and executive
+              training firm working with enterprise boards, C-suite executives,
+              growing SMEs and institutional investors across East Africa.
             </p>
             <p>
-              The training arm was built on the same faculty. The partner who
-              defends a transfer pricing position before a revenue authority
-              also teaches the transfer pricing certificate.
+              The practice runs on two delivery vehicles. Advisory engagements
+              work directly with boards and executives to design and implement
+              institutional architecture. NITA-accredited training upskills the
+              people who then have to run it — the partner who defends a
+              transfer pricing position before a revenue authority also teaches
+              the transfer pricing programme.
             </p>
-            <p className="text-ink-900">
-              The institution now runs two mandates: advisory engagements for
-              boards and executives, and professional training across the
-              region.
+            <p>
+              The output is a capability the organisation keeps: frameworks,
+              policies and toolkits that are installed rather than lectured.
             </p>
           </div>
         </div>
@@ -86,6 +92,82 @@ export function AboutOverview() {
               <p className="mt-3 text-lg font-bold text-ink-900 sm:text-xl">
                 {item.value}
               </p>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                {item.detail}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Section>
+  )
+}
+
+/** Profile v3 §2 — vision, mission and the five stated values. */
+export function VisionMission() {
+  return (
+    <Section id="vision" tone="ink">
+      <div className="shell">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-5">
+            <Eyebrow tone="ink">Vision</Eyebrow>
+            <p className="display-md mt-5 text-white">{institution.vision}</p>
+          </div>
+
+          <div className="lg:col-span-6 lg:col-start-7">
+            <Eyebrow tone="ink">Mission</Eyebrow>
+            <p className="mt-5 text-lg leading-relaxed text-ink-100">
+              {institution.mission}
+            </p>
+
+            <p className="mt-10 text-[0.6875rem] font-semibold tracking-widest text-signal-400 uppercase">
+              Core values
+            </p>
+            <ul className="mt-4 flex flex-wrap gap-2.5">
+              {institution.values.map((value) => (
+                <li
+                  key={value}
+                  className="border border-white/15 px-4 py-2 text-sm font-medium text-white"
+                >
+                  {value}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </Section>
+  )
+}
+
+/** Profile v3 §5 — who the practice serves, and what an engagement changes. */
+export function WhoWeServe() {
+  return (
+    <Section id="who-we-serve" tone="sand">
+      <div className="shell">
+        <SectionHeading
+          eyebrow="Who we serve"
+          title="Four institutional buyers."
+        />
+
+        <div className="rule-grid mt-8 grid sm:mt-10 sm:grid-cols-2 lg:grid-cols-4">
+          {segments.map((segment, index) => (
+            <div key={segment.name} className="bg-white p-6 sm:p-8">
+              <IndexLabel n={index + 1} />
+              <h3 className="mt-4 text-base leading-snug font-bold text-ink-900">
+                {segment.name}
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                {segment.detail}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-10 grid gap-8 border-t border-border pt-10 sm:grid-cols-3 sm:gap-10">
+          {institutionalImpact.map((item) => (
+            <div key={item.name} className="border-l-2 border-signal-500 pl-5">
+              <h3 className="text-sm font-bold text-ink-900">{item.name}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                 {item.detail}
               </p>
@@ -187,32 +269,58 @@ export function AccreditationList() {
   return (
     <Section id="accreditation">
       <div className="shell">
-        <SectionHeading eyebrow="Accreditation" title="Professional bodies." />
+        <SectionHeading
+          eyebrow="Accreditation"
+          title="Accredited, and led by credentialed practitioners."
+        />
 
-        <div className="rule-grid mt-8 grid sm:mt-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid gap-10 sm:mt-10 lg:grid-cols-12 lg:gap-16">
           {accreditations.map((item) => (
-            <div key={item.abbreviation} className="bg-white p-6 sm:p-8">
-              <img
-                src={item.logo}
-                alt={`${item.body} (${item.abbreviation})`}
-                loading="lazy"
-                decoding="async"
-                className="h-8 w-auto max-w-36 object-contain sm:h-10"
-              />
-              <h3 className="mt-6 text-sm font-bold text-ink-900">
-                {item.body}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                {item.scope}
-              </p>
+            <div key={item.abbreviation} className="lg:col-span-5">
+              <div className="edge-card border border-border bg-white p-6 sm:p-8">
+                <img
+                  src={item.logo}
+                  alt={`${item.body} (${item.abbreviation})`}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-10 w-auto max-w-36 object-contain sm:h-12"
+                />
+                <h3 className="mt-6 text-base font-bold text-ink-900">
+                  {item.body}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  {item.scope}
+                </p>
+                <p className="mt-5 border-t border-border pt-5 text-sm leading-relaxed font-medium text-ink-800">
+                  {item.benefit}
+                </p>
+              </div>
             </div>
           ))}
-        </div>
 
-        <p className="mt-6 max-w-2xl text-xs leading-relaxed text-muted-foreground">
-          Each relationship, and the recognition it carries, is being confirmed
-          ahead of launch.
-        </p>
+          <div className="lg:col-span-6 lg:col-start-7">
+            <Eyebrow>Practitioner certifications</Eyebrow>
+            <ul className="mt-6 divide-y divide-border border-y border-border">
+              {practitionerCredentials.map((credential) => (
+                <li
+                  key={credential.abbreviation}
+                  className="flex flex-wrap items-baseline gap-x-4 gap-y-1 py-3.5"
+                >
+                  <span className="numeric w-28 flex-none text-sm font-bold text-ink-900">
+                    {credential.abbreviation}
+                  </span>
+                  <span className="flex-1 text-sm text-muted-foreground">
+                    {credential.name}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-5 text-xs leading-relaxed text-muted-foreground">
+              Every engagement is led by a specialist holding the relevant
+              qualification for the work.
+            </p>
+          </div>
+        </div>
       </div>
     </Section>
   )

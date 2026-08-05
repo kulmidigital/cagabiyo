@@ -134,6 +134,59 @@ function ServiceDetail() {
         </div>
       </Section>
 
+      {/* Optional per practice: the published standard the work is measured
+          against, and the artefacts handed over. */}
+      {service.standards || service.deliverables ? (
+        <Section tone="ink">
+          <div className="shell">
+            <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+              {service.standards ? (
+                <div className="lg:col-span-5">
+                  <Eyebrow tone="ink">Tested against</Eyebrow>
+                  <ul className="mt-6 space-y-6">
+                    {service.standards.map((standard) => (
+                      <li
+                        key={standard.name}
+                        className="border-l-2 border-signal-500 pl-5"
+                      >
+                        <p className="text-base font-bold text-white">
+                          {standard.name}
+                        </p>
+                        <p className="mt-1 text-xs tracking-widest text-signal-400 uppercase">
+                          {standard.issuer}
+                        </p>
+                        <p className="mt-3 text-sm leading-relaxed text-ink-200">
+                          {standard.note}
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+
+              {service.deliverables ? (
+                <div className="lg:col-span-6 lg:col-start-7">
+                  <Eyebrow tone="ink">What is handed over</Eyebrow>
+                  <ul className="mt-6 divide-y divide-white/10 border-y border-white/10">
+                    {service.deliverables.map((deliverable, index) => (
+                      <li
+                        key={deliverable}
+                        className="flex items-baseline gap-5 py-4"
+                      >
+                        <IndexLabel n={index + 1} tone="ink" />
+                        <span className="text-sm leading-relaxed text-ink-100">
+                          {deliverable}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+            </div>
+          </div>
+        </Section>
+      ) : null}
+
       {/* Capabilities, outcomes and engagement shapes */}
       <Section tone="sand">
         <div className="shell">

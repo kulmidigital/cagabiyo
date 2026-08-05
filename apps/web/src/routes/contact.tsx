@@ -75,25 +75,28 @@ function ContactPage() {
         <ul className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-x-8 sm:gap-y-4">
           <li>
             <a
-              href={`mailto:${site.contact.advisoryEmail}`}
+              href={`mailto:${site.contact.email}`}
               className="link-wipe inline-flex items-center gap-2.5 text-sm text-ink-100 transition-colors hover:text-white"
             >
               <FiMail className="size-4 text-signal-500" aria-hidden="true" />
-              {site.contact.advisoryEmail}
+              {site.contact.email}
             </a>
           </li>
           <li>
             <a
-              href={`mailto:${site.contact.trainingEmail}`}
+              href={`tel:${site.contact.altPhone.replaceAll(' ', '')}`}
               className="link-wipe inline-flex items-center gap-2.5 text-sm text-ink-100 transition-colors hover:text-white"
             >
-              <FiMail className="size-4 text-signal-500" aria-hidden="true" />
-              {site.contact.trainingEmail}
+              <FiPhoneCall
+                className="size-4 text-signal-500"
+                aria-hidden="true"
+              />
+              {site.contact.altPhone}
             </a>
           </li>
           <li>
             <a
-              href={`tel:${site.contact.phone.replace(/\s/g, '')}`}
+              href={`tel:${site.contact.phone.replaceAll(' ', '')}`}
               className="link-wipe inline-flex items-center gap-2.5 text-sm text-ink-100 transition-colors hover:text-white"
             >
               <FiPhoneCall

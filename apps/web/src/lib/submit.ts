@@ -29,9 +29,10 @@ export async function submitForm(
     return { ok: false, errors: [OFFLINE_ERROR] }
   }
 
-  const data = (await response.json().catch(() => null)) as
-    | { ok?: boolean; errors?: Array<string> }
-    | null
+  const data = (await response.json().catch(() => null)) as {
+    ok?: boolean
+    errors?: Array<string>
+  } | null
 
   if (response.ok && data?.ok) return { ok: true }
 

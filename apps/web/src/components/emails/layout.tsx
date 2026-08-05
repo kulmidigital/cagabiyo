@@ -24,7 +24,7 @@ import {
   Text,
 } from 'react-email'
 
-import { brand, fontStack, LOGO_URL } from './theme'
+import { brand, fontStack, LOGO_URL, SITE_HOST, SITE_URL } from './theme'
 
 /**
  * Shell shared by every template: ink header carrying the wordmark, white body,
@@ -136,15 +136,15 @@ export function EmailLayout({
                 color: brand.ink300,
               }}
             >
-              CaliberCode Limited · Nairobi, Kenya
+              CaliberCode Limited · NITA accredited
               <br />
-              Advisory and professional training across East Africa
+              Jubilee Insurance Centre, 1st Floor, 113 Wabera Street, Nairobi
               <br />
               <Link
-                href="https://calibercode.co.ke"
+                href={SITE_URL}
                 style={{ color: brand.signal500, textDecoration: 'none' }}
               >
-                calibercode.co.ke
+                {SITE_HOST}
               </Link>
             </Text>
           </Section>
@@ -189,9 +189,7 @@ export function DetailTable({
         // last row skips it — otherwise it doubles up against the container
         // border and reads as a 2px line.
         const rule =
-          index === rows.length - 1
-            ? undefined
-            : `1px solid ${brand.border}`
+          index === rows.length - 1 ? undefined : `1px solid ${brand.border}`
 
         return (
           <Row key={row.label}>

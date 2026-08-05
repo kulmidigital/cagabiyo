@@ -1,3 +1,4 @@
+import { SITE_HOST } from './theme'
 import { EmailLayout, Paragraph } from './layout'
 import type { ContactPayload } from './types'
 
@@ -19,7 +20,7 @@ export function ContactAcknowledgement({
       preview="We have your enquiry — CaliberCode"
       eyebrow="Enquiry received"
       heading={`Thank you, ${firstName}.`}
-      footerNote="You are receiving this because you submitted an enquiry on calibercode.co.ke. We use these details only to respond to you, in line with the Kenya Data Protection Act, 2019."
+      footerNote={`You are receiving this because you submitted an enquiry on ${SITE_HOST}. We use these details only to respond to you, in line with the Kenya Data Protection Act, 2019.`}
     >
       <Paragraph>
         Your enquiry has reached our {deskLabel[payload.intent]} desk. We reply

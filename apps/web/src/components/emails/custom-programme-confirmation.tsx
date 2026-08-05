@@ -1,3 +1,4 @@
+import { SITE_HOST } from './theme'
 import { BulletList, DetailTable, EmailLayout, Paragraph } from './layout'
 import type { CustomProgrammePayload } from './types'
 
@@ -9,7 +10,7 @@ export function CustomProgrammeConfirmation({
       preview="Your custom programme outline — CaliberCode"
       eyebrow="Programme submitted"
       heading="We have your programme outline."
-      footerNote="You are receiving this because you submitted a custom programme on calibercode.co.ke."
+      footerNote={`You are receiving this because you submitted a custom programme on ${SITE_HOST}.`}
     >
       <Paragraph>
         Thank you. Our training team will come back to you with a costed

@@ -1,3 +1,4 @@
+import { SITE_HOST } from './theme'
 import { DetailTable, EmailLayout, Paragraph } from './layout'
 import type { ConsultancyPayload } from './types'
 
@@ -11,7 +12,7 @@ export function ConsultancyConfirmation({
       preview="Your advisory session request — CaliberCode"
       eyebrow="Booking request received"
       heading={`Thank you, ${firstName}.`}
-      footerNote="You are receiving this because you requested an advisory session on calibercode.co.ke."
+      footerNote={`You are receiving this because you requested an advisory session on ${SITE_HOST}.`}
     >
       <Paragraph>
         We have your request. The partner who would lead the work will come back

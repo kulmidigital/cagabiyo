@@ -1,3 +1,4 @@
+import { SITE_HOST } from './theme'
 import { BulletList, DetailTable, EmailLayout, Paragraph } from './layout'
 import type { CorporateRequestPayload } from './types'
 
@@ -11,7 +12,7 @@ export function CorporateRequestConfirmation({
       preview={`Your corporate training request — reference ${payload.reference}`}
       eyebrow="Request received"
       heading={`Thank you, ${firstName}.`}
-      footerNote="You are receiving this because you submitted a corporate training request on calibercode.co.ke."
+      footerNote={`You are receiving this because you submitted a corporate training request on ${SITE_HOST}.`}
     >
       <Paragraph>
         We have your request for {payload.company}. Our training team confirms

@@ -14,7 +14,7 @@ export function PracticeAreas() {
         <SectionHeading
           tone="ink"
           eyebrow="Advisory"
-          title="Eight advisory practices."
+          title="Nine advisory practices."
         />
 
         <div className="rule-grid-ink mt-8 grid sm:mt-10 sm:grid-cols-2 lg:grid-cols-4">

@@ -1,28 +1,30 @@
 /**
  * Site-wide configuration: identity, navigation and contact points.
  *
- * Values marked PLACEHOLDER are stand-ins for content listed in §14 of the
- * requirements ("Content inventory required before launch") that has not been
- * supplied yet. They are collected here rather than scattered through the
- * components so they can be replaced in one pass — and later swapped for CMS
- * reads without touching the presentation layer (CMS-01).
+ * Identity, contact points and the office record come from the client's
+ * Company Profile v3, which supersedes the placeholders previously carried
+ * here. Values still not covered by that document are marked PLACEHOLDER and
+ * are collected in this module rather than scattered through the components,
+ * so they can be replaced in one pass — and later swapped for CMS reads
+ * without touching the presentation layer (CMS-01).
  */
 
 export const site = {
   name: 'CaliberCode',
   legalName: 'CaliberCode Limited',
-  tagline: 'Advisory and professional training across East Africa.',
+  tagline: 'Develop. Comply. Elevate.',
   description:
-    'CaliberCode provides advisory services and professional training across tax, audit, governance, risk, compliance and digital assets in Kenya and East Africa.',
-  url: 'https://calibercode.co.ke', // PLACEHOLDER — confirm production domain
+    'CaliberCode Limited is a NITA-accredited corporate advisory, governance and executive training firm serving boards, C-suite executives, SMEs and institutions across East Africa.',
+  url: 'https://calibercode.io',
   locale: 'en_KE',
 
   contact: {
-    whatsapp: '254722603130',
-    phone: '+254 722 603130',
-    email: 'info@calibercode.co.ke',
-    advisoryEmail: 'advisory@calibercode.co.ke',
-    trainingEmail: 'training@calibercode.co.ke',
+    // Profile v3 lists two executive lines, 0780333331 and 0733313314, in
+    // local format. Stored in E.164 for tel: and wa.me, formatted for display.
+    whatsapp: '254780333331',
+    phone: '+254 780 333331',
+    altPhone: '+254 733 313314',
+    email: 'info@calibercode.io',
   },
 
   social: {
@@ -44,39 +46,26 @@ export type Office = {
   headquarters?: boolean
 }
 
+/**
+ * Profile v3 records one office. The Kampala, Dar es Salaam and Kigali entries
+ * previously here were placeholders carrying invented street addresses and
+ * +XXX 700 000 000 phone numbers; the profile does not support them, so they
+ * are gone. The region is still served — see `markets` — it is just served
+ * from Nairobi until the client supplies further locations.
+ */
 export const offices: Array<Office> = [
   {
     city: 'Nairobi',
     country: 'Kenya',
-    role: 'Group headquarters & training centre',
-    lines: ['Delta Corner, Ring Road Westlands', 'PO Box 00100, Nairobi'],
-    phone: '+254 722 603130',
-    mapQuery: 'Delta Corner Westlands Nairobi Kenya',
+    role: 'Head office & training centre',
+    lines: [
+      'Jubilee Insurance Centre, 1st Floor',
+      '113 Wabera Street',
+      'Nairobi, Kenya',
+    ],
+    phone: '+254 780 333331',
+    mapQuery: 'Jubilee Insurance Centre Wabera Street Nairobi Kenya',
     headquarters: true,
-  },
-  {
-    city: 'Kampala',
-    country: 'Uganda',
-    role: 'Advisory & corporate training',
-    lines: ['Rwenzori Towers, Nakasero', 'Kampala'],
-    phone: '+256 700 000 000',
-    mapQuery: 'Rwenzori Towers Nakasero Kampala Uganda',
-  },
-  {
-    city: 'Dar es Salaam',
-    country: 'Tanzania',
-    role: 'Advisory & corporate training',
-    lines: ['Msasani Peninsula', 'Dar es Salaam'],
-    phone: '+255 700 000 000',
-    mapQuery: 'Msasani Peninsula Dar es Salaam Tanzania',
-  },
-  {
-    city: 'Kigali',
-    country: 'Rwanda',
-    role: 'Regional liaison',
-    lines: ['Kigali Heights, KG 7 Ave', 'Kigali'],
-    phone: '+250 700 000 000',
-    mapQuery: 'Kigali Heights KG 7 Ave Kigali Rwanda',
   },
 ]
 
@@ -170,14 +159,30 @@ export const primaryNav: Array<NavSection> = [
   {
     label: 'Advisory',
     to: '/services',
+    // Profile v3 §2 pillars, in the profile's own order. No feature panel here:
+    // nine practices across four columns already fill the panel, and the header
+    // carries the advisory CTA anyway.
     columns: [
       {
-        heading: 'Assurance & risk',
+        heading: 'Strategy & Advisory',
         links: [
+          { label: 'Business Advisory', to: '/services/business-advisory' },
+        ],
+      },
+      {
+        heading: 'Financial Leadership',
+        links: [
+          { label: 'Tax Advisory', to: '/services/tax-advisory' },
           {
             label: 'Internal Audit & Risk',
             to: '/services/internal-audit-risk',
           },
+          { label: 'Financial Advisory', to: '/services/financial-advisory' },
+        ],
+      },
+      {
+        heading: 'Governance, Risk & Digital',
+        links: [
           {
             label: 'Governance, Risk & Compliance',
             to: '/services/governance-risk-compliance',
@@ -190,25 +195,19 @@ export const primaryNav: Array<NavSection> = [
             label: 'Cryptocurrency Compliance',
             to: '/services/cryptocurrency-compliance',
           },
+          {
+            label: 'Forensic Advisory',
+            to: '/services/forensic-advisory',
+          },
         ],
       },
       {
-        heading: 'Finance & strategy',
+        heading: 'Human Capital & Talent',
         links: [
-          { label: 'Business Advisory', to: '/services/business-advisory' },
-          { label: 'Financial Advisory', to: '/services/financial-advisory' },
-          { label: 'Tax Advisory', to: '/services/tax-advisory' },
-          { label: 'Policy Research', to: '/services/policy-research' },
+          { label: 'Human Capital & Talent', to: '/services/human-capital' },
         ],
       },
     ],
-    feature: {
-      eyebrow: 'Executive advisory',
-      title: 'Book a partner-led session',
-      body: 'Board retreats, tax strategy reviews and compliance readiness — scheduled directly with the partner who will lead the work.',
-      to: '/contact?intent=advisory',
-      cta: 'Request a session',
-    },
   },
   {
     label: 'Capacity Building',
@@ -288,7 +287,8 @@ export const footerNav: Array<{ heading: string; links: Array<NavLink> }> = [
         label: 'Cryptocurrency Compliance',
         to: '/services/cryptocurrency-compliance',
       },
-      { label: 'Policy Research', to: '/services/policy-research' },
+      { label: 'Forensic Advisory', to: '/services/forensic-advisory' },
+      { label: 'Human Capital & Talent', to: '/services/human-capital' },
     ],
   },
   {

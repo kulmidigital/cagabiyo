@@ -10,6 +10,70 @@
 import { photos } from '@/lib/images'
 import type { Photo } from '@/lib/images'
 
+// -- ABOUT-01: vision, mission, values (Profile v3 §2) -----------------------
+
+export const institution = {
+  vision:
+    'To build resilient, compliant, and market-leading enterprises across East Africa.',
+  mission:
+    'Building resilient, fully compliant institutions through rigorous advisory and regulatory mastery.',
+  values: ['Integrity', 'Excellence', 'Partnership', 'Innovation', 'Impact'],
+  positioning:
+    'Bridging the gap between complex regulatory mandates and high-yield commercial execution.',
+} as const
+
+// -- Who the practice serves (Profile v3 §5) ---------------------------------
+
+export type Segment = {
+  name: string
+  detail: string
+}
+
+export const segments: Array<Segment> = [
+  {
+    name: 'Corporate boards & C-suite',
+    detail:
+      'Strategic direction, governance oversight and risk mitigation at the top of the organisation.',
+  },
+  {
+    name: 'SMEs & growing enterprises',
+    detail:
+      'Scaling, professionalising operations and reaching the standard capital markets expect.',
+  },
+  {
+    name: 'Financial institutions & fintechs',
+    detail:
+      'SACCOs, Tier-2 banks, microfinance institutions and digital asset platforms under regulatory scrutiny.',
+  },
+  {
+    name: 'Public sector & state corporations',
+    detail:
+      'County governments, state entities and non-governmental organisations meeting statutory obligations.',
+  },
+]
+
+/**
+ * Profile v3 §5 — what an engagement is expected to change. Stated as the
+ * client states them: capability delivered, not volume claimed.
+ */
+export const institutionalImpact: Array<Segment> = [
+  {
+    name: 'Actionable toolkits',
+    detail:
+      'Participants leave with templates, policies and analytical models ready to deploy.',
+  },
+  {
+    name: 'Operational de-risking',
+    detail:
+      'Reduced exposure to tax penalties, fraud losses, cyber threats and regulatory sanction.',
+  },
+  {
+    name: 'Future-proofed talent',
+    detail:
+      'A workforce able to handle e-invoicing, digital assets and the compliance load that comes with them.',
+  },
+]
+
 // -- HOME-05: institutional metrics -------------------------------------------
 
 export type Metric = {
@@ -26,17 +90,22 @@ export type Metric = {
  * metrics and their evidence/source" as content still to be approved — so none
  * are invented here.
  *
- * Every figure below is instead taken directly from the requirements: eight
- * practice areas (§4.4), sixteen training focus areas (§8), five markets
- * (GOAL-04) and two settlement currencies at launch (PAY-08). Swap these for
- * audited impact figures once the evidence exists.
+ * Every figure below is instead structural: four strategic pillars and nine
+ * practices (Profile v3 §2), sixteen training focus areas (§8), five markets
+ * (GOAL-04). Swap these for audited impact figures once the evidence exists.
  */
 export const impactMetrics: Array<Metric> = [
   {
-    value: '8',
+    value: '4',
+    label: 'Strategic pillars',
+    detail:
+      'Strategy, financial leadership, governance and digital, human capital.',
+  },
+  {
+    value: '9',
     label: 'Advisory practices',
     detail:
-      'From tax and internal audit to information systems and digital assets.',
+      'From tax and internal audit to forensics, digital assets and human capital.',
   },
   {
     value: '16',
@@ -47,11 +116,6 @@ export const impactMetrics: Array<Metric> = [
     value: '5',
     label: 'Markets served',
     detail: 'Kenya, Uganda, Tanzania, Rwanda and Ethiopia.',
-  },
-  {
-    value: '2',
-    label: 'Settlement currencies',
-    detail: 'Kenya Shillings and US Dollars, by M-Pesa, card or bank transfer.',
   },
 ]
 
@@ -116,8 +180,8 @@ export const leadership: Array<Person> = [
   {
     name: 'Fatuma Abdi',
     role: 'Director, Sustainability',
-    discipline: 'ESG & Policy Research',
-    bio: 'Leads ESG assurance readiness and policy research, with a focus on regulatory impact assessment for financial sector regulation.',
+    discipline: 'Governance & ESG',
+    bio: 'Leads ESG assurance readiness and sustainability reporting, with a focus on how disclosure obligations land on financial sector boards.',
     credentials: ['MSc Economics', 'GRI Certified', 'CFA'],
   },
   {
@@ -168,17 +232,20 @@ export const governanceModel: Array<GovernanceOrgan> = [
 // -- ABOUT-04: accreditation --------------------------------------------------
 
 /**
- * The four bodies whose marks are supplied in `public/orgs`.
+ * Institutional accreditation.
  *
- * No status or reference number is recorded against any of them. §14 lists
- * "accreditation names, status, and evidence" as content still to be approved,
- * so stating a standing we have not been given would be a claim the business
- * cannot back. The page says the relationship is being confirmed instead.
+ * Profile v3 claims exactly one: NITA. The ICPAK, IIA and ISACA entries that
+ * previously sat here asserted that the firm itself is accredited by those
+ * bodies — a stronger claim than the client makes. Their marks are in
+ * `public/orgs` because staff hold their certifications, which is a different
+ * thing and is recorded in `practitionerCredentials` below.
  */
 export type Accreditation = {
   body: string
   abbreviation: string
   scope: string
+  /** What the accreditation is worth to a buyer. */
+  benefit: string
   /** Supplied brand mark, served from `public/orgs`. */
   logo: string
 }
@@ -188,25 +255,65 @@ export const accreditations: Array<Accreditation> = [
     body: 'National Industrial Training Authority',
     abbreviation: 'NITA',
     scope: 'Corporate and professional training provision',
+    benefit:
+      'Training delivered under the accreditation is eligible for corporate training levy reimbursement.',
     logo: '/orgs/nita.png',
   },
+]
+
+/**
+ * ABOUT-02 — what the people leading engagements hold.
+ *
+ * Profile v3 states engagements are led by credentialed specialists and lists
+ * these qualifications. It attributes them to the practice as a whole, not to
+ * named individuals, so they are recorded the same way here.
+ */
+export type Credential = {
+  abbreviation: string
+  name: string
+  discipline: string
+}
+
+export const practitionerCredentials: Array<Credential> = [
   {
-    body: 'Institute of Certified Public Accountants of Kenya',
-    abbreviation: 'ICPAK',
-    scope: 'Continuing professional development',
-    logo: '/orgs/icpak.svg',
+    abbreviation: 'CPA',
+    name: 'Certified Public Accountant',
+    discipline: 'Accounting & reporting',
   },
   {
-    body: 'Institute of Internal Auditors',
-    abbreviation: 'IIA',
-    scope: 'Internal audit and forensics programmes',
-    logo: '/orgs/iia.svg',
+    abbreviation: 'CFE',
+    name: 'Certified Fraud Examiner',
+    discipline: 'Forensics & fraud',
   },
   {
-    body: 'ISACA',
-    abbreviation: 'ISACA',
-    scope: 'Information systems audit programmes',
-    logo: '/orgs/isaca.svg',
+    abbreviation: 'CISA',
+    name: 'Certified Information Systems Auditor',
+    discipline: 'IS audit & cybersecurity',
+  },
+  {
+    abbreviation: 'CIA',
+    name: 'Certified Internal Auditor',
+    discipline: 'Internal audit',
+  },
+  {
+    abbreviation: 'CRMA',
+    name: 'Certification in Risk Management Assurance',
+    discipline: 'Risk assurance',
+  },
+  {
+    abbreviation: 'CCCS',
+    name: 'Certified Cryptocurrency Compliance Specialist',
+    discipline: 'Digital assets',
+  },
+  {
+    abbreviation: 'ACAMS',
+    name: 'Certified Anti-Money Laundering Specialist',
+    discipline: 'AML/CFT',
+  },
+  {
+    abbreviation: 'MSc / MBA / LLM',
+    name: 'Advanced degrees in tax, business and law',
+    discipline: 'Advisory leadership',
   },
 ]
 
@@ -470,7 +577,7 @@ export const faqs: Array<FaqCategory> = [
       {
         question: 'Can an employer verify a certificate independently?',
         answer:
-          'Yes. Every certificate resolves to a public verification page at calibercode.co.ke/verify. No account is needed, and the page states clearly whether the identifier is valid, invalid or not found. Only the fields approved for public display are shown.',
+          'Yes. Every certificate resolves to a public verification page at calibercode.io/verify. No account is needed, and the page states clearly whether the identifier is valid, invalid or not found. Only the fields approved for public display are shown.',
       },
       {
         question: 'Do the programmes carry CPD or CPE hours?',

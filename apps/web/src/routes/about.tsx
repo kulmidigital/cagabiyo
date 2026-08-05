@@ -10,6 +10,8 @@ import {
   Careers,
   GovernanceModel,
   LeadershipGrid,
+  VisionMission,
+  WhoWeServe,
 } from '@/components/about/about-sections'
 import { ConversionCta } from '@/components/home/conversion-cta'
 
@@ -49,6 +51,8 @@ function AboutPage() {
       />
 
       <AboutOverview />
+      <VisionMission />
+      <WhoWeServe />
       <LeadershipGrid />
       <GovernanceModel />
       <AccreditationList />

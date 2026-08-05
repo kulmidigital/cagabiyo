@@ -7,7 +7,7 @@
  * Course and Event structured data required by SEO-03 and EVENT-09.
  */
 
-import { site } from '@/lib/site'
+import { offices, site } from '@/lib/site'
 import type { Course } from '@/lib/content/training'
 import type { EventFormat, SiteEvent } from '@/lib/content/events'
 import { photoSrc } from '@/lib/images'
@@ -76,6 +76,8 @@ export function seo({
 
 // -- Structured data (SEO-03) -------------------------------------------------
 
+const headOffice = offices.find((office) => office.headquarters) ?? offices[0]
+
 export function organizationSchema() {
   return {
     '@context': 'https://schema.org',
@@ -92,8 +94,10 @@ export function organizationSchema() {
     areaServed: ['KE', 'UG', 'TZ', 'RW', 'ET'],
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Delta Corner, Ring Road Westlands',
-      addressLocality: 'Nairobi',
+      // Read from the office record so the structured data cannot drift from
+      // what the contact page shows.
+      streetAddress: headOffice.lines.slice(0, 2).join(', '),
+      addressLocality: headOffice.city,
       addressCountry: 'KE',
     },
   }

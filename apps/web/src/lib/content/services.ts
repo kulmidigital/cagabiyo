@@ -1,5 +1,11 @@
 /**
- * The eight consulting practice areas (§4.4).
+ * The consulting practice areas, grouped by the four strategic pillars set out
+ * in Company Profile v3 §2.
+ *
+ * The profile supersedes the two-discipline split ("Assurance & risk" /
+ * "Finance & strategy") this module used to carry. It also adds Forensic
+ * Advisory and Human Capital as practices in their own right, and drops Policy
+ * Research, which the profile does not offer.
  *
  * Each entry carries a stated methodology (SERV-02), the regional search intent
  * it targets (SERV-05) and the training focus areas it maps onto so service
@@ -14,18 +20,42 @@ export type MethodologyStep = {
   body: string
 }
 
+export type Standard = {
+  name: string
+  issuer: string
+  note: string
+}
+
+/** Profile v3 §2 — the four domains the practice is organised across. */
+export type Pillar =
+  | 'Strategy & Advisory'
+  | 'Financial Leadership'
+  | 'Governance, Risk & Digital'
+  | 'Human Capital & Talent'
+
 export type Service = {
   slug: string
   name: string
   /** Short label for dense navigation and cards. */
   shortName: string
-  discipline: 'Assurance & risk' | 'Finance & strategy'
+  discipline: Pillar
   summary: string
   intro: string
   photo: Photo
   /** SERV-02 — the stated approach for this practice. */
   methodology: Array<MethodologyStep>
+  /**
+   * Published standards the work is tested against.
+   *
+   * Only set this where a named standard is the recognised authority for the
+   * discipline. It says what the engagement is measured by, which is a
+   * different claim from what we cover — do not fill it in for its own sake,
+   * and do not name a national statute here without sign-off.
+   */
+  standards?: Array<Standard>
   capabilities: Array<string>
+  /** The artefacts handed over — distinct from `outcomes`, which is the effect. */
+  deliverables?: Array<string>
   outcomes: Array<string>
   /** Typical engagement shapes, used to set buyer expectations. */
   engagements: Array<string>
@@ -44,7 +74,7 @@ export const services: Array<Service> = [
     slug: 'tax-advisory',
     name: 'Tax Advisory',
     shortName: 'Tax',
-    discipline: 'Finance & strategy',
+    discipline: 'Financial Leadership',
     summary:
       'Corporate tax strategy, transfer pricing and dispute management across the East African Community.',
     intro:
@@ -71,7 +101,8 @@ export const services: Array<Service> = [
     capabilities: [
       'East African corporate tax planning',
       'Transfer pricing policy and local-file documentation',
-      'VAT administration and refund recovery',
+      'VAT and PAYE administration and refund recovery',
+      'Digital tax systems and eTIMS integration',
       'Tax dispute management, objections and ADR',
       'Withholding tax and cross-border payments',
       'Tax health checks and pre-audit readiness',
@@ -104,7 +135,7 @@ export const services: Array<Service> = [
     slug: 'internal-audit-risk',
     name: 'Internal Audit & Risk',
     shortName: 'Internal Audit',
-    discipline: 'Assurance & risk',
+    discipline: 'Financial Leadership',
     summary:
       'Risk-based internal audit, forensic investigation and fraud analytics for boards and audit committees.',
     intro:
@@ -164,7 +195,7 @@ export const services: Array<Service> = [
     slug: 'governance-risk-compliance',
     name: 'Governance, Risk & Compliance',
     shortName: 'GRC',
-    discipline: 'Assurance & risk',
+    discipline: 'Governance, Risk & Digital',
     summary:
       'Board effectiveness, enterprise risk frameworks, ESG reporting and regulatory compliance programmes.',
     intro:
@@ -224,7 +255,7 @@ export const services: Array<Service> = [
     slug: 'information-systems-audit',
     name: 'Information Systems Audit',
     shortName: 'IS Audit',
-    discipline: 'Assurance & risk',
+    discipline: 'Governance, Risk & Digital',
     summary:
       'IT general controls, COBIT-aligned assurance and ISO 27001 information security auditing.',
     intro:
@@ -284,7 +315,7 @@ export const services: Array<Service> = [
     slug: 'cryptocurrency-compliance',
     name: 'Cryptocurrency Compliance',
     shortName: 'Crypto Compliance',
-    discipline: 'Assurance & risk',
+    discipline: 'Governance, Risk & Digital',
     summary:
       'AML/CFT programmes, travel-rule readiness and risk management for virtual asset service providers.',
     intro:
@@ -305,16 +336,39 @@ export const services: Array<Service> = [
       },
       {
         title: 'Independent testing',
-        body: 'Periodic independent review of the programme, which supervisors increasingly expect to see evidenced.',
+        body: 'Control testing, sample validation and a review of monitoring-rule logic — evidence that the programme works, not confirmation that a policy exists.',
+      },
+    ],
+    standards: [
+      {
+        name: 'FATF Recommendations',
+        issuer: 'Financial Action Task Force',
+        note: 'The global AML/CFT standard that national regimes are themselves assessed against.',
+      },
+      {
+        name: 'FATF Guidance for Virtual Assets and VASPs',
+        issuer: 'Financial Action Task Force',
+        note: 'Applies the standard to virtual asset businesses, including Recommendation 16 — the travel rule.',
       },
     ],
     capabilities: [
       'AML/CFT programmes for virtual asset service providers',
+      'Enterprise-wide AML/CFT risk assessment',
+      'Customer due diligence and source-of-funds frameworks',
       'Travel rule implementation and counterparty due diligence',
       'Blockchain analytics and transaction monitoring design',
+      'Sanctions and PEP screening design and testing',
+      'Suspicious transaction reporting workflows',
       'Digital asset risk management frameworks',
       'Regulatory engagement and licensing support',
       'Independent AML programme testing',
+    ],
+    deliverables: [
+      'Programme documentation — policies, procedures and stated risk appetite',
+      'A documented enterprise-wide AML/CFT risk assessment',
+      'Risk-rated findings with a prioritised remediation plan',
+      'A board summary stating exposure and the decisions required',
+      'An evidence pack assembled for supervisory review',
     ],
     outcomes: [
       'A programme that withstands supervisory review',
@@ -344,7 +398,7 @@ export const services: Array<Service> = [
     slug: 'business-advisory',
     name: 'Business Advisory',
     shortName: 'Business',
-    discipline: 'Finance & strategy',
+    discipline: 'Strategy & Advisory',
     summary:
       'Strategy execution, operating model design and performance improvement for growing institutions.',
     intro:
@@ -371,10 +425,12 @@ export const services: Array<Service> = [
     capabilities: [
       'Corporate and business unit strategy',
       'Operating model and organisational design',
-      'Performance improvement and cost optimisation',
+      'Corporate turnaround and performance improvement',
       'Market entry across East African markets',
-      'SME scale-up advisory',
-      'Post-merger integration',
+      'Post-merger integration and setup',
+      'SME scale-up and governance',
+      'Investor readiness and capital matching',
+      'Succession planning for founder-led businesses',
     ],
     outcomes: [
       'A strategy with an owner and a review cadence',
@@ -404,7 +460,7 @@ export const services: Array<Service> = [
     slug: 'financial-advisory',
     name: 'Financial Advisory',
     shortName: 'Financial',
-    discipline: 'Finance & strategy',
+    discipline: 'Financial Leadership',
     summary:
       'Valuation, financial modelling, treasury operations and transaction support.',
     intro:
@@ -461,62 +517,122 @@ export const services: Array<Service> = [
     },
   },
   {
-    slug: 'policy-research',
-    name: 'Policy Research',
-    shortName: 'Policy',
-    discipline: 'Finance & strategy',
+    slug: 'forensic-advisory',
+    name: 'Forensic Advisory & Fraud Mitigation',
+    shortName: 'Forensics',
+    discipline: 'Governance, Risk & Digital',
     summary:
-      'Evidence-based policy analysis, regulatory impact assessment and public sector advisory.',
+      'Fraud risk diagnosis, procurement safeguards and disclosure channels that people will actually use.',
     intro:
-      'We produce research for regulators setting rules, associations arguing a position, and institutions deciding how to respond. Method is stated, data is published, and the limits of each finding are named.',
-    photo: photos.panelDiscussion,
+      'Fraud is a control failure before it is a loss. We find where the controls give way, harden those points, and build the reporting route that surfaces the next one early.',
+    photo: photos.nightWork,
     methodology: [
       {
-        title: 'Question framing',
-        body: 'The research question is narrowed until it is answerable with available data. Where it is not, we say so.',
+        title: 'Fraud risk diagnosis',
+        body: 'Scheme by scheme, we establish which frauds the current control set would fail to prevent or detect, and which it would catch.',
       },
       {
-        title: 'Evidence gathering',
-        body: 'Primary collection where required, combined with administrative and published data, with provenance recorded throughout.',
+        title: 'Exposure mapping',
+        body: 'Procurement, vendor master, payroll and expense cycles are traced end to end, because that is where value leaves an organisation.',
       },
       {
-        title: 'Analysis',
-        body: 'The method is stated up front. Where the data does not support a conclusion, the paper says so.',
+        title: 'Control redesign',
+        body: 'Safeguards are placed at the points of leakage rather than spread evenly, and each one is tested against the scheme it is meant to stop.',
       },
       {
-        title: 'Publication & engagement',
-        body: 'A policy brief for decision-makers, a full paper for reviewers, and direct engagement with the relevant authority.',
+        title: 'Disclosure & response',
+        body: 'A whistleblower channel staff will trust, and a documented response plan so the first hours of an incident are not improvised.',
       },
     ],
     capabilities: [
-      'Regulatory impact assessment',
-      'Sector and market studies',
-      'Public finance and IPSAS advisory',
-      'Policy briefs and position papers',
-      'Stakeholder consultation design',
-      'Monitoring and evaluation frameworks',
+      'Corporate fraud risk diagnosis',
+      'Procurement and supply chain fraud safeguards',
+      'Vendor master and payroll integrity review',
+      'Whistleblower and incident reporting systems',
+      'Forensic investigation and evidence handling',
+      'Fraud awareness training for staff and management',
     ],
     outcomes: [
-      'Evidence a regulator can engage with',
-      'Position papers that stand up in consultation',
-      'Programme evaluation with a stated method',
+      'A named owner and a control at every point of leakage',
+      'A disclosure channel that receives real reports',
+      'Investigations that produce evidence which holds up',
     ],
     engagements: [
-      'Commissioned policy study',
-      'Regulatory impact assessment',
-      'Sector position paper',
-      'Programme monitoring & evaluation',
+      'Fraud risk assessment',
+      'Procurement integrity review',
+      'Whistleblower programme design',
+      'Forensic investigation',
     ],
-    relatedTaxonomy: [2, 10, 13],
+    relatedTaxonomy: [4, 10, 6],
     seo: {
-      title: 'Policy Research & Public Sector Advisory East Africa',
+      title: 'Forensic Advisory & Fraud Investigation Kenya',
       description:
-        'Evidence-based policy research, regulatory impact assessment and public sector advisory across Kenya and East Africa.',
+        'Fraud risk diagnosis, procurement safeguards, whistleblower systems and forensic investigation for institutions across Kenya and East Africa.',
       keywords: [
-        'policy research Kenya',
-        'regulatory impact assessment East Africa',
-        'public sector advisory Nairobi',
-        'IPSAS advisory Kenya',
+        'forensic advisory Kenya',
+        'fraud investigation Nairobi',
+        'procurement fraud East Africa',
+        'whistleblower policy Kenya',
+      ],
+    },
+  },
+  {
+    slug: 'human-capital',
+    name: 'Human Capital & Talent',
+    shortName: 'Human capital',
+    discipline: 'Human Capital & Talent',
+    summary:
+      'Organisation redesign, workforce planning, HR audit and labour law compliance.',
+    intro:
+      'Strategy is delivered by an organisation chart, a pay structure and a set of decision rights. We work on those, and on the statutory exposure that sits underneath them.',
+    photo: photos.teamCouch,
+    methodology: [
+      {
+        title: 'Structure review',
+        body: 'Reporting lines, spans of control and decision rights are set against what the strategy actually requires.',
+      },
+      {
+        title: 'Workforce plan',
+        body: 'Roles are costed and sequenced against the plan, so hiring follows capability gaps rather than headcount budget.',
+      },
+      {
+        title: 'HR audit',
+        body: 'Contracts, policies, records and payroll practice are tested against labour law, and exposure is quantified.',
+      },
+      {
+        title: 'Leadership capability',
+        body: 'The management layer is developed against the structure it has to run, not against a generic competency list.',
+      },
+    ],
+    capabilities: [
+      'Organisation design and restructuring',
+      'Workforce and succession planning',
+      'HR audit and labour law compliance',
+      'Performance management and KPI alignment',
+      'Reward and job evaluation frameworks',
+      'Executive and management development',
+    ],
+    outcomes: [
+      'A structure that matches the strategy it has to deliver',
+      'Quantified and closed labour law exposure',
+      'A management layer capable of running the organisation',
+    ],
+    engagements: [
+      'Organisation design review',
+      'HR compliance audit',
+      'Succession and workforce plan',
+      'Executive development programme',
+    ],
+    relatedTaxonomy: [11, 12, 14],
+    seo: {
+      title: 'Human Capital & HR Advisory Kenya',
+      description:
+        'Organisation design, workforce planning, HR audit and labour law compliance for institutions across Kenya and East Africa.',
+      keywords: [
+        'HR advisory Kenya',
+        'organisation design Nairobi',
+        'HR audit East Africa',
+        'labour law compliance Kenya',
       ],
     },
   },
@@ -525,7 +641,26 @@ export const services: Array<Service> = [
 export const serviceBySlug = (slug: string): Service | undefined =>
   services.find((s) => s.slug === slug)
 
-export const serviceDisciplines = [
-  'Assurance & risk',
-  'Finance & strategy',
-] as const
+/**
+ * Profile v3 §2. Order is the profile's own; the services index renders the
+ * pillars in this sequence and the heading travels with the data rather than
+ * being branched on in the route.
+ */
+export const servicePillars: Array<{ name: Pillar; title: string }> = [
+  {
+    name: 'Strategy & Advisory',
+    title: 'Enterprise strategy, market entry and turnaround.',
+  },
+  {
+    name: 'Financial Leadership',
+    title: 'Tax, corporate finance and risk-based audit.',
+  },
+  {
+    name: 'Governance, Risk & Digital',
+    title: 'Governance, compliance, cyber and digital assets.',
+  },
+  {
+    name: 'Human Capital & Talent',
+    title: 'Organisation design and executive capability.',
+  },
+]
