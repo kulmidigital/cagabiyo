@@ -106,7 +106,7 @@ function PaymentMethodSection({
 }>) {
   return (
     <section className="mt-7">
-      <h3 className="text-sm font-bold text-ink-900">Payment method</h3>
+      <h3 className="text-sm font-bold text-ink-900">Payment Method</h3>
       <div
         role="radiogroup"
         aria-label="Payment method"
@@ -347,7 +347,7 @@ function ReservationForm({
       />
 
       <section className="mt-7">
-        <h3 className="text-sm font-bold text-ink-900">Delegate details</h3>
+        <h3 className="text-sm font-bold text-ink-900">Delegate Details</h3>
         <div className="mt-3 grid gap-4 sm:grid-cols-2">
           <LabelledInput
             label="Full name"
@@ -526,7 +526,7 @@ function ConfirmationPanel({
           <FiCheck className="size-5 text-ink-950" aria-hidden="true" />
         </span>
         <div>
-          <h3 className="text-lg font-bold text-ink-900">Seat confirmed</h3>
+          <h3 className="text-lg font-bold text-ink-900">Seat Confirmed</h3>
           <p className="mt-1.5 text-sm text-muted-foreground">
             {seats} seat{seats > 1 ? 's' : ''} reserved for {event.title}.
           </p>

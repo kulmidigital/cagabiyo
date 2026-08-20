@@ -28,9 +28,9 @@ export const Route = createFileRoute('/events')({
 })
 
 const assurances = [
-  { icon: FiSmartphone, label: 'M-Pesa STK push' },
+  { icon: FiSmartphone, label: 'M-Pesa STK Push' },
   { icon: FiCreditCard, label: 'Visa & Mastercard' },
-  { icon: FiTag, label: 'QR ticket by email' },
+  { icon: FiTag, label: 'QR Ticket By Email' },
 ]
 
 function EventsPage() {

@@ -25,7 +25,7 @@ const desks: Array<Desk> = [
   },
   {
     id: 'training',
-    team: 'Training & events',
+    team: 'Training & Events',
     detail: 'Corporate cohorts, masterclasses and seat bookings',
     number: site.contact.whatsapp,
     message:

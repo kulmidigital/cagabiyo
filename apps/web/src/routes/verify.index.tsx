@@ -22,17 +22,17 @@ export const Route = createFileRoute('/verify/')({
 const assurances = [
   {
     icon: FiShield,
-    title: 'Issued from our register',
+    title: 'Issued From Our Register',
     detail: 'Results are read from the credential register.',
   },
   {
     icon: FiSmartphone,
-    title: 'Scannable from the certificate',
+    title: 'Scannable From The Certificate',
     detail: 'The printed QR code opens this result directly.',
   },
   {
     icon: FiLock,
-    title: 'Minimal disclosure',
+    title: 'Minimal Disclosure',
     detail: 'Only the fields needed to confirm the claim are published.',
   },
 ]
@@ -43,7 +43,7 @@ function VerifyPage() {
       <JsonLd
         data={breadcrumbSchema([
           { name: 'Home', path: '/' },
-          { name: 'Verify a certificate', path: '/verify' },
+          { name: 'Verify A Certificate', path: '/verify' },
         ])}
       />
 

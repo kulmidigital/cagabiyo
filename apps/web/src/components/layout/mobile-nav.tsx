@@ -103,7 +103,7 @@ export function MobileNav({
             onClick={close}
             className="w-full bg-signal-500 text-ink-950 hover:bg-signal-400"
           >
-            Book advisory
+            Book Advisory
           </ButtonLink>
 
           <div className="space-y-3 border-t border-white/10 pt-5 text-sm">

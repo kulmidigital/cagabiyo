@@ -14,10 +14,10 @@ export function PracticeAreas() {
         <SectionHeading
           tone="ink"
           eyebrow="Advisory"
-          title="Nine advisory practices."
+          title="Three advisory practices."
         />
 
-        <div className="rule-grid-ink mt-8 grid sm:mt-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="rule-grid-ink mt-8 grid sm:mt-10 lg:grid-cols-3">
           {services.map((service, index) => (
             <SmartLink
               key={service.slug}

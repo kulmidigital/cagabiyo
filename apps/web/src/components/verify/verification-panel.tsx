@@ -107,7 +107,7 @@ export function ResultCard({
       <Outcome
         tone="warn"
         icon={FiAlertCircle}
-        title="No certificate found"
+        title="No Certificate Found"
         body={
           <>
             We hold no record of{' '}
@@ -171,7 +171,7 @@ export function ResultCard({
         </span>
         <div>
           <h2 className="text-xl font-bold text-ink-900">
-            Credential verified
+            Credential Verified
           </h2>
           <p className="mt-1 text-sm text-muted-foreground">
             This certificate was issued by {site.name} and remains valid.
@@ -185,22 +185,22 @@ export function ResultCard({
           <Detail label="Holder" value={certificate.holderName} />
           <Detail label="Credential" value={certificate.credential} />
           <Detail
-            label="Issued on"
+            label="Issued On"
             value={formatCertificateDate(certificate.issuedOn)}
           />
           <Detail
-            label="Valid until"
+            label="Valid Until"
             value={
               certificate.expiresOn
                 ? formatCertificateDate(certificate.expiresOn)
                 : 'No expiry'
             }
           />
-          <Detail label="Issued by" value={site.legalName} />
+          <Detail label="Issued By" value={site.legalName} />
           <Detail label="Certificate ID" value={certificate.id} numeric />
           {certificate.cpdHours ? (
             <Detail
-              label="CPD hours"
+              label="CPD Hours"
               value={String(certificate.cpdHours)}
               numeric
             />

@@ -16,7 +16,7 @@ import type { Photo } from '@/lib/images'
 type SeoInput = {
   title: string
   description: string
-  /** Path only, e.g. `/services/tax-advisory`. Used for the canonical URL. */
+  /** Path only, e.g. `/services/statutory-tax-compliance`. Used for the canonical URL. */
   path?: string
   image?: Photo
   keywords?: Array<string>

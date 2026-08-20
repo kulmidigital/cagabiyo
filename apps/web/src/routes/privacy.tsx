@@ -19,12 +19,12 @@ function PrivacyPage() {
   return (
     <LegalPage
       eyebrow="Legal"
-      title="Privacy notice"
+      title="Privacy Notice"
       lede="How we collect, use and protect personal data, and the rights you have over it under the Kenya Data Protection Act, 2019."
       updated="July 2026"
       sections={[
         {
-          heading: 'Who we are',
+          heading: 'Who We Are',
           body: (
             <p>
               {site.legalName} is the data controller for personal data
@@ -35,7 +35,7 @@ function PrivacyPage() {
           ),
         },
         {
-          heading: 'What we collect',
+          heading: 'What We Collect',
           body: (
             <>
               <p>
@@ -68,7 +68,7 @@ function PrivacyPage() {
           ),
         },
         {
-          heading: 'Why we use it, and on what basis',
+          heading: 'Why We Use It, And On What Basis',
           body: (
             <p>
               Enquiry and booking data is processed to respond to you and to
@@ -80,7 +80,7 @@ function PrivacyPage() {
           ),
         },
         {
-          heading: 'How long we keep it',
+          heading: 'How Long We Keep It',
           body: (
             <p>
               Retention periods per data category are being confirmed with
@@ -89,7 +89,7 @@ function PrivacyPage() {
           ),
         },
         {
-          heading: 'Who we share it with',
+          heading: 'Who We Share It With',
           body: (
             <p>
               Payment processing, email delivery and hosting are carried out by
@@ -101,7 +101,7 @@ function PrivacyPage() {
           ),
         },
         {
-          heading: 'Where your data is held',
+          heading: 'Where Your Data Is Held',
           body: (
             <p>
               Personal data is encrypted at rest using AES-256 and in transit
@@ -111,7 +111,7 @@ function PrivacyPage() {
           ),
         },
         {
-          heading: 'Certificate verification',
+          heading: 'Certificate Verification',
           body: (
             <p>
               Our public verification page publishes only the credential
@@ -123,7 +123,7 @@ function PrivacyPage() {
           ),
         },
         {
-          heading: 'Cookies and analytics',
+          heading: 'Cookies And Analytics',
           body: (
             <p>
               Analytics, conversion tracking and cookie consent behaviour are
@@ -134,7 +134,7 @@ function PrivacyPage() {
           ),
         },
         {
-          heading: 'Your rights',
+          heading: 'Your Rights',
           body: (
             <p>
               Under the Kenya Data Protection Act, 2019 you may request access

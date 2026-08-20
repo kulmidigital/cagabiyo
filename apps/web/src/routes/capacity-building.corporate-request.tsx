@@ -28,18 +28,18 @@ export const Route = createFileRoute('/capacity-building/corporate-request')({
 const assurances = [
   {
     icon: FiFileText,
-    title: 'Pro-forma on submission',
+    title: 'Pro-Forma On Submission',
     detail:
       'Downloadable, with a unique bank reference for RTGS or EFT settlement.',
   },
   {
     icon: FiUsers,
-    title: 'Ten to several hundred',
+    title: 'Ten To Several Hundred',
     detail: 'Volume bands apply automatically as delegate numbers rise.',
   },
   {
     icon: FiClock,
-    title: 'Confirmed in two days',
+    title: 'Confirmed In Two Days',
     detail:
       'Our training team confirms scheduling and final pricing within two working days.',
   },
@@ -53,7 +53,7 @@ function CorporateRequestPage() {
           { name: 'Home', path: '/' },
           { name: 'Capacity Building', path: '/capacity-building' },
           {
-            name: 'Corporate training request',
+            name: 'Corporate Training Request',
             path: '/capacity-building/corporate-request',
           },
         ])}
@@ -65,7 +65,7 @@ function CorporateRequestPage() {
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'Capacity Building', href: '/capacity-building' },
-          { label: 'Corporate request' },
+          { label: 'Corporate Request' },
         ]}
         align="wide"
       >

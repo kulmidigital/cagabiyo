@@ -290,7 +290,7 @@ export function CorporateRequestForm() {
       <Fieldset
         index={3}
         legend="Preferred modules"
-        hint="Choose across any of the sixteen focus areas — most programmes mix two or three."
+        hint="Choose across any of the five focus areas — most programmes mix two or three."
       >
         <p className="mb-5 text-sm" role="status" aria-live="polite">
           <span className="numeric font-semibold text-ink-900">

@@ -43,7 +43,7 @@ function VerifyResultPage() {
       <JsonLd
         data={breadcrumbSchema([
           { name: 'Home', path: '/' },
-          { name: 'Verify a certificate', path: '/verify' },
+          { name: 'Verify A Certificate', path: '/verify' },
         ])}
       />
 
@@ -67,7 +67,7 @@ function VerifyResultPage() {
 
             <div className="mt-8 border-t border-border pt-8 sm:mt-10 sm:pt-10">
               <h2 className="mb-4 text-sm font-bold text-ink-900 sm:mb-5">
-                Check another certificate
+                Check Another Certificate
               </h2>
               <VerificationPanel />
             </div>

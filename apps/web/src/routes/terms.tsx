@@ -19,12 +19,12 @@ function TermsPage() {
   return (
     <LegalPage
       eyebrow="Legal"
-      title="Terms & booking policy"
+      title="Terms & Booking Policy"
       lede="The terms that apply when you book a seat, enrol on a course, or commission corporate training."
       updated="July 2026"
       sections={[
         {
-          heading: 'Booking and confirmation',
+          heading: 'Booking And Confirmation',
           body: (
             <p>
               A seat or enrolment is confirmed only once payment has been
@@ -35,7 +35,7 @@ function TermsPage() {
           ),
         },
         {
-          heading: 'Payment methods and currency',
+          heading: 'Payment Methods And Currency',
           body: (
             <p>
               We accept M-Pesa, Visa and Mastercard, and bank transfer including
@@ -47,7 +47,7 @@ function TermsPage() {
           ),
         },
         {
-          heading: 'Pro-forma invoices',
+          heading: 'Pro-Forma Invoices',
           body: (
             <p>
               A pro-forma invoice generated from the corporate training request
@@ -58,7 +58,7 @@ function TermsPage() {
           ),
         },
         {
-          heading: 'Transfers and substitutions',
+          heading: 'Transfers And Substitutions',
           body: (
             <p>
               Notice periods for transferring to a later cohort, and the
@@ -69,7 +69,7 @@ function TermsPage() {
           ),
         },
         {
-          heading: 'Cancellations and refunds',
+          heading: 'Cancellations And Refunds',
           body: (
             <p>
               Refund eligibility, notice windows and any administration charge
@@ -80,7 +80,7 @@ function TermsPage() {
           ),
         },
         {
-          heading: 'Failed and duplicate payments',
+          heading: 'Failed And Duplicate Payments',
           body: (
             <p>
               If a payment fails, is cancelled or times out, no booking is
@@ -105,7 +105,7 @@ function TermsPage() {
           ),
         },
         {
-          heading: 'Delivery and changes to programmes',
+          heading: 'Delivery And Changes To Programmes',
           body: (
             <p>
               We may substitute faculty or adjust venue, running order and

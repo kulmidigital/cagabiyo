@@ -31,22 +31,22 @@ export type Segment = {
 
 export const segments: Array<Segment> = [
   {
-    name: 'Corporate boards & C-suite',
+    name: 'Corporate Boards & C-Suite',
     detail:
       'Strategic direction, governance oversight and risk mitigation at the top of the organisation.',
   },
   {
-    name: 'SMEs & growing enterprises',
+    name: 'SMEs & Growing Enterprises',
     detail:
       'Scaling, professionalising operations and reaching the standard capital markets expect.',
   },
   {
-    name: 'Financial institutions & fintechs',
+    name: 'Financial Institutions & Fintechs',
     detail:
       'SACCOs, Tier-2 banks, microfinance institutions and digital asset platforms under regulatory scrutiny.',
   },
   {
-    name: 'Public sector & state corporations',
+    name: 'Public Sector & State Corporations',
     detail:
       'County governments, state entities and non-governmental organisations meeting statutory obligations.',
   },
@@ -58,17 +58,17 @@ export const segments: Array<Segment> = [
  */
 export const institutionalImpact: Array<Segment> = [
   {
-    name: 'Actionable toolkits',
+    name: 'Actionable Toolkits',
     detail:
       'Participants leave with templates, policies and analytical models ready to deploy.',
   },
   {
-    name: 'Operational de-risking',
+    name: 'Operational De-Risking',
     detail:
       'Reduced exposure to tax penalties, fraud losses, cyber threats and regulatory sanction.',
   },
   {
-    name: 'Future-proofed talent',
+    name: 'Future-Proofed Talent',
     detail:
       'A workforce able to handle e-invoicing, digital assets and the compliance load that comes with them.',
   },
@@ -90,31 +90,32 @@ export type Metric = {
  * metrics and their evidence/source" as content still to be approved — so none
  * are invented here.
  *
- * Every figure below is instead structural: four strategic pillars and nine
- * practices (Profile v3 §2), sixteen training focus areas (§8), five markets
- * (GOAL-04). Swap these for audited impact figures once the evidence exists.
+ * Every figure below is instead structural: three advisory practices and five
+ * training focus areas (both from the corporate overview), the accreditations
+ * the firm holds, and five markets (GOAL-04). Swap these for audited impact
+ * figures once the evidence exists.
  */
 export const impactMetrics: Array<Metric> = [
   {
-    value: '4',
-    label: 'Strategic pillars',
+    value: '3',
+    label: 'Advisory Practices',
     detail:
-      'Strategy, financial leadership, governance and digital, human capital.',
-  },
-  {
-    value: '9',
-    label: 'Advisory practices',
-    detail:
-      'From tax and internal audit to forensics, digital assets and human capital.',
-  },
-  {
-    value: '16',
-    label: 'Training focus areas',
-    detail: 'The taxonomy every course and custom programme is built from.',
+      'Statutory and tax compliance, governance and internal audit, fraud and financial crime.',
   },
   {
     value: '5',
-    label: 'Markets served',
+    label: 'Training Focus Areas',
+    detail: 'The taxonomy every course and custom programme is built from.',
+  },
+  {
+    value: '2',
+    label: 'Accreditations Held',
+    detail:
+      'NITA accredited institution and KRA Ushuru Mashinani service partner.',
+  },
+  {
+    value: '5',
+    label: 'Markets Served',
     detail: 'Kenya, Uganda, Tanzania, Rwanda and Ethiopia.',
   },
 ]
@@ -151,43 +152,43 @@ export const leadership: Array<Person> = [
   },
   {
     name: 'Wanjiru Kamau',
-    role: 'Partner, Financial Reporting',
-    discipline: 'Accounting & IFRS',
-    bio: 'Technical lead on IFRS and IPSAS transitions. Advises county governments and state corporations through accrual adoption and first-time reporting.',
-    credentials: ['FCCA', 'CPA(K)', 'IPSAS Specialist'],
+    role: 'Partner, Statutory Compliance',
+    discipline: 'Statutory & Payroll Compliance',
+    bio: 'Technical lead on statutory payroll and filing compliance. Advises employers through NSSF, SHA and Housing Levy reconciliation and pre-audit statutory reviews.',
+    credentials: ['FCCA', 'CPA(K)', 'CHRP'],
   },
   {
     name: 'Kwame Mensah',
     role: 'Partner, Tax',
-    discipline: 'Taxation & Transfer Pricing',
-    bio: 'Handles cross-border structuring and transfer pricing defence across the EAC. Represents clients through objection, ADR and appeal.',
+    discipline: 'Tax Compliance & Advisory',
+    bio: 'Leads the KRA compliance practice — registrations, VAT, PAYE and eTIMS — and represents clients through objection, ADR and appeal.',
     credentials: ['ADIT', 'CPA', 'LLM Tax'],
   },
   {
     name: 'Brian Kiptoo',
-    role: 'Director, Technology Assurance',
-    discipline: 'IS Audit & Cybersecurity',
-    bio: 'Runs the firm’s IS audit practice, covering ITGC, ISO 27001 readiness and data protection controls for financial institutions.',
-    credentials: ['CISA', 'CISM', 'ISO 27001 LA'],
+    role: 'Director, Data Protection',
+    discipline: 'Data Protection & Cyber Oversight',
+    bio: 'Runs the firm’s data protection practice, covering privacy compliance, breach response and cybersecurity oversight for financial institutions.',
+    credentials: ['CISA', 'CISM', 'CIPP/E'],
   },
   {
     name: 'Grace Mutiso',
     role: 'Director, Executive Education',
     discipline: 'Leadership & Executive Strategy',
-    bio: 'Designs the masterclass portfolio and leads negotiation and change programmes for C-suite cohorts across the region.',
+    bio: 'Designs the masterclass portfolio and leads the strategy execution and leadership development programmes for C-suite cohorts across the region.',
     credentials: ['MBA', 'ICF PCC', 'Certified Director'],
   },
   {
     name: 'Fatuma Abdi',
-    role: 'Director, Sustainability',
-    discipline: 'Governance & ESG',
-    bio: 'Leads ESG assurance readiness and sustainability reporting, with a focus on how disclosure obligations land on financial sector boards.',
-    credentials: ['MSc Economics', 'GRI Certified', 'CFA'],
+    role: 'Director, Financial Crime',
+    discipline: 'AML/CFT & Fraud Risk',
+    bio: 'Leads AML/CFT programme builds and fraud risk assessments, with a focus on how supervisory expectations land on financial sector boards.',
+    credentials: ['MSc Economics', 'CAMS', 'CFE'],
   },
   {
     name: 'David Njoroge',
     role: 'Director, Digital Assets',
-    discipline: 'Cryptocurrency Compliance',
+    discipline: 'Virtual Asset Compliance',
     bio: 'Builds AML/CFT programmes for virtual asset service providers and advises on licensing and supervisory engagement.',
     credentials: ['CAMS', 'CFE', 'MSc Fintech'],
   },
@@ -203,7 +204,7 @@ export type GovernanceOrgan = {
 
 export const governanceModel: Array<GovernanceOrgan> = [
   {
-    name: 'Board of Directors',
+    name: 'Board Of Directors',
     mandate:
       'Sets institutional strategy, approves the annual plan and budget, and appoints the Managing Partner. Meets quarterly.',
     composition: 'Seven directors, four of whom are independent non-executive.',
@@ -278,32 +279,32 @@ export const practitionerCredentials: Array<Credential> = [
   {
     abbreviation: 'CPA',
     name: 'Certified Public Accountant',
-    discipline: 'Accounting & reporting',
+    discipline: 'Accounting & Reporting',
   },
   {
     abbreviation: 'CFE',
     name: 'Certified Fraud Examiner',
-    discipline: 'Forensics & fraud',
+    discipline: 'Forensics & Fraud',
   },
   {
     abbreviation: 'CISA',
     name: 'Certified Information Systems Auditor',
-    discipline: 'IS audit & cybersecurity',
+    discipline: 'IS Audit & Cybersecurity',
   },
   {
     abbreviation: 'CIA',
     name: 'Certified Internal Auditor',
-    discipline: 'Internal audit',
+    discipline: 'Internal Audit',
   },
   {
     abbreviation: 'CRMA',
-    name: 'Certification in Risk Management Assurance',
-    discipline: 'Risk assurance',
+    name: 'Certification In Risk Management Assurance',
+    discipline: 'Risk Assurance',
   },
   {
     abbreviation: 'CCCS',
     name: 'Certified Cryptocurrency Compliance Specialist',
-    discipline: 'Digital assets',
+    discipline: 'Digital Assets',
   },
   {
     abbreviation: 'ACAMS',
@@ -312,8 +313,8 @@ export const practitionerCredentials: Array<Credential> = [
   },
   {
     abbreviation: 'MSc / MBA / LLM',
-    name: 'Advanced degrees in tax, business and law',
-    discipline: 'Advisory leadership',
+    name: 'Advanced Degrees In Tax, Business And Law',
+    discipline: 'Advisory Leadership',
   },
 ]
 
@@ -334,14 +335,14 @@ export const vacancies: Array<Vacancy> = [
     type: 'Full time',
   },
   {
-    title: 'Tax Manager — Transfer Pricing',
+    title: 'Tax Manager — Statutory Compliance',
     team: 'Tax',
     location: 'Nairobi',
     type: 'Full time',
   },
   {
-    title: 'IS Audit Associate',
-    team: 'Technology Assurance',
+    title: 'Fraud Risk Associate',
+    team: 'Financial Crime',
     location: 'Nairobi',
     type: 'Full time',
   },
@@ -352,13 +353,13 @@ export const vacancies: Array<Vacancy> = [
     type: 'Full time',
   },
   {
-    title: 'Instructional Designer (E-learning)',
+    title: 'Instructional Designer (E-Learning)',
     team: 'Capacity Building',
     location: 'Remote — East Africa',
     type: 'Contract',
   },
   {
-    title: 'Associate Faculty — Governance & ESG',
+    title: 'Associate Faculty — Governance & Risk',
     team: 'Faculty',
     location: 'Regional',
     type: 'Faculty panel',
@@ -403,7 +404,7 @@ export const testimonials: Array<Testimonial> = [
     quote:
       'We put 140 staff through the risk-based audit programme across three markets. The cohort reporting meant I could see completion by country without chasing anyone.',
     name: 'Peter Wanyama',
-    role: 'Head of Learning & Development',
+    role: 'Head Of Learning & Development',
     organisation: 'Pan-African bank',
     photo: photos.execSuitC,
     audience: 'Corporate HR',
@@ -416,7 +417,7 @@ export const testimonials: Array<Testimonial> = [
   },
   {
     quote:
-      'Their transfer pricing file held up at objection without a single amendment. That is the whole review, in one sentence.',
+      'Their statutory health check found the exposure before KRA did, and the file held up at objection without a single amendment.',
     name: 'Aisha Hassan',
     role: 'Group Finance Director',
     organisation: 'Manufacturing group',
@@ -425,9 +426,9 @@ export const testimonials: Array<Testimonial> = [
   },
   {
     quote:
-      'I took the IS Audit certificate part-time while working. The QR credential went straight onto my LinkedIn and two recruiters mentioned it in the same month.',
+      'I took the Data Protection certificate part-time while working. The QR credential went straight onto my LinkedIn and two recruiters mentioned it in the same month.',
     name: 'Collins Barasa',
-    role: 'Senior IT Auditor',
+    role: 'Data Protection Officer',
     organisation: 'Telecommunications operator',
     photo: photos.execSuitB,
     audience: 'Individual',
@@ -443,7 +444,7 @@ export const testimonials: Array<Testimonial> = [
   },
   {
     quote:
-      'We needed a custom programme across procurement, ethics and IPSAS for 60 county staff. The quote came back within the week, and delivery matched it.',
+      'We needed a custom programme across procurement fraud, ethics and whistleblowing for 60 county staff. The quote came back within the week, and delivery matched it.',
     name: 'Joseph Kilonzo',
     role: 'County Executive, Finance',
     organisation: 'County government',
@@ -463,7 +464,7 @@ export const testimonials: Array<Testimonial> = [
 export type GalleryItem = {
   photo: Photo
   caption: string
-  category: 'Masterclasses' | 'Graduations' | 'Board retreats' | 'Forums'
+  category: 'Masterclasses' | 'Graduations' | 'Board Retreats' | 'Forums'
   /** RES-03 — the gallery mixes stills and video. */
   media: 'image' | 'video'
   durationLabel?: string
@@ -472,32 +473,32 @@ export type GalleryItem = {
 export const galleryItems: Array<GalleryItem> = [
   {
     photo: photos.graduatesCelebrate,
-    caption: 'Certification ceremony, Nairobi',
+    caption: 'Certification Ceremony, Nairobi',
     category: 'Graduations',
     media: 'image',
   },
   {
     photo: photos.boardroomWide,
-    caption: 'Board risk oversight retreat, Nanyuki',
-    category: 'Board retreats',
+    caption: 'Board Risk Oversight Retreat, Nanyuki',
+    category: 'Board Retreats',
     media: 'image',
   },
   {
     photo: photos.auditorium,
-    caption: 'East Africa Compliance Forum keynote',
+    caption: 'East Africa Compliance Forum Keynote',
     category: 'Forums',
     media: 'video',
     durationLabel: '3:22',
   },
   {
     photo: photos.graduatesPair,
-    caption: 'Executive Certificate cohort, class of 2026',
+    caption: 'Executive Certificate Cohort, Class Of 2026',
     category: 'Graduations',
     media: 'image',
   },
   {
     photo: photos.workshopRoom,
-    caption: 'IPSAS transition workshop, Nairobi',
+    caption: 'Fraud Risk Management Workshop, Nairobi',
     category: 'Masterclasses',
     media: 'image',
   },
@@ -509,38 +510,38 @@ export const galleryItems: Array<GalleryItem> = [
   },
   {
     photo: photos.graduateSmile,
-    caption: 'Credential award, October cohort',
+    caption: 'Credential Award, October Cohort',
     category: 'Graduations',
     media: 'image',
   },
   {
     photo: photos.strategyTable,
-    caption: 'Audit committee masterclass',
+    caption: 'Audit Committee Masterclass',
     category: 'Masterclasses',
     media: 'video',
     durationLabel: '2:05',
   },
   {
     photo: photos.graduationMass,
-    caption: 'Annual graduation, Kenyatta International Convention Centre',
+    caption: 'Annual Graduation, Kenyatta International Convention Centre',
     category: 'Graduations',
     media: 'image',
   },
   {
     photo: photos.keynote,
-    caption: 'Policy roundtable, Kampala',
+    caption: 'Policy Roundtable, Kampala',
     category: 'Forums',
     media: 'image',
   },
   {
     photo: photos.teamCouch,
-    caption: 'Corporate cohort onboarding',
+    caption: 'Corporate Cohort Onboarding',
     category: 'Masterclasses',
     media: 'image',
   },
   {
     photo: photos.graduatesTwo,
-    caption: 'Faculty and graduand, Nairobi',
+    caption: 'Faculty And Graduand, Nairobi',
     category: 'Graduations',
     media: 'image',
   },
@@ -549,7 +550,7 @@ export const galleryItems: Array<GalleryItem> = [
 export const galleryCategories = [
   'Masterclasses',
   'Graduations',
-  'Board retreats',
+  'Board Retreats',
   'Forums',
 ] as const
 
@@ -562,7 +563,7 @@ export type FaqCategory = {
 
 export const faqs: Array<FaqCategory> = [
   {
-    category: 'Accreditation & credentials',
+    category: 'Accreditation & Credentials',
     items: [
       {
         question: 'Are CaliberCode programmes accredited?',
@@ -587,7 +588,7 @@ export const faqs: Array<FaqCategory> = [
     ],
   },
   {
-    category: 'Booking & delivery',
+    category: 'Booking & Delivery',
     items: [
       {
         question: 'How do I reserve a seat at a workshop or masterclass?',
@@ -603,7 +604,7 @@ export const faqs: Array<FaqCategory> = [
         question:
           'Can we build a programme from modules across different areas?',
         answer:
-          'Yes — the custom programme builder lets you assemble modules from any of the sixteen training focus areas and submit the selection for a custom quote. This is how most SME and government programmes are scoped.',
+          'Yes — the custom programme builder lets you assemble modules from any of the five training focus areas and submit the selection for a custom quote. This is how most SME and government programmes are scoped.',
       },
       {
         question: 'What happens if I cannot attend after booking?',
@@ -613,7 +614,7 @@ export const faqs: Array<FaqCategory> = [
     ],
   },
   {
-    category: 'Payment & invoicing',
+    category: 'Payment & Invoicing',
     items: [
       {
         question: 'Which payment methods are accepted?',

@@ -92,7 +92,7 @@ export const customProgrammeSchema = z.object({
     .array(z.string().trim().min(1).max(160))
     .min(1, 'Add at least one module.')
     .max(64),
-  focusAreas: z.array(z.string().trim().min(1).max(120)).max(16),
+  focusAreas: z.array(z.string().trim().min(1).max(120)).max(5),
   estimatedDays: z.coerce.number().int().min(0).max(365),
   consent: z.literal(true, {
     message: 'Please confirm how we may use your details.',

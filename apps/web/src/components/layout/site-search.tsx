@@ -52,7 +52,7 @@ export function SiteSearch() {
   const groups = useMemo<Array<ResultGroup>>(
     () => [
       {
-        heading: 'Advisory services',
+        heading: 'Advisory Services',
         icon: FiBriefcase,
         items: services.map((service) => ({
           id: `service-${service.slug}`,
@@ -60,7 +60,7 @@ export function SiteSearch() {
           subtitle: service.summary,
           href: `/services/${service.slug}`,
           keywords: [
-            service.discipline,
+            service.shortName,
             ...service.seo.keywords,
             ...service.capabilities,
           ],
@@ -83,7 +83,7 @@ export function SiteSearch() {
         })),
       },
       {
-        heading: 'Insights & whitepapers',
+        heading: 'Insights & Whitepapers',
         icon: FiFileText,
         items: insights.map((insight) => ({
           id: `insight-${insight.slug}`,
@@ -99,7 +99,7 @@ export function SiteSearch() {
         })),
       },
       {
-        heading: 'Events & workshops',
+        heading: 'Events & Workshops',
         icon: FiCalendar,
         items: events.map((event) => ({
           id: `event-${event.slug}`,
@@ -110,7 +110,7 @@ export function SiteSearch() {
         })),
       },
       {
-        heading: 'Training focus areas',
+        heading: 'Training Focus Areas',
         icon: FiLayers,
         items: focusAreas.map((area) => ({
           id: `area-${area.id}`,

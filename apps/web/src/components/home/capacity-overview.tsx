@@ -9,7 +9,7 @@ import { focusAreas } from '@/lib/content/training'
 
 const routes = [
   {
-    title: 'Corporate training',
+    title: 'Corporate Training',
     href: '/capacity-building/corporate-request',
     photo: photos.workshopRoom,
     body: 'Cohort programmes for your team, delivered on-site, virtually or at a venue we arrange. Tell us the headcount and modules and the request returns a pro-forma invoice.',
@@ -20,7 +20,7 @@ const routes = [
     ],
   },
   {
-    title: 'Executive masterclasses',
+    title: 'Executive Masterclasses',
     href: '/capacity-building#masterclasses',
     photo: photos.boardroomWide,
     body: 'Short, intensive sessions for directors and C-suite leaders. Small rooms, practitioner faculty, and material drawn from live engagements.',
@@ -31,7 +31,7 @@ const routes = [
     ],
   },
   {
-    title: 'E-learning catalog',
+    title: 'E-Learning Catalog',
     href: '/capacity-building/courses',
     photo: photos.tabletGlass,
     body: 'Self-paced and blended certificates you can start today, priced in KES and USD, with a QR-verifiable credential on completion.',
@@ -121,10 +121,10 @@ export function CapacityOverview() {
         >
           <p className="eyebrow text-signal-700">Training taxonomy</p>
           <h3 className="mt-4 text-2xl font-bold text-ink-900">
-            Sixteen training focus areas
+            Five Training Focus Areas
           </h3>
 
-          <ul className="mt-6 grid gap-x-8 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-6 grid gap-x-8 sm:grid-cols-2 lg:grid-cols-5">
             {focusAreas.map((area) => (
               <li key={area.id}>
                 <SmartLink

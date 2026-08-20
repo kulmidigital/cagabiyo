@@ -74,7 +74,7 @@ function ServiceDetail() {
       />
 
       <PageHero
-        eyebrow={service.discipline}
+        eyebrow="Advisory"
         title={service.name}
         lede={service.intro}
         breadcrumb={[

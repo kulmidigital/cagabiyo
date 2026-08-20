@@ -12,7 +12,7 @@ export const Route = createFileRoute('/capacity-building/builder')({
     seo({
       title: 'Custom programme builder',
       description:
-        'Assemble a training programme from modules across sixteen focus areas and submit it for a custom quote. Built for SMEs, government agencies and enterprise buyers.',
+        'Assemble a training programme from modules across five focus areas and submit it for a custom quote. Built for SMEs, government agencies and enterprise buyers.',
       path: '/capacity-building/builder',
       image: photos.workshopRoom,
       keywords: [
@@ -30,7 +30,7 @@ function BuilderPage() {
         data={breadcrumbSchema([
           { name: 'Home', path: '/' },
           { name: 'Capacity Building', path: '/capacity-building' },
-          { name: 'Programme builder', path: '/capacity-building/builder' },
+          { name: 'Programme Builder', path: '/capacity-building/builder' },
         ])}
       />
 
@@ -40,7 +40,7 @@ function BuilderPage() {
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'Capacity Building', href: '/capacity-building' },
-          { label: 'Programme builder' },
+          { label: 'Programme Builder' },
         ]}
         align="wide"
       />

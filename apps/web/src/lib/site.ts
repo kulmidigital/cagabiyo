@@ -57,7 +57,7 @@ export const offices: Array<Office> = [
   {
     city: 'Nairobi',
     country: 'Kenya',
-    role: 'Head office & training centre',
+    role: 'Head Office & Training Centre',
     lines: [
       'Jubilee Insurance Centre, 1st Floor',
       '113 Wabera Street',
@@ -110,15 +110,15 @@ export const primaryNav: Array<NavSection> = [
     to: '/about',
     columns: [
       {
-        heading: 'The institution',
+        heading: 'The Institution',
         links: [
           {
-            label: 'Who we are',
+            label: 'Who We Are',
             to: '/about',
             description: 'Mandate, history and reach',
           },
           {
-            label: 'Leadership & faculty',
+            label: 'Leadership & Faculty',
             to: '/about#leadership',
             description: 'Partners and senior practitioners',
           },
@@ -135,7 +135,7 @@ export const primaryNav: Array<NavSection> = [
         ],
       },
       {
-        heading: 'Working with us',
+        heading: 'Working With Us',
         links: [
           {
             label: 'Careers',
@@ -148,7 +148,7 @@ export const primaryNav: Array<NavSection> = [
             description: 'Offices across the region',
           },
           {
-            label: 'Verify a certificate',
+            label: 'Verify A Certificate',
             to: '/verify',
             description: 'Check a credential is genuine',
           },
@@ -157,106 +157,89 @@ export const primaryNav: Array<NavSection> = [
     ],
   },
   {
-    label: 'Advisory',
+    label: 'Services',
     to: '/services',
-    // Profile v3 §2 pillars, in the profile's own order. No feature panel here:
-    // nine practices across four columns already fill the panel, and the header
-    // carries the advisory CTA anyway.
+    // The owner asked for advisory and capacity building under one popover.
+    // They were two entries because the old structure had nine practices and
+    // sixteen focus areas and neither fitted beside the other; the corporate
+    // overview reduces both, so one panel now holds the whole offering —
+    // three advisory practices, the training routes, and the two request
+    // flows — which is also how the overview itself presents the firm.
     columns: [
       {
-        heading: 'Strategy & Advisory',
-        links: [
-          { label: 'Business Advisory', to: '/services/business-advisory' },
-        ],
-      },
-      {
-        heading: 'Financial Leadership',
-        links: [
-          { label: 'Tax Advisory', to: '/services/tax-advisory' },
-          {
-            label: 'Internal Audit & Risk',
-            to: '/services/internal-audit-risk',
-          },
-          { label: 'Financial Advisory', to: '/services/financial-advisory' },
-        ],
-      },
-      {
-        heading: 'Governance, Risk & Digital',
+        heading: 'Advisory',
         links: [
           {
-            label: 'Governance, Risk & Compliance',
-            to: '/services/governance-risk-compliance',
+            label: 'Statutory & Tax Compliance',
+            to: '/services/statutory-tax-compliance',
+            description: 'KRA filings, payroll levies and eTIMS',
           },
           {
-            label: 'Information Systems Audit',
-            to: '/services/information-systems-audit',
+            label: 'Governance, Risk & Internal Audit',
+            to: '/services/governance-risk-internal-audit',
+            description: 'Board effectiveness, ERM and audit',
           },
           {
-            label: 'Cryptocurrency Compliance',
-            to: '/services/cryptocurrency-compliance',
+            label: 'Fraud, Financial Crime & Digital Assets',
+            to: '/services/fraud-financial-crime-digital-assets',
+            description: 'Anti-fraud, AML/CFT and data protection',
           },
           {
-            label: 'Forensic Advisory',
-            to: '/services/forensic-advisory',
+            label: 'All Advisory Practices',
+            to: '/services',
+            description: 'How each engagement runs',
           },
         ],
       },
       {
-        heading: 'Human Capital & Talent',
-        links: [
-          { label: 'Human Capital & Talent', to: '/services/human-capital' },
-        ],
-      },
-    ],
-  },
-  {
-    label: 'Capacity Building',
-    to: '/capacity-building',
-    columns: [
-      {
-        heading: 'Programmes',
+        heading: 'Executive Training',
         links: [
           {
-            label: 'Corporate training',
+            label: 'Corporate Training',
             to: '/capacity-building#corporate',
-            description: 'Cohort programmes for teams',
+            description: 'In-house programmes for teams',
           },
           {
-            label: 'Executive masterclasses',
+            label: 'Executive Masterclasses',
             to: '/capacity-building#masterclasses',
             description: 'Board and C-suite intensives',
           },
           {
-            label: 'Course catalog',
+            label: 'Course Catalog',
             to: '/capacity-building/courses',
-            description: 'Self-paced and blended e-learning',
+            description: 'Self-paced, blended and live modules',
+          },
+          {
+            label: 'Training Focus Areas',
+            to: '/capacity-building#taxonomy',
+            description: 'All five focus areas',
           },
         ],
       },
       {
-        heading: 'Build your own',
+        heading: 'Build Your Own',
         links: [
           {
-            label: 'Custom programme builder',
+            label: 'Custom Programme Builder',
             to: '/capacity-building/builder',
             description: 'Assemble modules, get a quote',
           },
           {
-            label: 'Request corporate training',
+            label: 'Request Corporate Training',
             to: '/capacity-building/corporate-request',
             description: 'Headcount, modules, delivery',
           },
           {
-            label: 'Training taxonomy',
-            to: '/capacity-building#taxonomy',
-            description: 'All 16 focus areas',
+            label: 'Book Advisory',
+            to: '/contact?intent=advisory',
+            description: 'Talk to a practice lead',
           },
         ],
       },
     ],
     feature: {
       eyebrow: 'For HR & L&D',
-      title: 'Pro-forma invoice in one step',
+      title: 'Pro-Forma Invoice In One Step',
       body: 'Tell us your headcount, modules and delivery mode. The request returns a downloadable pro-forma invoice for your procurement cycle.',
       to: '/capacity-building/corporate-request',
       cta: 'Start a request',
@@ -271,44 +254,39 @@ export const footerNav: Array<{ heading: string; links: Array<NavLink> }> = [
   {
     heading: 'Advisory',
     links: [
-      { label: 'Business Advisory', to: '/services/business-advisory' },
-      { label: 'Financial Advisory', to: '/services/financial-advisory' },
-      { label: 'Tax Advisory', to: '/services/tax-advisory' },
-      { label: 'Internal Audit & Risk', to: '/services/internal-audit-risk' },
       {
-        label: 'Governance, Risk & Compliance',
-        to: '/services/governance-risk-compliance',
+        label: 'Statutory & Tax Compliance',
+        to: '/services/statutory-tax-compliance',
       },
       {
-        label: 'Information Systems Audit',
-        to: '/services/information-systems-audit',
+        label: 'Governance, Risk & Internal Audit',
+        to: '/services/governance-risk-internal-audit',
       },
       {
-        label: 'Cryptocurrency Compliance',
-        to: '/services/cryptocurrency-compliance',
+        label: 'Fraud, Financial Crime & Digital Assets',
+        to: '/services/fraud-financial-crime-digital-assets',
       },
-      { label: 'Forensic Advisory', to: '/services/forensic-advisory' },
-      { label: 'Human Capital & Talent', to: '/services/human-capital' },
+      { label: 'All Advisory Practices', to: '/services' },
     ],
   },
   {
-    heading: 'Capacity building',
+    heading: 'Capacity Building',
     links: [
-      { label: 'Course catalog', to: '/capacity-building/courses' },
-      { label: 'Corporate training', to: '/capacity-building#corporate' },
+      { label: 'Course Catalog', to: '/capacity-building/courses' },
+      { label: 'Corporate Training', to: '/capacity-building#corporate' },
       {
-        label: 'Executive masterclasses',
+        label: 'Executive Masterclasses',
         to: '/capacity-building#masterclasses',
       },
-      { label: 'Custom programme builder', to: '/capacity-building/builder' },
-      { label: 'Events & workshops', to: '/events' },
+      { label: 'Custom Programme Builder', to: '/capacity-building/builder' },
+      { label: 'Events & Workshops', to: '/events' },
     ],
   },
   {
     heading: 'Institution',
     links: [
-      { label: 'About us', to: '/about' },
-      { label: 'Leadership & faculty', to: '/about#leadership' },
+      { label: 'About Us', to: '/about' },
+      { label: 'Leadership & Faculty', to: '/about#leadership' },
       { label: 'Governance', to: '/about#governance' },
       { label: 'Accreditation', to: '/about#accreditation' },
       { label: 'Careers', to: '/about#careers' },
@@ -317,11 +295,11 @@ export const footerNav: Array<{ heading: string; links: Array<NavLink> }> = [
   {
     heading: 'Resources',
     links: [
-      { label: 'Insights & research', to: '/resources' },
+      { label: 'Insights & Research', to: '/resources' },
       { label: 'Whitepapers', to: '/resources?type=whitepaper' },
       { label: 'Gallery', to: '/resources#gallery' },
       { label: 'FAQs', to: '/resources#faq' },
-      { label: 'Verify a certificate', to: '/verify' },
+      { label: 'Verify A Certificate', to: '/verify' },
     ],
   },
 ]

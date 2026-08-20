@@ -25,8 +25,8 @@ export const Route = createFileRoute('/')({
       keywords: [
         'advisory Kenya',
         'corporate training East Africa',
-        'Tax Advisory Kenya',
-        'IS Audit Training East Africa',
+        'tax compliance Kenya',
+        'fraud risk training East Africa',
         'governance risk compliance Nairobi',
       ],
     }),

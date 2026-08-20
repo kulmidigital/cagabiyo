@@ -19,7 +19,7 @@ export const Route = createFileRoute('/capacity-building/')({
       title:
         'Capacity building — corporate training, masterclasses and e-learning',
       description:
-        'Corporate training cohorts, executive masterclasses and a self-paced e-learning catalog across sixteen professional focus areas, delivered across East Africa.',
+        'Corporate training cohorts, executive masterclasses and a self-paced e-learning catalog across five professional focus areas, delivered across East Africa.',
       path: '/capacity-building',
       image: photos.workshopRoom,
       keywords: [

@@ -27,7 +27,7 @@ export const Route = createFileRoute('/resources')({
     seo({
       title: 'Insights & research — policy briefs, whitepapers and commentary',
       description:
-        'Thought leadership, policy commentary and research whitepapers on tax, audit, governance, ESG and digital assets across East Africa, plus our gallery and FAQs.',
+        'Thought leadership, policy commentary and research whitepapers on tax compliance, internal audit, governance, fraud and digital assets across East Africa, plus our gallery and FAQs.',
       path: '/resources',
       image: photos.panelDiscussion,
       keywords: [

@@ -90,7 +90,7 @@ export function ProgrammeBuilder() {
         <div className="lg:col-span-7">
           <div className="flex items-center justify-between border-b border-border pb-5">
             <h2 className="text-xl font-bold text-ink-900">
-              Choose your modules
+              Choose Your Modules
             </h2>
             {selected.length > 0 ? (
               <button
@@ -171,7 +171,7 @@ export function ProgrammeBuilder() {
                   aria-hidden="true"
                 />
                 <h2 className="mt-5 text-xl font-bold text-ink-900">
-                  Programme submitted
+                  Programme Submitted
                 </h2>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                   We have your outline of {selected.length} module

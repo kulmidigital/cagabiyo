@@ -13,21 +13,21 @@ import {
 import { SmartLink } from '@/components/common/smart-link'
 import { Photo } from '@/components/common/photo'
 import { ConversionCta } from '@/components/home/conversion-cta'
-import { services, servicePillars } from '@/lib/content/services'
+import { services } from '@/lib/content/services'
 
 export const Route = createFileRoute('/services/')({
   head: () =>
     seo({
-      title: 'Advisory services — tax, audit, governance and digital assets',
+      title: 'Advisory services — statutory compliance, governance and fraud',
       description:
-        'Advisory practices covering tax, internal audit, governance risk and compliance, IS audit, cryptocurrency compliance, forensics, human capital, and business and financial advisory across East Africa.',
+        'Three advisory practices: statutory and tax compliance, governance risk and internal audit, and fraud, financial crime and digital asset advisory, delivered across East Africa.',
       path: '/services',
       image: photos.boardroomWide,
       keywords: [
         'advisory services Kenya',
-        'Tax Advisory Kenya',
+        'tax compliance Kenya',
         'internal audit East Africa',
-        'GRC consulting Nairobi',
+        'fraud risk advisory Nairobi',
       ],
     }),
   component: ServicesIndex,
@@ -45,75 +45,71 @@ function ServicesIndex() {
 
       <PageHero
         eyebrow="Advisory"
-        title="Four pillars, nine practices."
+        title="Three practices, one engagement."
         breadcrumb={[{ label: 'Home', href: '/' }, { label: 'Advisory' }]}
         photo={photos.boardroomWide}
       />
 
-      {servicePillars.map((pillar, groupIndex) => {
-        const group = services.filter(
-          (service) => service.discipline === pillar.name,
-        )
-        return (
-          <Section
-            key={pillar.name}
-            tone={groupIndex % 2 === 0 ? 'default' : 'sand'}
-          >
-            <div className="shell">
-              <SectionHeading eyebrow={pillar.name} title={pillar.title} />
+      {/* One section, not one per pillar. With three practices the grouping
+          headings outnumbered what they grouped, so the list stands on its own
+          and each card carries the full capability set instead of three chips. */}
+      <Section>
+        <div className="shell">
+          <SectionHeading
+            eyebrow="Practice areas"
+            title="Compliance, governance and financial crime, run as one integrated practice."
+          />
 
-              <div className="rule-grid mt-8 grid sm:mt-10 lg:grid-cols-2">
-                {group.map((service) => (
-                  <SmartLink
-                    key={service.slug}
-                    href={`/services/${service.slug}`}
-                    className="edge-card group grid bg-white transition-colors hover:bg-sand-50 sm:grid-cols-[1fr_auto]"
-                  >
-                    <div className="p-6 sm:p-8 lg:p-10">
-                      <IndexLabel n={services.indexOf(service) + 1} />
-                      <h3 className="mt-4 text-xl font-bold text-ink-900 sm:mt-5 sm:text-2xl">
-                        {service.name}
-                      </h3>
-                      <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                        {service.summary}
-                      </p>
+          <div className="rule-grid mt-8 grid sm:mt-10">
+            {services.map((service, index) => (
+              <SmartLink
+                key={service.slug}
+                href={`/services/${service.slug}`}
+                className="edge-card group grid bg-white transition-colors hover:bg-sand-50 sm:grid-cols-[1fr_auto]"
+              >
+                <div className="p-6 sm:p-8 lg:p-10">
+                  <IndexLabel n={index + 1} />
+                  <h3 className="mt-4 text-xl font-bold text-ink-900 sm:mt-5 sm:text-2xl">
+                    {service.name}
+                  </h3>
+                  <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                    {service.summary}
+                  </p>
 
-                      <ul className="mt-6 flex flex-wrap gap-2">
-                        {service.capabilities.slice(0, 3).map((capability) => (
-                          <li
-                            key={capability}
-                            className="border border-border px-2.5 py-1 text-[0.6875rem] text-ink-700"
-                          >
-                            {capability}
-                          </li>
-                        ))}
-                      </ul>
+                  <ul className="mt-6 flex flex-wrap gap-2">
+                    {service.capabilities.slice(0, 5).map((capability) => (
+                      <li
+                        key={capability}
+                        className="border border-border px-2.5 py-1 text-[0.6875rem] text-ink-700"
+                      >
+                        {capability}
+                      </li>
+                    ))}
+                  </ul>
 
-                      <span className="mt-6 inline-flex items-center gap-2 text-xs font-semibold tracking-[0.14em] text-signal-700 uppercase sm:mt-8">
-                        Read the method
-                        <FiArrowUpRight
-                          className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                          aria-hidden="true"
-                        />
-                      </span>
-                    </div>
+                  <span className="mt-6 inline-flex items-center gap-2 text-xs font-semibold tracking-[0.14em] text-signal-700 uppercase sm:mt-8">
+                    Read the method
+                    <FiArrowUpRight
+                      className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      aria-hidden="true"
+                    />
+                  </span>
+                </div>
 
-                    <div className="photo-wash relative hidden w-44 sm:block">
-                      <Photo
-                        photo={service.photo}
-                        width={400}
-                        ratio={0.62}
-                        sizes="176px"
-                        crop="entropy"
-                      />
-                    </div>
-                  </SmartLink>
-                ))}
-              </div>
-            </div>
-          </Section>
-        )
-      })}
+                <div className="photo-wash relative hidden w-44 sm:block lg:w-64">
+                  <Photo
+                    photo={service.photo}
+                    width={520}
+                    ratio={0.62}
+                    sizes="(min-width: 1024px) 256px, 176px"
+                    crop="entropy"
+                  />
+                </div>
+              </SmartLink>
+            ))}
+          </div>
+        </div>
+      </Section>
 
       <ConversionCta />
     </>

@@ -118,7 +118,7 @@ export function ContactForm({
           <FiCheck className="size-5 text-ink-950" aria-hidden="true" />
         </span>
         <h2 className="mt-6 text-2xl font-bold text-ink-900">
-          Message received
+          Message Received
         </h2>
         <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">
           Your enquiry has been routed to the{' '}
@@ -391,7 +391,7 @@ function placeholderFor(intent: Intent): string {
     case 'advisory':
       return 'We have received an assessment we intend to object to, and need support building the position…'
     case 'training':
-      return 'We need 40 finance staff trained on IPSAS before the next reporting cycle…'
+      return 'We need 40 finance staff trained on fraud risk before the next audit cycle…'
     case 'events':
       return 'We would like six seats at the November masterclass, invoiced to the company…'
     case 'careers':

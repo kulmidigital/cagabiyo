@@ -28,22 +28,22 @@ import {
 
 const facts = [
   {
-    label: 'Accredited by',
+    label: 'Accredited By',
     value: 'NITA',
     detail: 'Training eligible for corporate levy reimbursement.',
   },
   {
-    label: 'Operating across',
+    label: 'Operating Across',
     value: `${markets.length} markets`,
     detail: markets.join(', '),
   },
   {
-    label: 'Two mandates',
+    label: 'Two Mandates',
     value: 'Advise & train',
     detail: 'Strategic advisory and accredited executive training.',
   },
   {
-    label: 'Led by',
+    label: 'Led By',
     value: 'Credentialed specialists',
     detail: 'CPA, CFE, CISA, CIA, CRMA, CCCS and ACAMS holders.',
   },
@@ -72,9 +72,9 @@ export function AboutOverview() {
               The practice runs on two delivery vehicles. Advisory engagements
               work directly with boards and executives to design and implement
               institutional architecture. NITA-accredited training upskills the
-              people who then have to run it — the partner who defends a
-              transfer pricing position before a revenue authority also teaches
-              the transfer pricing programme.
+              people who then have to run it — the partner who defends a filing
+              position before a revenue authority also teaches the practical tax
+              programme.
             </p>
             <p>
               The output is a capability the organisation keeps: frameworks,

@@ -7,7 +7,7 @@ import { photos } from '@/lib/images'
 const paths = [
   {
     eyebrow: 'For boards & executives',
-    title: 'Book an advisory session',
+    title: 'Book An Advisory Session',
     body: 'Discuss a disputed assessment, a governance gap or a licensing decision with the partner who would lead the work.',
     href: '/contact?intent=advisory',
     cta: 'Request a session',
@@ -15,7 +15,7 @@ const paths = [
   },
   {
     eyebrow: 'For HR & L&D',
-    title: 'Request corporate training',
+    title: 'Request Corporate Training',
     body: 'Submit headcount, modules and delivery mode to receive a pro-forma invoice and a proposed cohort schedule.',
     href: '/capacity-building/corporate-request',
     cta: 'Start a request',

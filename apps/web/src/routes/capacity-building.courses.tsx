@@ -14,13 +14,13 @@ export const Route = createFileRoute('/capacity-building/courses')({
     seo({
       title: 'Course catalog — professional certificates for East Africa',
       description:
-        'Self-paced, blended and live-virtual certificates in tax, audit, governance, IS audit, digital assets, risk and leadership. Priced in KES and USD.',
+        'Self-paced, blended and live-virtual certificates in finance and tax, governance and internal audit, fraud and financial crime, data protection and digital assets, and SME growth and leadership. Priced in KES and USD.',
       path: '/capacity-building/courses',
       image: photos.tabletGlass,
       keywords: [
         'professional courses Kenya',
         'online certificate East Africa',
-        'IS Audit Training East Africa',
+        'fraud risk management training East Africa',
         'CPD courses Nairobi',
       ],
     }),
@@ -34,7 +34,7 @@ function CoursesPage() {
         data={breadcrumbSchema([
           { name: 'Home', path: '/' },
           { name: 'Capacity Building', path: '/capacity-building' },
-          { name: 'Course catalog', path: '/capacity-building/courses' },
+          { name: 'Course Catalog', path: '/capacity-building/courses' },
         ])}
       />
       {/* SEO-03 — Course structured data for the promoted programmes. */}
@@ -48,7 +48,7 @@ function CoursesPage() {
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'Capacity Building', href: '/capacity-building' },
-          { label: 'Course catalog' },
+          { label: 'Course Catalog' },
         ]}
         align="wide"
       />
