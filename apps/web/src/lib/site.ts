@@ -14,7 +14,7 @@ export const site = {
   legalName: 'CaliberCode Limited',
   tagline: 'Develop. Comply. Elevate.',
   description:
-    'CaliberCode Limited is a NITA-accredited corporate advisory, governance and executive training firm serving boards, C-suite executives, SMEs and institutions across East Africa.',
+    'CaliberCode is East Africa’s premier corporate advisory, governance and executive training firm. NITA accredited institution and KRA Ushuru Mashinani service partner.',
   url: 'https://calibercode.io',
   locale: 'en_KE',
 

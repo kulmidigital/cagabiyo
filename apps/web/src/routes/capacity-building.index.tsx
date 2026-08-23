@@ -5,13 +5,18 @@ import { seo, breadcrumbSchema } from '@/lib/seo'
 import { photos } from '@/lib/images'
 import { JsonLd } from '@/components/common/json-ld'
 import { PageHero } from '@/components/common/page-hero'
-import { Section, SectionHeading } from '@/components/common/section'
+import {
+  Section,
+  SectionHeading,
+  IndexLabel,
+} from '@/components/common/section'
 import { ButtonLink } from '@/components/common/button-link'
 import { Photo } from '@/components/common/photo'
 import { CapacityOverview } from '@/components/home/capacity-overview'
 import { EventCard } from '@/components/events/event-card'
 import { ConversionCta } from '@/components/home/conversion-cta'
 import { events } from '@/lib/content/events'
+import { deliveryMethods } from '@/lib/content/institution'
 
 export const Route = createFileRoute('/capacity-building/')({
   head: () =>
@@ -166,6 +171,31 @@ function CapacityBuildingPage() {
 
       {/* CAP-03 + CAP-07 — catalog routes and taxonomy */}
       <CapacityOverview />
+
+      {/* "How We Deliver" — the five delivery vehicles the corporate overview
+          lists. The page previously showed only three of them. */}
+      <Section id="how-we-deliver">
+        <div className="shell">
+          <SectionHeading
+            eyebrow="How we deliver"
+            title="Five delivery vehicles."
+          />
+
+          <div className="rule-grid mt-8 grid sm:mt-10 sm:grid-cols-2 lg:grid-cols-3">
+            {deliveryMethods.map((method, index) => (
+              <div key={method.name} className="bg-white p-6 sm:p-8">
+                <IndexLabel n={index + 1} />
+                <h3 className="mt-4 text-base leading-snug font-bold text-ink-900">
+                  {method.name}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  {method.detail}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Section>
 
       <ConversionCta />
     </>

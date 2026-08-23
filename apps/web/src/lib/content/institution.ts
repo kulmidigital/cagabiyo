@@ -10,19 +10,62 @@
 import { photos } from '@/lib/images'
 import type { Photo } from '@/lib/images'
 
-// -- ABOUT-01: vision, mission, values (Profile v3 §2) -----------------------
+// -- ABOUT-01: vision, mission, values ---------------------------------------
 
+/**
+ * Verbatim from the client's corporate overview.
+ *
+ * This supersedes the Profile v3 wording carried here before, which paraphrased
+ * the vision ("to build" for "to architect"), stated a different mission
+ * entirely, shortened two of the five values to "Partnership" and "Impact", and
+ * added a `positioning` line the client does not use. Treat the overview as the
+ * source: do not re-word these to fit a layout.
+ */
 export const institution = {
+  overview:
+    'CaliberCode is East Africa’s premier corporate advisory, governance, and executive training firm. We provide ROI-focused solutions that optimize workforce efficiency, streamline operations, and embed compliance. By integrating governance, risk, audit, fraud prevention, and tax services, we empower organizations to operate with complete confidence, resilience, and performance.',
   vision:
-    'To build resilient, compliant, and market-leading enterprises across East Africa.',
+    'To architect resilient, compliant & market-leading enterprises across East Africa.',
   mission:
-    'Building resilient, fully compliant institutions through rigorous advisory and regulatory mastery.',
-  values: ['Integrity', 'Excellence', 'Partnership', 'Innovation', 'Impact'],
-  positioning:
-    'Bridging the gap between complex regulatory mandates and high-yield commercial execution.',
+    'Driving organizational excellence through ROI-focused advisory, seamless operations, and embedded compliance.',
+  commitment:
+    'We believe sustainable organizational performance is built on competence, sound governance, effective internal controls, regulatory discipline, and continuous capability enhancement. Our commitment is to provide professional, practical, and value-driven solutions that empower clients to make informed decisions and operate with total market confidence.',
 } as const
 
-// -- Who the practice serves (Profile v3 §5) ---------------------------------
+/** "Core Values Defined" — the name and its stated definition. */
+export type CoreValue = {
+  name: string
+  detail: string
+}
+
+export const coreValues: Array<CoreValue> = [
+  {
+    name: 'Integrity',
+    detail: 'Uncompromising ethical leadership and transparent governance.',
+  },
+  {
+    name: 'Excellence',
+    detail:
+      'High-precision corporate solutions engineered for peak performance.',
+  },
+  {
+    name: 'Strategic Partnership',
+    detail:
+      'Strategic collaboration with leaders to ensure sustainable growth.',
+  },
+  {
+    name: 'Innovation',
+    detail:
+      'Modern frameworks bridging risk, tax, cybersecurity, and digital assets.',
+  },
+  {
+    name: 'Measurable Impact',
+    detail:
+      'Actionable insights that yield measurable ROI and lasting resilience.',
+  },
+]
+
+// -- Who the practice serves -------------------------------------------------
 
 export type Segment = {
   name: string
@@ -31,46 +74,87 @@ export type Segment = {
 
 export const segments: Array<Segment> = [
   {
-    name: 'Corporate Boards & C-Suite',
+    name: 'Enterprises & SMEs',
     detail:
-      'Strategic direction, governance oversight and risk mitigation at the top of the organisation.',
+      'Growing organizations seeking operational efficiency, structured processes, and strict regulatory alignment.',
   },
   {
-    name: 'SMEs & Growing Enterprises',
+    name: 'Leadership & Boards',
     detail:
-      'Scaling, professionalising operations and reaching the standard capital markets expect.',
+      'Directors, executive teams, and senior managers navigating complex corporate governance and fiduciary duties.',
   },
   {
-    name: 'Financial Institutions & Fintechs',
+    name: 'Entrepreneurs & Professionals',
     detail:
-      'SACCOs, Tier-2 banks, microfinance institutions and digital asset platforms under regulatory scrutiny.',
-  },
-  {
-    name: 'Public Sector & State Corporations',
-    detail:
-      'County governments, state entities and non-governmental organisations meeting statutory obligations.',
+      'Forward-thinking business leaders and professionals building scalable, compliant, and resilient corporate structures.',
   },
 ]
 
 /**
- * Profile v3 §5 — what an engagement is expected to change. Stated as the
- * client states them: capability delivered, not volume claimed.
+ * "Why CaliberCode?" — the stated proposition, one entry per bullet.
+ *
+ * This replaces `institutionalImpact`, which carried three outcome claims the
+ * corporate overview does not make.
  */
-export const institutionalImpact: Array<Segment> = [
+export const whyCaliberCode: Array<Segment> = [
   {
-    name: 'Actionable Toolkits',
+    name: 'Accredited & Recognized',
     detail:
-      'Participants leave with templates, policies and analytical models ready to deploy.',
+      'Fully NITA-accredited corporate training provider and official KRA Ushuru Mashinani Partner.',
   },
   {
-    name: 'Operational De-Risking',
+    name: 'Practical & Business-Focused',
     detail:
-      'Reduced exposure to tax penalties, fraud losses, cyber threats and regulatory sanction.',
+      'We focus exclusively on actionable solutions that are applied, measured, and sustained in real organizations.',
   },
   {
-    name: 'Future-Proofed Talent',
+    name: 'Expert-Led Insights',
     detail:
-      'A workforce able to handle e-invoicing, digital assets and the compliance load that comes with them.',
+      'Our work draws on deep domain expertise across finance, taxation, audit, fraud, risk, governance, and digital assets.',
+  },
+  {
+    name: 'Compliance-Focused Discipline',
+    detail:
+      'We help clients build long-term compliance discipline and maintain audit-ready documentation.',
+  },
+  {
+    name: 'Tailored Programs',
+    detail:
+      'Solutions are tailored to specific regulatory environments, industry dynamics, and capability gaps.',
+  },
+  {
+    name: 'Integrated Approach',
+    detail:
+      'We connect people, processes, controls, compliance, and strategic performance seamlessly.',
+  },
+]
+
+/** "How We Deliver" — the five delivery vehicles the overview lists. */
+export const deliveryMethods: Array<Segment> = [
+  {
+    name: 'In-House Corporate Training',
+    detail:
+      'Customized, on-site programs built specifically around your organizational needs and corporate culture.',
+  },
+  {
+    name: 'Executive Masterclasses',
+    detail:
+      'High-impact, focused learning modules for senior leaders, boards, C-suite executives, and professionals.',
+  },
+  {
+    name: 'Board & Leadership Retreats',
+    detail:
+      'Facilitated strategic retreats focused on corporate direction, governance oversight, and leadership alignment.',
+  },
+  {
+    name: 'Virtual & Hybrid Training',
+    detail:
+      'Flexible, interactive digital delivery tailored for distributed and geographically diverse teams.',
+  },
+  {
+    name: 'Compliance Support & Advisory',
+    detail:
+      'Direct execution support for statutory obligations, compliance reviews, tax filings, and documentation.',
   },
 ]
 
@@ -235,30 +319,56 @@ export const governanceModel: Array<GovernanceOrgan> = [
 /**
  * Institutional accreditation.
  *
- * Profile v3 claims exactly one: NITA. The ICPAK, IIA and ISACA entries that
- * previously sat here asserted that the firm itself is accredited by those
- * bodies — a stronger claim than the client makes. Their marks are in
- * `public/orgs` because staff hold their certifications, which is a different
- * thing and is recorded in `practitionerCredentials` below.
+ * The corporate overview claims exactly two standings, and they are not the
+ * same kind of thing — see `standing`. The ICPAK, IIA and ISACA entries that
+ * once sat here asserted that the firm itself is accredited by those bodies, a
+ * stronger claim than the client makes. Their marks remain in `public/orgs`
+ * because staff hold those certifications, which is recorded in
+ * `practitionerCredentials` below instead.
  */
 export type Accreditation = {
   body: string
   abbreviation: string
+  /**
+   * What the standing actually is. NITA accredits; KRA appoints a service
+   * partner — calling both "accredited" would overstate the second.
+   */
+  standing: string
   scope: string
   /** What the accreditation is worth to a buyer. */
   benefit: string
-  /** Supplied brand mark, served from `public/orgs`. */
-  logo: string
+  /**
+   * Supplied brand mark, served from `public/orgs`.
+   *
+   * Optional: the client claims the KRA partnership but has not supplied a
+   * mark for it, and rendering a broken image is worse than rendering none.
+   * Consumers fall back to the abbreviation set as type.
+   */
+  logo?: string
 }
 
+/**
+ * The two standings the corporate overview claims, in the order it states them
+ * in the signature block: "NITA Accredited Institution | KRA Ushuru Mashinani
+ * Service Partner". The KRA partnership was missing here entirely.
+ */
 export const accreditations: Array<Accreditation> = [
   {
     body: 'National Industrial Training Authority',
     abbreviation: 'NITA',
+    standing: 'Accredited institution',
     scope: 'Corporate and professional training provision',
     benefit:
       'Training delivered under the accreditation is eligible for corporate training levy reimbursement.',
     logo: '/orgs/nita.png',
+  },
+  {
+    body: 'Kenya Revenue Authority — Ushuru Mashinani Service Partner',
+    abbreviation: 'KRA',
+    standing: 'Ushuru Mashinani service partner',
+    scope: 'Accessible tax and compliance support',
+    benefit:
+      'As an accredited KRA Partner, CaliberCode is a trusted channel for tax registration, filing support, statutory reconciliations and regulatory alignment.',
   },
 ]
 
@@ -568,7 +678,7 @@ export const faqs: Array<FaqCategory> = [
       {
         question: 'Are CaliberCode programmes accredited?',
         answer:
-          'CaliberCode is a registered training provider and an approved CPD/CPE provider with the professional bodies listed on our About page. Each course page states the specific recognition that applies to it and the CPD hours it carries. Accreditation references shown on this site are being confirmed ahead of launch.',
+          'CaliberCode is a NITA-accredited institution, so corporate training delivered under the accreditation is eligible for training levy reimbursement. We are also a KRA Ushuru Mashinani service partner for tax and compliance support. Each course page states the CPD hours it carries.',
       },
       {
         question: 'What credential do I receive on completion?',

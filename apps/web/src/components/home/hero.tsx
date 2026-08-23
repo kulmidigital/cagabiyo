@@ -20,8 +20,9 @@ export function HomeHero() {
             </h1>
 
             <p className="mt-6 max-w-lg text-lg leading-relaxed text-ink-200">
-              We advise boards on tax, audit, governance, risk and digital
-              assets, and train the professionals who do that work.
+              ROI-focused solutions that optimize workforce efficiency,
+              streamline operations, and embed compliance — integrating
+              governance, risk, audit, fraud prevention and tax.
             </p>
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">

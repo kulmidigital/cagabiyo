@@ -4,34 +4,42 @@ import {
 } from '@/lib/content/institution'
 
 /**
- * Trust strip. Profile v3 claims one institutional accreditation, so this is a
- * statement rather than the logo wall it used to be — the levy-reimbursement
- * line is the part a corporate buyer acts on. The credential row carries the
- * rest of the proof, at the practitioner level where the profile puts it.
+ * Trust strip. The corporate overview claims two standings — NITA accreditation
+ * and the KRA Ushuru Mashinani partnership — so this maps the list rather than
+ * hardcoding the first entry, as it did while NITA was the only one. The
+ * credential row carries the rest of the proof at the practitioner level.
  */
 export function AccreditationStrip() {
-  const nita = accreditations[0]
-
   return (
     <section className="border-b border-border bg-white py-6 sm:py-10">
       <div className="shell">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:gap-14">
-          <div className="flex flex-none items-center gap-5">
-            <img
-              src={nita.logo}
-              alt={`${nita.body} (${nita.abbreviation})`}
-              loading="lazy"
-              decoding="async"
-              className="h-11 w-auto max-w-36 object-contain sm:h-12"
-            />
-            <div className="border-l border-border pl-5">
-              <p className="text-sm font-bold text-ink-900">
-                {nita.abbreviation} accredited
-              </p>
-              <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-                {nita.benefit}
-              </p>
-            </div>
+          <div className="grid flex-none gap-6 sm:grid-cols-2 lg:gap-8">
+            {accreditations.map((item) => (
+              <div key={item.abbreviation} className="flex items-center gap-5">
+                {item.logo ? (
+                  <img
+                    src={item.logo}
+                    alt={`${item.body} (${item.abbreviation})`}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-11 w-auto max-w-36 flex-none object-contain sm:h-12"
+                  />
+                ) : (
+                  <p className="flex h-11 flex-none items-center text-2xl font-bold tracking-tight text-ink-900 sm:h-12">
+                    {item.abbreviation}
+                  </p>
+                )}
+                <div className="border-l border-border pl-5">
+                  <p className="text-sm font-bold text-ink-900">
+                    {item.abbreviation} — {item.standing}
+                  </p>
+                  <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                    {item.benefit}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
 
           <div className="flex-1 lg:border-l lg:border-border lg:pl-14">

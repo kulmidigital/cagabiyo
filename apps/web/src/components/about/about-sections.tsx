@@ -19,7 +19,8 @@ import {
   accreditations,
   governanceModel,
   institution,
-  institutionalImpact,
+  coreValues,
+  whyCaliberCode,
   leadership,
   practitionerCredentials,
   segments,
@@ -29,8 +30,9 @@ import {
 const facts = [
   {
     label: 'Accredited By',
-    value: 'NITA',
-    detail: 'Training eligible for corporate levy reimbursement.',
+    value: 'NITA & KRA',
+    detail:
+      'NITA accredited institution and KRA Ushuru Mashinani service partner.',
   },
   {
     label: 'Operating Across',
@@ -61,25 +63,20 @@ export function AboutOverview() {
             </h2>
           </div>
 
+          {/* The overview and the commitment are the client's own words. The
+              paragraphs that stood here were written for the site and made
+              claims the corporate overview does not — they are gone. */}
           <div className="space-y-5 leading-relaxed text-muted-foreground sm:text-lg lg:col-span-6 lg:col-start-7">
-            <p className="text-ink-900">{institution.positioning}</p>
+            <p className="text-ink-900">{institution.overview}</p>
             <p>
-              CaliberCode is a corporate advisory, governance and executive
-              training firm working with enterprise boards, C-suite executives,
-              growing SMEs and institutional investors across East Africa.
+              The practice runs on two mandates. Advisory engagements handle
+              technical execution, regulatory interface and risk mitigation
+              directly, so client leadership can focus on core growth.
+              NITA-accredited training then builds the practical capability to
+              run it — programmes tailored to organizational priorities,
+              regulatory expectations and identified capability gaps.
             </p>
-            <p>
-              The practice runs on two delivery vehicles. Advisory engagements
-              work directly with boards and executives to design and implement
-              institutional architecture. NITA-accredited training upskills the
-              people who then have to run it — the partner who defends a filing
-              position before a revenue authority also teaches the practical tax
-              programme.
-            </p>
-            <p>
-              The output is a capability the organisation keeps: frameworks,
-              policies and toolkits that are installed rather than lectured.
-            </p>
+            <p>{institution.commitment}</p>
           </div>
         </div>
 
@@ -103,7 +100,7 @@ export function AboutOverview() {
   )
 }
 
-/** Profile v3 §2 — vision, mission and the five stated values. */
+/** Vision, mission and the five core values, as the corporate overview states them. */
 export function VisionMission() {
   return (
     <Section id="vision" tone="ink">
@@ -120,16 +117,21 @@ export function VisionMission() {
               {institution.mission}
             </p>
 
+            {/* The overview defines each value, so they are no longer bare
+                chips — a one-word chip drops the half that carries meaning. */}
             <p className="mt-10 text-[0.6875rem] font-semibold tracking-widest text-signal-400 uppercase">
               Core values
             </p>
-            <ul className="mt-4 flex flex-wrap gap-2.5">
-              {institution.values.map((value) => (
+            <ul className="mt-5 grid gap-x-8 gap-y-5 sm:grid-cols-2">
+              {coreValues.map((value) => (
                 <li
-                  key={value}
-                  className="border border-white/15 px-4 py-2 text-sm font-medium text-white"
+                  key={value.name}
+                  className="border-l-2 border-signal-500 pl-4"
                 >
-                  {value}
+                  <p className="text-sm font-bold text-white">{value.name}</p>
+                  <p className="mt-1.5 text-sm leading-relaxed text-ink-200">
+                    {value.detail}
+                  </p>
                 </li>
               ))}
             </ul>
@@ -140,17 +142,14 @@ export function VisionMission() {
   )
 }
 
-/** Profile v3 §5 — who the practice serves, and what an engagement changes. */
+/** Who the practice serves, and the stated reasons to choose it. */
 export function WhoWeServe() {
   return (
     <Section id="who-we-serve" tone="sand">
       <div className="shell">
-        <SectionHeading
-          eyebrow="Who we serve"
-          title="Four institutional buyers."
-        />
+        <SectionHeading eyebrow="Who we serve" title="Three client segments." />
 
-        <div className="rule-grid mt-8 grid sm:mt-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="rule-grid mt-8 grid sm:mt-10 lg:grid-cols-3">
           {segments.map((segment, index) => (
             <div key={segment.name} className="bg-white p-6 sm:p-8">
               <IndexLabel n={index + 1} />
@@ -164,15 +163,25 @@ export function WhoWeServe() {
           ))}
         </div>
 
-        <div className="mt-10 grid gap-8 border-t border-border pt-10 sm:grid-cols-3 sm:gap-10">
-          {institutionalImpact.map((item) => (
-            <div key={item.name} className="border-l-2 border-signal-500 pl-5">
-              <h3 className="text-sm font-bold text-ink-900">{item.name}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                {item.detail}
-              </p>
-            </div>
-          ))}
+        {/* "Why CaliberCode?" — six stated reasons, replacing the three
+            outcome claims the corporate overview does not make. */}
+        <div className="mt-12 border-t border-border pt-10">
+          <p className="text-[0.6875rem] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
+            Why CaliberCode
+          </p>
+          <div className="mt-6 grid gap-8 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3">
+            {whyCaliberCode.map((item) => (
+              <div
+                key={item.name}
+                className="border-l-2 border-signal-500 pl-5"
+              >
+                <h3 className="text-sm font-bold text-ink-900">{item.name}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  {item.detail}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </Section>
@@ -278,13 +287,22 @@ export function AccreditationList() {
           {accreditations.map((item) => (
             <div key={item.abbreviation} className="lg:col-span-5">
               <div className="edge-card border border-border bg-white p-6 sm:p-8">
-                <img
-                  src={item.logo}
-                  alt={`${item.body} (${item.abbreviation})`}
-                  loading="lazy"
-                  decoding="async"
-                  className="h-10 w-auto max-w-36 object-contain sm:h-12"
-                />
+                {/* No mark supplied for the KRA partnership, so the
+                    abbreviation is set as type at the same height rather than
+                    leaving a broken image or a ragged card. */}
+                {item.logo ? (
+                  <img
+                    src={item.logo}
+                    alt={`${item.body} (${item.abbreviation})`}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-10 w-auto max-w-36 object-contain sm:h-12"
+                  />
+                ) : (
+                  <p className="flex h-10 items-center text-2xl font-bold tracking-tight text-ink-900 sm:h-12 sm:text-3xl">
+                    {item.abbreviation}
+                  </p>
+                )}
                 <h3 className="mt-6 text-base font-bold text-ink-900">
                   {item.body}
                 </h3>
