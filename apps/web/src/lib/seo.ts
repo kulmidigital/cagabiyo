@@ -10,6 +10,7 @@
 import { offices, site } from '@/lib/site'
 import type { Course } from '@/lib/content/training'
 import type { EventFormat, SiteEvent } from '@/lib/content/events'
+import type { Insight } from '@/lib/content/insights'
 import { photoSrc } from '@/lib/images'
 import type { Photo } from '@/lib/images'
 
@@ -190,6 +191,40 @@ export function eventSchema(event: SiteEvent) {
       url: `${site.url}/events`,
       validFrom: new Date().toISOString(),
     },
+  }
+}
+
+/** SEO-03 — Article markup for the insights detail pages. */
+export function articleSchema(insight: Insight) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: insight.title,
+    description: insight.summary,
+    image: photoSrc(insight.photo, { w: 1200 }),
+    datePublished: insight.publishedAt,
+    author: {
+      '@type': 'Person',
+      name: insight.author,
+      jobTitle: insight.authorRole,
+      worksFor: { '@type': 'Organization', name: site.name },
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: site.name,
+      url: site.url,
+    },
+    mainEntityOfPage: `${site.url}/resources/${insight.slug}`,
+    keywords: insight.topics.join(', '),
+    wordCount: insight.body.reduce(
+      (total, section) =>
+        total +
+        section.paragraphs.reduce(
+          (count, paragraph) => count + paragraph.split(/\s+/).length,
+          0,
+        ),
+      0,
+    ),
   }
 }
 

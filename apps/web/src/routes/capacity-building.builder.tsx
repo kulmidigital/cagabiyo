@@ -36,7 +36,7 @@ function BuilderPage() {
 
       <PageHero
         eyebrow="Custom programme"
-        title="Build a programme from the training taxonomy."
+        title="Programme Builder"
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'Capacity Building', href: '/capacity-building' },

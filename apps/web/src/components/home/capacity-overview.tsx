@@ -47,10 +47,7 @@ export function CapacityOverview() {
   return (
     <section id="capacity" className="relative py-6 sm:py-10">
       <div className="shell">
-        <SectionHeading
-          eyebrow="Capacity building"
-          title="Three ways to train with us."
-        />
+        <SectionHeading eyebrow="Capacity building" title="Ways To Train" />
 
         <div className="rule-grid mt-8 grid sm:mt-10 lg:grid-cols-3">
           {routes.map((route, index) => (

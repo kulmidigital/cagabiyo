@@ -25,9 +25,7 @@ export function SiteFooter() {
         <div className="shell grid gap-8 py-6 sm:py-10 lg:grid-cols-12 lg:items-center lg:gap-12">
           <div className="lg:col-span-5">
             <p className="eyebrow text-signal-400">Newsletter</p>
-            <h2 className="display-md mt-4 text-white">
-              Monthly regulatory briefing.
-            </h2>
+            <h2 className="display-md mt-4 text-white">Regulatory Briefing</h2>
             <p className="mt-3 max-w-lg text-sm leading-relaxed text-ink-200">
               Regulatory change across East Africa, plus new programmes and open
               masterclass dates. One email a month.

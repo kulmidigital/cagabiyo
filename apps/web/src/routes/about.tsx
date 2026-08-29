@@ -44,7 +44,7 @@ function AboutPage() {
 
       <PageHero
         eyebrow="About us"
-        title="Advisory and training under one institution."
+        title="The Institution"
         lede="CaliberCode advises boards across East Africa and trains the professionals who do that work. The same faculty covers both."
         breadcrumb={[{ label: 'Home', href: '/' }, { label: 'About' }]}
         align="wide"

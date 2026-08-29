@@ -7,9 +7,7 @@ export function ImpactMetrics() {
       <div className="shell">
         <div className="mx-auto max-w-2xl text-center">
           <p className="eyebrow justify-center text-signal-700">Scope</p>
-          <h2 className="display-md mt-4 text-ink-900">
-            What the institution covers.
-          </h2>
+          <h2 className="display-md mt-4 text-ink-900">At A Glance</h2>
         </div>
 
         <dl className="mt-8 grid border-y border-ink-200 sm:mt-10 sm:grid-cols-2 lg:grid-cols-4">

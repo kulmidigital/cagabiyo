@@ -33,10 +33,7 @@ export function ResourceGallery() {
   return (
     <Section id="gallery" tone="sand">
       <div className="shell">
-        <SectionHeading
-          eyebrow="Gallery"
-          title="Masterclasses, graduations and board retreats."
-        />
+        <SectionHeading eyebrow="Gallery" title="Programme Gallery" />
 
         <div className="no-scrollbar -mx-1 mt-8 flex gap-2 overflow-x-auto px-1 pb-1 sm:mx-0 sm:mt-10 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0">
           <GalleryChip
@@ -167,7 +164,7 @@ export function ResourceFaqs() {
           <div className="lg:col-span-4">
             <SectionHeading
               eyebrow="Frequently asked"
-              title="Accreditation, bookings and payment."
+              title="Common Questions"
             />
           </div>
 

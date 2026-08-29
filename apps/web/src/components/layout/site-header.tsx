@@ -100,9 +100,17 @@ export function SiteHeader() {
             // through the morph — and it would jog the layout by 2px.
             'mx-auto flex h-16 items-center justify-between gap-6 border border-transparent backdrop-blur-xl transition-all duration-500 ease-out lg:h-20',
             shape,
+            // ink-800, barely translucent, and the same tone in both states so
+            // scrolling changes the shape rather than the colour.
+            //
+            // The depth is bounded at one end by the original fault: ink-950 at
+            // 75% let the light hero bleed through and desaturated the bar to
+            // grey. Composited over the hero, ink-800 still separates red from
+            // blue by 53 points and reads navy; ink-900 drops that to 37 and
+            // starts drifting back toward the grey it came from.
             scrolled
-              ? 'border-b-white/10 bg-ink-950/92'
-              : 'border-white/15 bg-ink-950/75 shadow-[0_10px_40px_-16px_rgb(4_14_29/0.6)]',
+              ? 'border-b-white/10 bg-ink-800/97'
+              : 'border-white/15 bg-ink-800/94 shadow-[0_10px_40px_-16px_rgb(4_14_29/0.6)]',
             // Square off the bottom while a panel is attached below it.
             activeSection && !scrolled && 'border-b-transparent',
           )}

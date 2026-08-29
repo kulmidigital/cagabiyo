@@ -31,7 +31,7 @@ export function FeaturedCourses() {
       <div className="shell">
         <SectionHeading
           eyebrow="Featured programmes"
-          title="Most-requested certificates."
+          title="Most-Requested Certificates"
           action={<CurrencyToggle value={currency} onChange={setCurrency} />}
         />
 

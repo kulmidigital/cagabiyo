@@ -26,31 +26,34 @@ export function PageHero({
   const split = align === 'split' && Boolean(photo)
 
   return (
-    <section className="surface-ink relative overflow-hidden">
-      <div className="grain absolute inset-0" aria-hidden="true" />
+    <section className="surface-light relative overflow-hidden">
+      <div className="grain grain-soft absolute inset-0" aria-hidden="true" />
 
       {/* mt clears the fixed header (h-16 / lg:h-20 plus its inset) — padding
           stays on the standard py-6 sm:py-10 rhythm. */}
       <div className="shell relative mt-20 py-6 sm:py-10 lg:mt-25">
         <nav aria-label="Breadcrumb">
-          <ol className="flex flex-wrap items-center gap-1.5 text-xs text-ink-300">
+          <ol className="flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground">
             {breadcrumb.map((crumb, index) => (
               <li key={crumb.label} className="flex items-center gap-1.5">
                 {index > 0 ? (
                   <FiChevronRight
-                    className="size-3 text-white/25"
+                    className="size-3 text-ink-900/25"
                     aria-hidden="true"
                   />
                 ) : null}
                 {crumb.href ? (
                   <SmartLink
                     href={crumb.href}
-                    className="transition-colors hover:text-white"
+                    className="transition-colors hover:text-ink-900"
                   >
                     {crumb.label}
                   </SmartLink>
                 ) : (
-                  <span aria-current="page" className="text-white">
+                  <span
+                    aria-current="page"
+                    className="font-medium text-ink-900"
+                  >
                     {crumb.label}
                   </span>
                 )}
@@ -66,10 +69,10 @@ export function PageHero({
           )}
         >
           <div className={cn(split ? 'lg:col-span-7' : 'max-w-4xl')}>
-            <p className="eyebrow text-signal-400">{eyebrow}</p>
-            <h1 className="display-lg mt-7 text-white">{title}</h1>
+            <p className="eyebrow text-signal-700">{eyebrow}</p>
+            <h1 className="display-lg mt-7 text-ink-900">{title}</h1>
             {lede ? (
-              <p className="mt-7 max-w-2xl text-lg leading-relaxed text-ink-200">
+              <p className="mt-7 max-w-2xl text-lg leading-relaxed text-muted-foreground">
                 {lede}
               </p>
             ) : null}
@@ -80,7 +83,7 @@ export function PageHero({
             <div className="lg:col-span-5">
               <div className="relative">
                 <div
-                  className="absolute -top-3 -right-3 bottom-6 left-6 border border-signal-500/30"
+                  className="absolute -top-3 -right-3 bottom-6 left-6 border border-signal-500/45"
                   aria-hidden="true"
                 />
                 <div className="photo-wash photo-wash-soft relative aspect-4/3">

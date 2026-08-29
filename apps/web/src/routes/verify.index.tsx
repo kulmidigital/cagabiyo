@@ -49,7 +49,7 @@ function VerifyPage() {
 
       <PageHero
         eyebrow="Credential verification"
-        title="Check a certificate identifier."
+        title="Verify A Certificate"
         breadcrumb={[{ label: 'Home', href: '/' }, { label: 'Verify' }]}
         align="wide"
       />

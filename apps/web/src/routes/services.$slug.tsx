@@ -99,7 +99,7 @@ function ServiceDetail() {
           <ButtonLink
             href="/capacity-building/courses"
             variant="outline"
-            className="border-white/25 text-white hover:bg-white/10 hover:text-white"
+            className="border-ink-900/20 text-ink-900 hover:bg-ink-900/5 hover:text-ink-900"
           >
             Related training
           </ButtonLink>
@@ -111,10 +111,7 @@ function ServiceDetail() {
         <div className="shell">
           <div className="grid gap-8 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-4">
-              <SectionHeading
-                eyebrow="Our method"
-                title="How an engagement runs."
-              />
+              <SectionHeading eyebrow="Our method" title="Engagement Method" />
             </div>
 
             <ol className="rule-grid grid lg:col-span-7 lg:col-start-6 sm:grid-cols-2">
@@ -139,9 +136,9 @@ function ServiceDetail() {
       {service.standards || service.deliverables ? (
         <Section tone="ink">
           <div className="shell">
-            <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+            <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
               {service.standards ? (
-                <div className="lg:col-span-5">
+                <div>
                   <Eyebrow tone="ink">Tested against</Eyebrow>
                   <ul className="mt-6 space-y-6">
                     {service.standards.map((standard) => (
@@ -165,7 +162,7 @@ function ServiceDetail() {
               ) : null}
 
               {service.deliverables ? (
-                <div className="lg:col-span-6 lg:col-start-7">
+                <div>
                   <Eyebrow tone="ink">What is handed over</Eyebrow>
                   <ul className="mt-6 divide-y divide-white/10 border-y border-white/10">
                     {service.deliverables.map((deliverable, index) => (
@@ -260,7 +257,7 @@ function ServiceDetail() {
           <div className="shell">
             <SectionHeading
               eyebrow="Related training"
-              title="Training in this discipline."
+              title="Related Courses"
             />
 
             <div className="rule-grid mt-8 grid sm:mt-10 sm:grid-cols-2 lg:grid-cols-3">
@@ -290,10 +287,7 @@ function ServiceDetail() {
       {relatedInsights.length ? (
         <Section tone="sand">
           <div className="shell">
-            <SectionHeading
-              eyebrow="Related reading"
-              title="Recent work on this topic."
-            />
+            <SectionHeading eyebrow="Related reading" title="Recent Work" />
             <div className="rule-grid mt-8 grid sm:mt-10 sm:grid-cols-2 lg:grid-cols-3">
               {relatedInsights.map((insight) => (
                 <InsightCard key={insight.slug} insight={insight} />

@@ -49,9 +49,7 @@ function VerifyResultPage() {
 
       <PageHero
         eyebrow="Credential verification"
-        title={
-          found ? 'Verification result' : 'We could not verify that identifier'
-        }
+        title={found ? 'Verification Result' : 'Identifier Not Recognised'}
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'Verify', href: '/verify' },

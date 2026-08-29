@@ -23,7 +23,7 @@ export function UpcomingEvents() {
   return (
     <section className="py-6 sm:py-10">
       <div className="shell">
-        <SectionHeading eyebrow="Events & workshops" title="Upcoming dates." />
+        <SectionHeading eyebrow="Events & workshops" title="Upcoming Dates" />
 
         <ul className="mt-8 sm:mt-10">
           {upcoming.map((event, index) => {

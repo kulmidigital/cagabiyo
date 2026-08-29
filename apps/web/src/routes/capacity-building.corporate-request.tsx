@@ -61,7 +61,7 @@ function CorporateRequestPage() {
 
       <PageHero
         eyebrow="Corporate training"
-        title="Request corporate training."
+        title="Corporate Request"
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'Capacity Building', href: '/capacity-building' },
@@ -73,12 +73,12 @@ function CorporateRequestPage() {
           {assurances.map((item) => (
             <li key={item.title} className="flex items-start gap-3">
               <item.icon
-                className="mt-0.5 size-4 flex-none text-signal-500"
+                className="mt-0.5 size-4 flex-none text-signal-600"
                 aria-hidden="true"
               />
               <div>
-                <p className="text-sm font-bold text-white">{item.title}</p>
-                <p className="mt-1 text-xs leading-relaxed text-ink-300">
+                <p className="text-sm font-bold text-ink-900">{item.title}</p>
+                <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
                   {item.detail}
                 </p>
               </div>

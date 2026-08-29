@@ -210,9 +210,9 @@ export const primaryNav: Array<NavSection> = [
             description: 'Self-paced, blended and live modules',
           },
           {
-            label: 'Training Focus Areas',
-            to: '/capacity-building#taxonomy',
-            description: 'All five focus areas',
+            label: 'SMEs & Individuals',
+            to: '/capacity-building#smes-individuals',
+            description: 'Single seats and small-team programmes',
           },
         ],
       },

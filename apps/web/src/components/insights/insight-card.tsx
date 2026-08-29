@@ -1,4 +1,4 @@
-import { FiArrowUpRight, FiClock, FiFileText } from 'react-icons/fi'
+import { FiArrowUpRight, FiClock } from 'react-icons/fi'
 
 import { Photo } from '@/components/common/photo'
 import { SmartLink } from '@/components/common/smart-link'
@@ -15,13 +15,10 @@ export function InsightCard({
   variant?: 'default' | 'feature' | 'compact'
   className?: string
 }>) {
-  const isPaper =
-    insight.type === 'Whitepaper' || insight.type === 'Policy brief'
-
   if (variant === 'compact') {
     return (
       <SmartLink
-        href={`/resources#${insight.slug}`}
+        href={`/resources/${insight.slug}`}
         className={cn(
           'edge-card group flex items-start gap-5 bg-white p-5 transition-colors hover:bg-sand-50',
           className,
@@ -53,7 +50,7 @@ export function InsightCard({
 
   return (
     <SmartLink
-      href={`/resources#${insight.slug}`}
+      href={`/resources/${insight.slug}`}
       className={cn(
         'edge-card group flex flex-col bg-white transition-colors hover:bg-sand-50',
         feature && 'lg:grid lg:grid-cols-2 lg:items-stretch',
@@ -77,12 +74,12 @@ export function InsightCard({
               : '(min-width: 1024px) 32vw, 100vw'
           }
         />
-        {isPaper && insight.pages ? (
-          <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 bg-ink-950/85 px-2.5 py-1.5 text-[0.625rem] font-semibold tracking-[0.12em] text-white uppercase backdrop-blur-sm">
-            <FiFileText className="size-3" aria-hidden="true" />
-            {insight.pages} pages
-          </span>
-        ) : null}
+        {/* These are articles now, not whitepapers, so the badge carries
+            reading time rather than a page count. */}
+        <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 bg-ink-950/85 px-2.5 py-1.5 text-[0.625rem] font-semibold tracking-[0.12em] text-white uppercase backdrop-blur-sm">
+          <FiClock className="size-3" aria-hidden="true" />
+          {insight.readingMinutes} min read
+        </span>
       </div>
 
       <div

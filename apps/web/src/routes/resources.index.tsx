@@ -19,7 +19,7 @@ type ResourceSearch = {
   type?: string
 }
 
-export const Route = createFileRoute('/resources')({
+export const Route = createFileRoute('/resources/')({
   validateSearch: (search: Record<string, unknown>): ResourceSearch => ({
     type: typeof search.type === 'string' ? search.type : undefined,
   }),
@@ -68,7 +68,7 @@ function ResourcesPage() {
 
       <PageHero
         eyebrow="Insights & research"
-        title="Analysis, policy briefs and research."
+        title="Analysis & Commentary"
         breadcrumb={[{ label: 'Home', href: '/' }, { label: 'Insights' }]}
         photo={photos.panelDiscussion}
       />

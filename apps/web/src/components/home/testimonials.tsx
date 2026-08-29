@@ -66,7 +66,7 @@ export function Testimonials() {
         <SectionHeading
           tone="ink"
           eyebrow="In their words"
-          title="Client feedback."
+          title="Client Feedback"
         />
 
         <div className="mt-8 sm:mt-10">

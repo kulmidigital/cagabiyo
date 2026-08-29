@@ -68,7 +68,7 @@ function ContactPage() {
 
       <PageHero
         eyebrow="Contact"
-        title="Contact the advisory or training team."
+        title="Get In Touch"
         breadcrumb={[{ label: 'Home', href: '/' }, { label: 'Contact' }]}
         align="wide"
       >
@@ -76,19 +76,19 @@ function ContactPage() {
           <li>
             <a
               href={`mailto:${site.contact.email}`}
-              className="link-wipe inline-flex items-center gap-2.5 text-sm text-ink-100 transition-colors hover:text-white"
+              className="link-wipe inline-flex items-center gap-2.5 text-sm text-ink-800 transition-colors hover:text-ink-950"
             >
-              <FiMail className="size-4 text-signal-500" aria-hidden="true" />
+              <FiMail className="size-4 text-signal-600" aria-hidden="true" />
               {site.contact.email}
             </a>
           </li>
           <li>
             <a
               href={`tel:${site.contact.altPhone.replaceAll(' ', '')}`}
-              className="link-wipe inline-flex items-center gap-2.5 text-sm text-ink-100 transition-colors hover:text-white"
+              className="link-wipe inline-flex items-center gap-2.5 text-sm text-ink-800 transition-colors hover:text-ink-950"
             >
               <FiPhoneCall
-                className="size-4 text-signal-500"
+                className="size-4 text-signal-600"
                 aria-hidden="true"
               />
               {site.contact.altPhone}
@@ -97,10 +97,10 @@ function ContactPage() {
           <li>
             <a
               href={`tel:${site.contact.phone.replaceAll(' ', '')}`}
-              className="link-wipe inline-flex items-center gap-2.5 text-sm text-ink-100 transition-colors hover:text-white"
+              className="link-wipe inline-flex items-center gap-2.5 text-sm text-ink-800 transition-colors hover:text-ink-950"
             >
               <FiPhoneCall
-                className="size-4 text-signal-500"
+                className="size-4 text-signal-600"
                 aria-hidden="true"
               />
               {site.contact.phone}
@@ -111,10 +111,10 @@ function ContactPage() {
               href={`https://wa.me/${site.contact.whatsapp}`}
               target="_blank"
               rel="noreferrer noopener"
-              className="link-wipe inline-flex items-center gap-2.5 text-sm text-ink-100 transition-colors hover:text-white"
+              className="link-wipe inline-flex items-center gap-2.5 text-sm text-ink-800 transition-colors hover:text-ink-950"
             >
               <TbBrandWhatsapp
-                className="size-4 text-signal-500"
+                className="size-4 text-signal-600"
                 aria-hidden="true"
               />
               WhatsApp

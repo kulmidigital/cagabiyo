@@ -45,7 +45,7 @@ function ServicesIndex() {
 
       <PageHero
         eyebrow="Advisory"
-        title="Three practices, one engagement."
+        title="Advisory Services"
         breadcrumb={[{ label: 'Home', href: '/' }, { label: 'Advisory' }]}
         photo={photos.boardroomWide}
       />
@@ -55,10 +55,7 @@ function ServicesIndex() {
           and each card carries the full capability set instead of three chips. */}
       <Section>
         <div className="shell">
-          <SectionHeading
-            eyebrow="Practice areas"
-            title="Compliance, governance and financial crime, run as one integrated practice."
-          />
+          <SectionHeading eyebrow="Practice areas" title="Three Practices" />
 
           <div className="rule-grid mt-8 grid sm:mt-10">
             {services.map((service, index) => (

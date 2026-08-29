@@ -44,7 +44,7 @@ function CoursesPage() {
 
       <PageHero
         eyebrow="Course catalog"
-        title="Professional certificates."
+        title="Professional Certificates"
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'Capacity Building', href: '/capacity-building' },

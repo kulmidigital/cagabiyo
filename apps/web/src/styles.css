@@ -336,6 +336,33 @@ body {
       );
   }
 
+  /* Light counterpart to surface-ink, used by the heroes.
+     Same composition — navy wash entering top-left, warm wash top-right — at
+     the opacity a light field can carry, so the heroes keep their depth
+     instead of going flat white. Kept separate from surface-ink rather than
+     replacing it: the mobile nav sheet and the dark page sections still need
+     the dark field, and the brand mark needs it too. */
+  .surface-light {
+    /* sand-100, not sand-50. Against a #ffffff page, sand-50 (#fbfaf8) differs
+       by three values — invisible, so the hero and the first section read as
+       one continuous field. The warmer tone plus a hairline gives the hero a
+       definite bottom edge. */
+    background-color: var(--color-sand-100);
+    color: var(--color-ink-800);
+    border-bottom: 1px solid var(--color-border);
+    background-image:
+      radial-gradient(
+        80rem 40rem at 15% -10%,
+        rgb(16 56 110 / 0.1),
+        transparent 60%
+      ),
+      radial-gradient(
+        50rem 30rem at 95% 0%,
+        rgb(247 146 41 / 0.1),
+        transparent 62%
+      );
+  }
+
   .surface-sand {
     background-color: var(--color-sand-100);
   }
@@ -480,15 +507,26 @@ body {
     }
   }
 
-  /* Marquee used by the accreditation / partner strip. */
+  /* Marquee used by the partner strip.
+     The overflow lives here rather than on a utility class so the
+     reduced-motion rule below can override it — a utility would sit in a later
+     layer and win. */
+  .marquee {
+    overflow: hidden;
+  }
   .marquee-track {
     display: flex;
     width: max-content;
     animation: marquee 42s linear infinite;
   }
-  .marquee:hover .marquee-track {
+  .marquee:hover .marquee-track,
+  .marquee:focus-within .marquee-track {
     animation-play-state: paused;
   }
+  /* Loops seamlessly only because the track holds exactly two copies of the
+     list and every item carries its own horizontal padding. Using `gap` would
+     leave the last item without a trailing space, so -50% would land a gap
+     short and the row would jump each cycle. */
   @keyframes marquee {
     from {
       transform: translateX(0);
@@ -498,7 +536,179 @@ body {
     }
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+    }
+    /* Nothing scrolls it now, so hand the row over to the user instead of
+       clipping it at the container edge. */
+    .marquee {
+      overflow-x: auto;
+    }
+  }
+
+  /* Hero tagline — one line at a time.
+     Each line owns a third of a 12s cycle: the word rises from behind its
+     mask, the mark then draws itself on beside it, both hold, both clear, and
+     the next line takes over. The offset is one custom property,
+     `--tagline-index`, so word and mark can never drift apart.
+
+     The lines share a single grid cell (.tagline-line), so the tagline changes
+     in place on one line rather than the block standing three lines tall with
+     two of them empty.
+
+     The mask is the word's own overflow rather than the image box, so a word
+     is hidden the instant it passes its own baseline instead of travelling
+     visibly across the picture. Both transform resets happen at zero opacity,
+     so the loop is never seen. */
+  .tagline-line {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .tagline-word {
+    display: block;
+    overflow: hidden;
+    /* The tagline is set on tight leading, so the mask would otherwise cut the
+       descenders off "Develop" and "Comply". Drop the clip box below the
+       baseline and pull the same amount back off the flow. */
+    padding-bottom: 0.14em;
+    margin-bottom: -0.14em;
+  }
+  .tagline-word > span {
+    display: block;
+    animation: tagline-rise 12s var(--ease-out-expo) infinite both;
+    animation-delay: calc(var(--tagline-index, 0) * 4s);
+  }
+  @keyframes tagline-rise {
+    0% {
+      transform: translateY(110%);
+      opacity: 0;
+    }
+    5%,
+    28% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    33%,
+    100% {
+      transform: translateY(-110%);
+      opacity: 0;
+    }
+  }
+
+  /* `pathLength="1"` on every path is what makes this one rule: the dash
+     pattern is expressed in the normalised length, so a long shield outline
+     and a short baseline draw in the same time without measuring either.
+     Paths within a mark start in sequence, so the icon assembles stroke by
+     stroke rather than appearing whole. */
+  .tagline-mark path {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: tagline-draw 12s ease-in-out infinite both;
+    animation-delay: calc(var(--tagline-index, 0) * 4s);
+  }
+  .tagline-mark path:nth-child(2) {
+    animation-delay: calc(var(--tagline-index, 0) * 4s + 0.12s);
+  }
+  .tagline-mark path:nth-child(3) {
+    animation-delay: calc(var(--tagline-index, 0) * 4s + 0.24s);
+  }
+  .tagline-mark path:nth-child(4) {
+    animation-delay: calc(var(--tagline-index, 0) * 4s + 0.36s);
+  }
+  .tagline-mark path:nth-child(5) {
+    animation-delay: calc(var(--tagline-index, 0) * 4s + 0.48s);
+  }
+  .tagline-mark path:nth-child(6) {
+    animation-delay: calc(var(--tagline-index, 0) * 4s + 0.6s);
+  }
+  .tagline-mark path:nth-child(7) {
+    animation-delay: calc(var(--tagline-index, 0) * 4s + 0.72s);
+  }
+  .tagline-mark path:nth-child(8) {
+    animation-delay: calc(var(--tagline-index, 0) * 4s + 0.84s);
+  }
+  @keyframes tagline-draw {
+    0%,
+    4% {
+      stroke-dashoffset: 1;
+      opacity: 0;
+    }
+    6% {
+      opacity: 1;
+    }
+    17%,
+    28% {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+    32%,
+    100% {
+      stroke-dashoffset: 0;
+      opacity: 0;
+    }
+  }
+
+  /* Without the cycle there is no "one at a time", so the lines leave the
+     shared cell and stack — all three shown, marks drawn and held. */
+  @media (prefers-reduced-motion: reduce) {
+    .tagline-line {
+      grid-row: auto;
+    }
+    .tagline-word > span {
+      animation: none;
+    }
+    .tagline-mark path {
+      animation: none;
+      stroke-dashoffset: 0;
+    }
+  }
+
+  /* Roster cards come to rest under the fixed header as you scroll, each one
+     settling slightly lower than the last so the top edge of every card behind
+     it stays visible and the set reads as a stack rather than a swap.
+     `--stack-index` is set per card.
+
+     Two things this depends on: no ancestor may have an `overflow` other than
+     visible, or sticky silently stops working; and every card needs an opaque
+     background, or the stack shows through itself. */
+  .stack-card {
+    position: sticky;
+    top: calc(5.5rem + var(--stack-index, 0) * 0.75rem);
+  }
+  @media (min-width: 1024px) {
+    .stack-card {
+      top: calc(6.5rem + var(--stack-index, 0) * 0.75rem);
+    }
+  }
+  /* Stacking is the scroll effect itself, so reduced motion gets the cards in
+     plain sequence instead. */
+  @media (prefers-reduced-motion: reduce) {
+    .stack-card {
+      position: static;
+    }
+  }
+
+  /* Fades a decorative layer out toward the foot of its box, so it resolves
+     into whatever follows instead of ending on a hard line. */
+  .mask-fade-b {
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent);
+    mask-image: linear-gradient(to bottom, black 55%, transparent);
+  }
+
   .mask-edges {
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 6rem,
+      black calc(100% - 6rem),
+      transparent
+    );
     mask-image: linear-gradient(
       to right,
       transparent,
@@ -518,6 +728,12 @@ body {
     opacity: 0.35;
     mix-blend-mode: overlay;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  }
+
+  /* The noise reads far heavier over a light field than over ink, where it was
+     tuned. Pair this with .grain on the light surfaces. */
+  .grain-soft::before {
+    opacity: 0.14;
   }
 
   .no-scrollbar::-webkit-scrollbar {

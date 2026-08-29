@@ -14,7 +14,6 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as PrivacyRouteImport } from './routes/privacy'
-import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ApiConsultancyRouteImport } from './routes/api.consultancy'
 import { Route as ApiContactRouteImport } from './routes/api.contact'
@@ -25,6 +24,8 @@ import { Route as CapacityBuildingIndexRouteImport } from './routes/capacity-bui
 import { Route as CapacityBuildingBuilderRouteImport } from './routes/capacity-building.builder'
 import { Route as CapacityBuildingCorporateRequestRouteImport } from './routes/capacity-building.corporate-request'
 import { Route as CapacityBuildingCoursesRouteImport } from './routes/capacity-building.courses'
+import { Route as ResourcesIndexRouteImport } from './routes/resources.index'
+import { Route as ResourcesSlugRouteImport } from './routes/resources.$slug'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as VerifyIndexRouteImport } from './routes/verify.index'
@@ -53,11 +54,6 @@ const EventsRoute = EventsRouteImport.update({
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ResourcesRoute = ResourcesRouteImport.update({
-  id: '/resources',
-  path: '/resources',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TermsRoute = TermsRouteImport.update({
@@ -111,6 +107,16 @@ const CapacityBuildingCoursesRoute = CapacityBuildingCoursesRouteImport.update({
   path: '/capacity-building/courses',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResourcesIndexRoute = ResourcesIndexRouteImport.update({
+  id: '/resources/',
+  path: '/resources/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResourcesSlugRoute = ResourcesSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => ResourcesRoute,
+} as any)
 const ServicesIndexRoute = ServicesIndexRouteImport.update({
   id: '/services/',
   path: '/services/',
@@ -138,7 +144,6 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
   '/privacy': typeof PrivacyRoute
-  '/resources': typeof ResourcesRoute
   '/terms': typeof TermsRoute
   '/api/consultancy': typeof ApiConsultancyRoute
   '/api/contact': typeof ApiContactRoute
@@ -148,9 +153,11 @@ export interface FileRoutesByFullPath {
   '/capacity-building/builder': typeof CapacityBuildingBuilderRoute
   '/capacity-building/corporate-request': typeof CapacityBuildingCorporateRequestRoute
   '/capacity-building/courses': typeof CapacityBuildingCoursesRoute
+  '/resources/$slug': typeof ResourcesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/verify/$certificateId': typeof VerifyCertificateIdRoute
   '/capacity-building/': typeof CapacityBuildingIndexRoute
+  '/resources/': typeof ResourcesIndexRoute
   '/services/': typeof ServicesIndexRoute
   '/verify/': typeof VerifyIndexRoute
 }
@@ -160,7 +167,6 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
   '/privacy': typeof PrivacyRoute
-  '/resources': typeof ResourcesRoute
   '/terms': typeof TermsRoute
   '/api/consultancy': typeof ApiConsultancyRoute
   '/api/contact': typeof ApiContactRoute
@@ -170,9 +176,11 @@ export interface FileRoutesByTo {
   '/capacity-building/builder': typeof CapacityBuildingBuilderRoute
   '/capacity-building/corporate-request': typeof CapacityBuildingCorporateRequestRoute
   '/capacity-building/courses': typeof CapacityBuildingCoursesRoute
+  '/resources/$slug': typeof ResourcesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/verify/$certificateId': typeof VerifyCertificateIdRoute
   '/capacity-building': typeof CapacityBuildingIndexRoute
+  '/resources': typeof ResourcesIndexRoute
   '/services': typeof ServicesIndexRoute
   '/verify': typeof VerifyIndexRoute
 }
@@ -183,7 +191,6 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
   '/privacy': typeof PrivacyRoute
-  '/resources': typeof ResourcesRoute
   '/terms': typeof TermsRoute
   '/api/consultancy': typeof ApiConsultancyRoute
   '/api/contact': typeof ApiContactRoute
@@ -193,9 +200,11 @@ export interface FileRoutesById {
   '/capacity-building/builder': typeof CapacityBuildingBuilderRoute
   '/capacity-building/corporate-request': typeof CapacityBuildingCorporateRequestRoute
   '/capacity-building/courses': typeof CapacityBuildingCoursesRoute
+  '/resources/$slug': typeof ResourcesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/verify/$certificateId': typeof VerifyCertificateIdRoute
   '/capacity-building/': typeof CapacityBuildingIndexRoute
+  '/resources/': typeof ResourcesIndexRoute
   '/services/': typeof ServicesIndexRoute
   '/verify/': typeof VerifyIndexRoute
 }
@@ -207,7 +216,6 @@ export interface FileRouteTypes {
     | '/contact'
     | '/events'
     | '/privacy'
-    | '/resources'
     | '/terms'
     | '/api/consultancy'
     | '/api/contact'
@@ -217,9 +225,11 @@ export interface FileRouteTypes {
     | '/capacity-building/builder'
     | '/capacity-building/corporate-request'
     | '/capacity-building/courses'
+    | '/resources/$slug'
     | '/services/$slug'
     | '/verify/$certificateId'
     | '/capacity-building/'
+    | '/resources/'
     | '/services/'
     | '/verify/'
   fileRoutesByTo: FileRoutesByTo
@@ -229,7 +239,6 @@ export interface FileRouteTypes {
     | '/contact'
     | '/events'
     | '/privacy'
-    | '/resources'
     | '/terms'
     | '/api/consultancy'
     | '/api/contact'
@@ -239,9 +248,11 @@ export interface FileRouteTypes {
     | '/capacity-building/builder'
     | '/capacity-building/corporate-request'
     | '/capacity-building/courses'
+    | '/resources/$slug'
     | '/services/$slug'
     | '/verify/$certificateId'
     | '/capacity-building'
+    | '/resources'
     | '/services'
     | '/verify'
   id:
@@ -251,7 +262,6 @@ export interface FileRouteTypes {
     | '/contact'
     | '/events'
     | '/privacy'
-    | '/resources'
     | '/terms'
     | '/api/consultancy'
     | '/api/contact'
@@ -261,9 +271,11 @@ export interface FileRouteTypes {
     | '/capacity-building/builder'
     | '/capacity-building/corporate-request'
     | '/capacity-building/courses'
+    | '/resources/$slug'
     | '/services/$slug'
     | '/verify/$certificateId'
     | '/capacity-building/'
+    | '/resources/'
     | '/services/'
     | '/verify/'
   fileRoutesById: FileRoutesById
@@ -274,7 +286,6 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   EventsRoute: typeof EventsRoute
   PrivacyRoute: typeof PrivacyRoute
-  ResourcesRoute: typeof ResourcesRoute
   TermsRoute: typeof TermsRoute
   ApiConsultancyRoute: typeof ApiConsultancyRoute
   ApiContactRoute: typeof ApiContactRoute
@@ -287,6 +298,7 @@ export interface RootRouteChildren {
   ServicesSlugRoute: typeof ServicesSlugRoute
   VerifyCertificateIdRoute: typeof VerifyCertificateIdRoute
   CapacityBuildingIndexRoute: typeof CapacityBuildingIndexRoute
+  ResourcesIndexRoute: typeof ResourcesIndexRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
   VerifyIndexRoute: typeof VerifyIndexRoute
 }
@@ -326,13 +338,6 @@ declare module '@tanstack/react-router' {
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/resources': {
-      id: '/resources'
-      path: '/resources'
-      fullPath: '/resources'
-      preLoaderRoute: typeof ResourcesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/terms': {
@@ -405,6 +410,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CapacityBuildingCoursesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/resources/': {
+      id: '/resources/'
+      path: '/resources'
+      fullPath: '/resources/'
+      preLoaderRoute: typeof ResourcesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources/$slug': {
+      id: '/resources/$slug'
+      path: '/$slug'
+      fullPath: '/resources/$slug'
+      preLoaderRoute: typeof ResourcesSlugRouteImport
+      parentRoute: typeof ResourcesRoute
+    }
     '/services/': {
       id: '/services/'
       path: '/services'
@@ -442,7 +461,6 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   EventsRoute: EventsRoute,
   PrivacyRoute: PrivacyRoute,
-  ResourcesRoute: ResourcesRoute,
   TermsRoute: TermsRoute,
   ApiConsultancyRoute: ApiConsultancyRoute,
   ApiContactRoute: ApiContactRoute,
@@ -455,6 +473,7 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesSlugRoute: ServicesSlugRoute,
   VerifyCertificateIdRoute: VerifyCertificateIdRoute,
   CapacityBuildingIndexRoute: CapacityBuildingIndexRoute,
+  ResourcesIndexRoute: ResourcesIndexRoute,
   ServicesIndexRoute: ServicesIndexRoute,
   VerifyIndexRoute: VerifyIndexRoute,
 }

@@ -2,9 +2,9 @@
  * Institutional content: metrics, leadership, governance, accreditation,
  * careers, testimonials, gallery and FAQs (§4.3, §4.7, §5.2).
  *
- * Named individuals, metric values and accreditation statuses are PLACEHOLDER
- * content standing in for §14 items that require sign-off and, in the case of
- * testimonials and portraits, publication permission before launch.
+ * The leadership roster and its headshots are real, supplied by the client.
+ * Testimonials and their portraits remain PLACEHOLDER, standing in for §14
+ * items that need sign-off and publication permission before launch.
  */
 
 import { photos } from '@/lib/images'
@@ -204,77 +204,87 @@ export const impactMetrics: Array<Metric> = [
   },
 ]
 
-// -- ABOUT-02: leadership & senior faculty -----------------------------------
+// -- ABOUT-02: leadership & team ---------------------------------------------
 
 /**
- * No portrait field. Attaching stock photography to a named individual
- * misrepresents a real person, so the roster stays typographic until genuine
- * photographs are supplied (§14).
+ * The real team, replacing the eight invented partners this module used to
+ * carry.
+ *
+ * The note that used to sit here said there was no portrait field, because
+ * attaching stock photography to a named individual misrepresents a real
+ * person. The client has now supplied genuine headshots in `public/staff`, so
+ * the field exists — but it stays optional and the roster still renders
+ * without one. Never point it at stock.
  */
 export type Person = {
   name: string
   role: string
-  discipline: string
-  bio: string
+  /** Paragraphs. Only the Managing Director runs to more than one. */
+  bio: Array<string>
   credentials: Array<string>
+  /** Supplied headshot in `public/staff`. Absent for anyone who has not sent one. */
+  photo?: string
+  /** Leads the section in a feature card rather than the roster grid. */
+  lead?: boolean
 }
 
 export const leadership: Array<Person> = [
   {
-    name: 'Dr. Amara Ochieng',
-    role: 'Managing Partner',
-    discipline: 'Governance, Risk & Compliance',
-    bio: 'Twenty-two years across banking supervision and board advisory. Chairs the firm’s technical committee and leads board effectiveness engagements for listed and state-owned institutions.',
-    credentials: ['PhD Finance', 'CPA(K)', 'Certified Director'],
+    name: 'Mohamed Ahmed',
+    role: 'Managing Director',
+    photo: '/staff/mohamed.jpg',
+    lead: true,
+    credentials: [
+      'MSc Tax',
+      'MBA Finance',
+      'BSc Finance',
+      'CIA',
+      'CFE',
+      'CRMA',
+      'CISA',
+      'CCCS',
+    ],
+    bio: [
+      'Mohamed is an accomplished finance, risk management and governance executive who serves as a strategic advisor to organizations navigating rapidly evolving global markets and regulatory environments. Built on a foundation of multidisciplinary expertise, his career encompasses business advisory, internal audit, tax administration, information systems auditing, enterprise risk management and financial crime prevention.',
+      'He holds a Master of Science in Tax & Customs Administration from Moi University, in collaboration with the Kenya School of Revenue Administration (KESRA/KRA); a Master of Business Administration in Finance; and a Bachelor of Science in Finance specialising in Investment Management from United States International University–Africa (USIU-A). That academic depth lets him address systemic organizational challenges with both macroeconomic perspective and fine-grained financial precision.',
+      'He is a Certified Internal Auditor (CIA) and holds the Certification in Risk Management Assurance (CRMA) from the Institute of Internal Auditors (IIA, USA). His expertise in IT governance and data integrity is validated by his status as a Certified Information Systems Auditor (CISA) through ISACA (USA), and his domain leadership in white-collar crime mitigation is anchored by his designation as a Certified Fraud Examiner (CFE) through the Association of Certified Fraud Examiners (USA). Anticipating the intersection of technology and modern finance, he also earned the Certified Cryptocurrency Compliance Specialist (CCCS) credential from the A&D Forensic Institute (Kenya). He is additionally an Associate Member of CPA (KASNEB), Kenya.',
+      'Throughout his professional journey Mohamed has guided boardrooms and senior leadership teams in fortifying corporate governance structures, executing complex financial projects and establishing resilient internal control systems. His integrated approach combines technical rigour in taxation and financial reporting with forward-looking risk mitigation, covering both traditional operational risks and decentralized digital asset ecosystems. By aligning regulatory compliance with underlying business objectives, he transforms governance from a reactive audit exercise into a proactive mechanism for sustainable expansion, capital preservation and institutional resilience.',
+    ],
   },
   {
-    name: 'Samuel Otieno',
-    role: 'Partner, Assurance',
-    discipline: 'Internal Audit & Forensics',
-    bio: 'Leads forensic investigations and internal audit transformation. Previously headed internal audit for a regional banking group operating in four markets.',
-    credentials: ['CIA', 'CFE', 'CPA(K)'],
+    name: 'Shamsa Haji',
+    role: 'Lead Consultant',
+    photo: '/staff/shamsa.jpg',
+    credentials: ['CPA(K)', 'BCom candidate'],
+    bio: [
+      'Shamsa is a Certified Public Accountant (CPA-K) and a BCom candidate at Mount Kenya University. She leads client financial management, specializing in KRA eTIMS administration, tax return filing, regulatory compliance, financial reporting and audit preparation — delivering precise financial oversight and accounting solutions that drive informed business strategy.',
+    ],
   },
   {
-    name: 'Wanjiru Kamau',
-    role: 'Partner, Statutory Compliance',
-    discipline: 'Statutory & Payroll Compliance',
-    bio: 'Technical lead on statutory payroll and filing compliance. Advises employers through NSSF, SHA and Housing Levy reconciliation and pre-audit statutory reviews.',
-    credentials: ['FCCA', 'CPA(K)', 'CHRP'],
+    name: 'Sharon Mwaura',
+    role: 'Lead Consultant',
+    photo: '/staff/sharon.jpg',
+    credentials: ['BCom Finance', 'CPA Finalist'],
+    bio: [
+      'Sharon combines financial expertise with administrative leadership. Holding a BCom in Finance from Mount Kenya University and completing her CPA, she drives client success through precise financial reporting, tax compliance, invoicing and strategic administrative oversight.',
+    ],
   },
   {
-    name: 'Kwame Mensah',
-    role: 'Partner, Tax',
-    discipline: 'Tax Compliance & Advisory',
-    bio: 'Leads the KRA compliance practice — registrations, VAT, PAYE and eTIMS — and represents clients through objection, ADR and appeal.',
-    credentials: ['ADIT', 'CPA', 'LLM Tax'],
+    name: 'Jane Nzyoka',
+    role: 'Business Consultant & Marketing Strategic Manager',
+    photo: '/staff/jane.jpg',
+    credentials: ['BCom', 'CPA (in progress)'],
+    bio: [
+      'Jane is a dynamic, data-driven strategist operating at the intersection of financial control and commercial growth. Holding a Bachelor of Commerce from Kisii University and advancing through her CPA qualification, she manages client portfolios across tax compliance pipelines — and uses those financial insights to orchestrate targeted marketing strategies that expand CaliberCode’s digital accounting and tax advisory services across Kenyan SMEs.',
+    ],
   },
   {
-    name: 'Brian Kiptoo',
-    role: 'Director, Data Protection',
-    discipline: 'Data Protection & Cyber Oversight',
-    bio: 'Runs the firm’s data protection practice, covering privacy compliance, breach response and cybersecurity oversight for financial institutions.',
-    credentials: ['CISA', 'CISM', 'CIPP/E'],
-  },
-  {
-    name: 'Grace Mutiso',
-    role: 'Director, Executive Education',
-    discipline: 'Leadership & Executive Strategy',
-    bio: 'Designs the masterclass portfolio and leads the strategy execution and leadership development programmes for C-suite cohorts across the region.',
-    credentials: ['MBA', 'ICF PCC', 'Certified Director'],
-  },
-  {
-    name: 'Fatuma Abdi',
-    role: 'Director, Financial Crime',
-    discipline: 'AML/CFT & Fraud Risk',
-    bio: 'Leads AML/CFT programme builds and fraud risk assessments, with a focus on how supervisory expectations land on financial sector boards.',
-    credentials: ['MSc Economics', 'CAMS', 'CFE'],
-  },
-  {
-    name: 'David Njoroge',
-    role: 'Director, Digital Assets',
-    discipline: 'Virtual Asset Compliance',
-    bio: 'Builds AML/CFT programmes for virtual asset service providers and advises on licensing and supervisory engagement.',
-    credentials: ['CAMS', 'CFE', 'MSc Fintech'],
+    name: 'Christine Kinya Gikunda',
+    role: 'HR Consultant & Professional Trainer',
+    credentials: ['MSc HRM', 'CHRC', 'CPT', 'CPM', 'BCom'],
+    bio: [
+      'Christine is a results-driven HR consultant, professional trainer and certified mediator with over 25 years in human resource management, organizational development and workforce capacity building. Holding an MSc in Human Resource Management from the University of Nairobi alongside credentials as a Certified HR Consultant (CHRC), Certified Professional Trainer (CPT) and Certified Professional Mediator (CPM), she specializes in HR policy development, leadership training, and aligning workforce management with corporate strategy and compliance. She is an active member of KIHRM and ICPM.',
+    ],
   },
 ]
 
@@ -369,7 +379,48 @@ export const accreditations: Array<Accreditation> = [
     scope: 'Accessible tax and compliance support',
     benefit:
       'As an accredited KRA Partner, CaliberCode is a trusted channel for tax registration, filing support, statutory reconciliations and regulatory alignment.',
+    logo: '/orgs/kra.webp',
   },
+]
+
+/**
+ * Organisation marks shown in the partner strip, served from `public/orgs`.
+ *
+ * Every mark is rendered as a flat silhouette rather than in brand colour, and
+ * that is a constraint of the supplied art, not a style preference: five of
+ * these are white-on-transparent (Fiesta, Juja Abattoir, KanaTech, Mixo, Zuri)
+ * and would be invisible on the light strip in their own colours. Swap in
+ * light-background versions of those five and the strip can go full colour.
+ *
+ * The accreditation bodies are deliberately absent — NITA and KRA are stated
+ * as accreditations above, and ACFE/ICPAK/IIA/ISACA sit with
+ * `practitionerCredentials`, because a body whose certification a member of
+ * staff holds is not a client.
+ */
+export type OrgMark = {
+  name: string
+  file: string
+}
+
+export const partnerOrganisations: Array<OrgMark> = [
+  { name: 'A&D Forensics', file: 'ad-forensics.svg' },
+  { name: 'Asmera', file: 'asmera.png' },
+  { name: 'Coffee Heist', file: 'coffee_heist.png' },
+  { name: 'Diamond Trust Bank', file: 'dtb.png' },
+  { name: 'Fiesta Firm', file: 'fiesta_firm.png' },
+  { name: 'Fimnet', file: 'fimnet.png' },
+  { name: 'I&M Bank', file: 'im-bank.png' },
+  { name: 'Juja Abattoir', file: 'juja-abattoir.png' },
+  { name: 'KanaTech Systems', file: 'kanatech.png' },
+  { name: 'Kulmi Payments', file: 'kulmipay.avif' },
+  { name: 'Melili Hotel', file: 'melili.png' },
+  { name: 'Mixo', file: 'mixo.png' },
+  { name: 'Odoo', file: 'odoo.png' },
+  { name: 'Pesapal', file: 'pesapal.png' },
+  { name: 'Wavetech', file: 'wavetech.png' },
+  { name: 'Wiilo', file: 'wiilo.png' },
+  { name: 'Zoho', file: 'zoho.png' },
+  { name: 'Zuri', file: 'zuri.png' },
 ]
 
 /**

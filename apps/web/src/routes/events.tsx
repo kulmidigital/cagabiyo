@@ -49,7 +49,7 @@ function EventsPage() {
 
       <PageHero
         eyebrow="Events & workshops"
-        title="Upcoming workshops, masterclasses and webinars."
+        title="Open Dates"
         breadcrumb={[{ label: 'Home', href: '/' }, { label: 'Events' }]}
         align="wide"
       >
@@ -57,10 +57,10 @@ function EventsPage() {
           {assurances.map((item) => (
             <li
               key={item.label}
-              className="inline-flex items-center gap-2.5 text-sm text-ink-100"
+              className="inline-flex items-center gap-2.5 text-sm text-ink-800"
             >
               <item.icon
-                className="size-4 text-signal-500"
+                className="size-4 text-signal-600"
                 aria-hidden="true"
               />
               {item.label}

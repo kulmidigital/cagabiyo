@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react'
 import {
   FiArrowRight,
   FiArrowUpRight,
@@ -14,6 +15,7 @@ import {
 } from '@/components/common/section'
 import { SmartLink } from '@/components/common/smart-link'
 import { ButtonLink } from '@/components/common/button-link'
+import { cn } from '@/lib/utils'
 import { markets } from '@/lib/site'
 import {
   accreditations,
@@ -26,6 +28,7 @@ import {
   segments,
   vacancies,
 } from '@/lib/content/institution'
+import type { Person } from '@/lib/content/institution'
 
 const facts = [
   {
@@ -55,20 +58,28 @@ export function AboutOverview() {
   return (
     <Section>
       <div className="shell">
-        <div className="grid gap-8 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-5">
-            <Eyebrow>Who we are</Eyebrow>
-            <h2 className="display-md mt-4 text-ink-900 sm:mt-6">
-              How CaliberCode is organised.
-            </h2>
-          </div>
+        {/* Heading across the top, prose in two balanced columns beneath it.
+            The heading used to sit in a five-column well of its own beside the
+            copy, which left a tall empty block down the left of every viewport
+            wide enough to split — the copy is always longer than a heading, so
+            the two never balanced. */}
+        <SectionHeading eyebrow="Who we are" title="The Practice" />
 
-          {/* The overview and the commitment are the client's own words. The
-              paragraphs that stood here were written for the site and made
-              claims the corporate overview does not — they are gone. */}
-          <div className="space-y-5 leading-relaxed text-muted-foreground sm:text-lg lg:col-span-6 lg:col-start-7">
-            <p className="text-ink-900">{institution.overview}</p>
-            <p>
+        {/* The overview and the commitment are the client's own words. The
+            paragraphs that stood here were written for the site and made
+            claims the corporate overview does not — they are gone.
+
+            Lead paragraph full width on a readable measure, then the
+            supporting prose flows across two columns. A two-column grid put a
+            short lead against a long stack and tipped straight back into the
+            lopsided shape; CSS columns balance their own height. */}
+        <div className="mt-8 sm:mt-10">
+          <p className="max-w-4xl text-lg leading-relaxed text-ink-900">
+            {institution.overview}
+          </p>
+
+          <div className="mt-6 leading-relaxed text-muted-foreground md:columns-2 md:gap-14">
+            <p className="mb-5">
               The practice runs on two mandates. Advisory engagements handle
               technical execution, regulatory interface and risk mitigation
               directly, so client leadership can focus on core growth.
@@ -76,7 +87,15 @@ export function AboutOverview() {
               run it — programmes tailored to organizational priorities,
               regulatory expectations and identified capability gaps.
             </p>
-            <p>{institution.commitment}</p>
+            <p className="mb-5">
+              As an accredited KRA partner under the Ushuru Mashinani Service
+              Partner initiative, CaliberCode is a trusted channel for
+              accessible tax and compliance support — assisting taxpayers,
+              businesses and institutions with tax registration, filing support,
+              statutory reconciliations and regulatory alignment. Compliance
+              work is executed here rather than referred on.
+            </p>
+            <p className="mb-0">{institution.commitment}</p>
           </div>
         </div>
 
@@ -105,37 +124,42 @@ export function VisionMission() {
   return (
     <Section id="vision" tone="ink">
       <div className="shell">
-        <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-5">
+        {/* Vision and mission share a row as equals; the values run the full
+            width below. Previously the mission column carried the values too,
+            so it ran several times the height of the vision beside it. */}
+        <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
+          <div>
             <Eyebrow tone="ink">Vision</Eyebrow>
             <p className="display-md mt-5 text-white">{institution.vision}</p>
           </div>
 
-          <div className="lg:col-span-6 lg:col-start-7">
+          <div>
             <Eyebrow tone="ink">Mission</Eyebrow>
             <p className="mt-5 text-lg leading-relaxed text-ink-100">
               {institution.mission}
             </p>
-
-            {/* The overview defines each value, so they are no longer bare
-                chips — a one-word chip drops the half that carries meaning. */}
-            <p className="mt-10 text-[0.6875rem] font-semibold tracking-widest text-signal-400 uppercase">
-              Core values
-            </p>
-            <ul className="mt-5 grid gap-x-8 gap-y-5 sm:grid-cols-2">
-              {coreValues.map((value) => (
-                <li
-                  key={value.name}
-                  className="border-l-2 border-signal-500 pl-4"
-                >
-                  <p className="text-sm font-bold text-white">{value.name}</p>
-                  <p className="mt-1.5 text-sm leading-relaxed text-ink-200">
-                    {value.detail}
-                  </p>
-                </li>
-              ))}
-            </ul>
           </div>
+        </div>
+
+        {/* The overview defines each value, so they are no longer bare chips —
+            a one-word chip drops the half that carries meaning. */}
+        <div className="mt-12 border-t border-white/10 pt-10 sm:mt-14">
+          <p className="text-[0.6875rem] font-semibold tracking-widest text-signal-400 uppercase">
+            Core values
+          </p>
+          <ul className="mt-6 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-5">
+            {coreValues.map((value) => (
+              <li
+                key={value.name}
+                className="border-l-2 border-signal-500 pl-4"
+              >
+                <p className="text-sm font-bold text-white">{value.name}</p>
+                <p className="mt-1.5 text-sm leading-relaxed text-ink-200">
+                  {value.detail}
+                </p>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </Section>
@@ -147,7 +171,7 @@ export function WhoWeServe() {
   return (
     <Section id="who-we-serve" tone="sand">
       <div className="shell">
-        <SectionHeading eyebrow="Who we serve" title="Three client segments." />
+        <SectionHeading eyebrow="Who we serve" title="Client Segments" />
 
         <div className="rule-grid mt-8 grid sm:mt-10 lg:grid-cols-3">
           {segments.map((segment, index) => (
@@ -189,54 +213,171 @@ export function WhoWeServe() {
 }
 
 export function LeadershipGrid() {
+  const lead = leadership.find((person) => person.lead)
+  const team = leadership.filter((person) => !person.lead)
+
   return (
     <Section id="leadership" tone="sand">
       <div className="shell">
-        <SectionHeading
-          eyebrow="Leadership & faculty"
-          title="Partners and senior faculty."
-        />
+        <SectionHeading eyebrow="Leadership & faculty" title="Our Team" />
 
-        <div className="rule-grid mt-8 grid sm:mt-10 lg:grid-cols-2">
-          {leadership.map((person, index) => (
-            <article
-              key={person.name}
-              className="edge-card group bg-white p-6 sm:p-8"
-            >
-              <div className="flex items-baseline gap-4">
-                <IndexLabel n={index + 1} />
-                <p className="text-[0.6875rem] font-semibold tracking-[0.14em] text-signal-700 uppercase">
-                  {person.role}
-                </p>
+        {/* One pattern for both card types: a white shell with a thin pad, and
+            the copy on a darker inset panel inside it. The pad is what makes
+            the inset read — the shell shows as a fine, even margin around the
+            panel and down the gap between panel and portrait.
+
+            No `h-full` on any portrait. Height comes from the 4:5 ratio alone,
+            so nothing beside it can stretch the crop; the facing panel takes
+            the slack instead. */}
+        {lead ? (
+          <article className="mt-8 border border-border bg-white p-3 sm:mt-10">
+            <div className="grid gap-3 lg:grid-cols-12">
+              <div className="lg:col-span-4">
+                <Portrait
+                  person={lead}
+                  className="aspect-4/5 max-h-96 sm:max-h-none"
+                />
               </div>
 
-              <h3 className="mt-4 text-xl leading-snug font-bold text-ink-900">
-                {person.name}
-              </h3>
+              <div className="border border-border bg-sand-100 p-6 sm:p-8 lg:col-span-8">
+                <p className="text-[0.6875rem] font-semibold tracking-[0.14em] text-signal-700 uppercase">
+                  {lead.role}
+                </p>
+                <h3 className="display-md mt-3 text-ink-900">{lead.name}</h3>
+                {/* Set as one rule-separated line rather than badges, the way
+                    the qualifications are written on a signature block. The
+                    pipes are dimmed so they read as separators and the
+                    qualifications carry the weight. */}
+                <p className="mt-3 text-sm font-semibold text-signal-800">
+                  {lead.credentials.map((credential, index) => (
+                    <span key={credential}>
+                      {index > 0 ? (
+                        <span className="text-ink-300" aria-hidden="true">
+                          {' | '}
+                        </span>
+                      ) : null}
+                      {credential}
+                    </span>
+                  ))}
+                </p>
 
-              <p className="mt-1.5 text-[0.6875rem] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
-                {person.discipline}
-              </p>
+                <p className="mt-6 border-t border-border pt-6 leading-relaxed text-muted-foreground">
+                  {lead.bio[0]}
+                </p>
+              </div>
+            </div>
 
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                {person.bio}
-              </p>
-
-              <ul className="mt-5 flex flex-wrap gap-1.5 border-t border-border pt-5">
-                {person.credentials.map((credential) => (
-                  <li
-                    key={credential}
-                    className="border border-border px-2 py-1 text-[0.625rem] font-semibold tracking-[0.08em] text-ink-700 uppercase"
-                  >
-                    {credential}
-                  </li>
+            {lead.bio.length > 1 ? (
+              <div className="mt-3 border border-border bg-sand-100 p-6 text-sm leading-relaxed text-muted-foreground sm:p-8 md:columns-2 md:gap-10 lg:columns-3">
+                {lead.bio.slice(1).map((paragraph) => (
+                  <p key={paragraph.slice(0, 40)} className="mb-4 last:mb-0">
+                    {paragraph}
+                  </p>
                 ))}
-              </ul>
-            </article>
+              </div>
+            ) : null}
+          </article>
+        ) : null}
+
+        {/* One column, not two. Each card sticks under the header as you
+            reach it and the next slides over the top, so the roster reads as a
+            stack being dealt rather than a grid.
+
+            Full width lets the portrait match the panel height honestly: the
+            copy is short and wide here, so `h-full` gives a sane portrait crop
+            instead of the sliver it produced when the facing column was tall. */}
+        <div className="mt-6 space-y-6">
+          {team.map((person, index) => (
+            <div
+              key={person.name}
+              className="stack-card"
+              style={{ '--stack-index': index } as CSSProperties}
+            >
+              <article className="border border-border bg-white p-3">
+                <div className="grid gap-3 sm:grid-cols-[14rem_minmax(0,1fr)]">
+                  <Portrait
+                    person={person}
+                    className="aspect-4/5 max-h-80 sm:aspect-auto sm:h-full sm:max-h-none"
+                  />
+
+                  <div className="flex flex-col border border-border bg-sand-100 p-6 sm:p-7">
+                    <p className="text-[0.6875rem] font-semibold tracking-[0.14em] text-signal-700 uppercase">
+                      {person.role}
+                    </p>
+                    <h3 className="mt-2 text-xl leading-snug font-bold text-ink-900">
+                      {person.name}
+                    </h3>
+                    <div className="flex-1">
+                      <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+                        {person.bio[0]}
+                      </p>
+                    </div>
+
+                    <p className="mt-5 border-t border-border pt-4 text-sm font-semibold text-ink-700">
+                      {person.credentials.map((credential, position) => (
+                        <span key={credential}>
+                          {position > 0 ? (
+                            <span className="text-ink-300" aria-hidden="true">
+                              {' | '}
+                            </span>
+                          ) : null}
+                          {credential}
+                        </span>
+                      ))}
+                    </p>
+                  </div>
+                </div>
+              </article>
+            </div>
           ))}
         </div>
       </div>
     </Section>
+  )
+}
+
+/**
+ * Headshot, or initials where none was supplied.
+ *
+ * The supplied portraits carry different backgrounds — plain white, grey, a
+ * brick wall — so the frame does the unifying: a fixed ratio, cropped from the
+ * top so the crop takes the body rather than the face.
+ */
+function Portrait({
+  person,
+  className,
+}: Readonly<{ person: Person; className?: string }>) {
+  if (!person.photo) {
+    const initials = person.name
+      .split(' ')
+      .map((part) => part[0])
+      .slice(0, 2)
+      .join('')
+
+    return (
+      <div
+        className={cn(
+          'flex items-center justify-center border border-border bg-sand-100 text-2xl font-bold tracking-tight text-ink-300',
+          className,
+        )}
+        aria-hidden="true"
+      >
+        {initials}
+      </div>
+    )
+  }
+
+  return (
+    <img
+      src={person.photo}
+      alt={`${person.name}, ${person.role}`}
+      loading="lazy"
+      decoding="async"
+      className={cn(
+        'w-full border border-border bg-sand-100 object-cover object-top',
+        className,
+      )}
+    />
   )
 }
 
@@ -248,7 +389,7 @@ export function GovernanceModel() {
         <SectionHeading
           tone="ink"
           eyebrow="Governance"
-          title="How the institute is governed."
+          title="Governance Model"
         />
 
         <ol className="rule-grid-ink mt-8 grid sm:mt-10 sm:grid-cols-2">
@@ -280,12 +421,12 @@ export function AccreditationList() {
       <div className="shell">
         <SectionHeading
           eyebrow="Accreditation"
-          title="Accredited, and led by credentialed practitioners."
+          title="Standing & Credentials"
         />
 
-        <div className="mt-8 grid gap-10 sm:mt-10 lg:grid-cols-12 lg:gap-16">
+        <div className="mt-8 grid gap-8 sm:mt-10 lg:grid-cols-2 lg:gap-10">
           {accreditations.map((item) => (
-            <div key={item.abbreviation} className="lg:col-span-5">
+            <div key={item.abbreviation}>
               <div className="edge-card border border-border bg-white p-6 sm:p-8">
                 {/* No mark supplied for the KRA partnership, so the
                     abbreviation is set as type at the same height rather than
@@ -315,29 +456,32 @@ export function AccreditationList() {
               </div>
             </div>
           ))}
+        </div>
 
-          <div className="lg:col-span-6 lg:col-start-7">
-            <Eyebrow>Practitioner certifications</Eyebrow>
-            <ul className="mt-6 divide-y divide-border border-y border-border">
-              {practitionerCredentials.map((credential) => (
-                <li
-                  key={credential.abbreviation}
-                  className="flex flex-wrap items-baseline gap-x-4 gap-y-1 py-3.5"
-                >
-                  <span className="numeric w-28 flex-none text-sm font-bold text-ink-900">
-                    {credential.abbreviation}
-                  </span>
-                  <span className="flex-1 text-sm text-muted-foreground">
-                    {credential.name}
-                  </span>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-5 text-xs leading-relaxed text-muted-foreground">
-              Every engagement is led by a specialist holding the relevant
-              qualification for the work.
-            </p>
-          </div>
+        {/* Its own full-width block. Inside the card grid it was pinned to
+            column seven, so it wrapped onto a fresh row and left the left half
+            of that row empty. */}
+        <div className="mt-12 border-t border-border pt-10 sm:mt-14">
+          <Eyebrow>Practitioner certifications</Eyebrow>
+          <ul className="mt-6 divide-y divide-border border-y border-border">
+            {practitionerCredentials.map((credential) => (
+              <li
+                key={credential.abbreviation}
+                className="flex flex-wrap items-baseline gap-x-4 gap-y-1 py-3.5"
+              >
+                <span className="numeric w-28 flex-none text-sm font-bold text-ink-900">
+                  {credential.abbreviation}
+                </span>
+                <span className="flex-1 text-sm text-muted-foreground">
+                  {credential.name}
+                </span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-5 text-xs leading-relaxed text-muted-foreground">
+            Every engagement is led by a specialist holding the relevant
+            qualification for the work.
+          </p>
         </div>
       </div>
     </Section>
@@ -348,11 +492,11 @@ export function Careers() {
   return (
     <Section id="careers" tone="sand">
       <div className="shell">
-        <div className="grid gap-8 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-5">
-            <SectionHeading eyebrow="Careers" title="Working at CaliberCode." />
+        <SectionHeading eyebrow="Careers" title="Working With Us" />
 
-            <ul className="mt-8 space-y-3">
+        <div className="mt-8 grid gap-8 sm:mt-10 lg:grid-cols-2 lg:gap-14">
+          <div>
+            <ul className="space-y-3">
               {[
                 'Client work and teaching in the same role',
                 'Study support toward CPA, CIA, CISA, ADIT and CFE',
@@ -372,7 +516,7 @@ export function Careers() {
             </ul>
           </div>
 
-          <div className="lg:col-span-6 lg:col-start-7">
+          <div>
             <div className="border border-border bg-white">
               <p className="border-b border-border px-5 py-4 text-[0.6875rem] font-semibold tracking-[0.14em] text-muted-foreground uppercase sm:px-6">
                 Open positions

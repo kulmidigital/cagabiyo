@@ -17,7 +17,7 @@ export function InsightsPreview() {
   return (
     <section className="py-6 sm:py-10">
       <div className="shell">
-        <SectionHeading eyebrow="Insights & research" title="Latest work." />
+        <SectionHeading eyebrow="Insights & research" title="Latest Insights" />
 
         <div className="rule-grid mt-8 grid sm:mt-10 sm:grid-cols-2 lg:grid-cols-3">
           <InsightCard
