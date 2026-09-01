@@ -49,8 +49,8 @@ export const focusAreas: Array<FocusArea> = [
   },
   {
     id: 2,
-    name: 'Governance, Risk & Internal Audit',
-    shortName: 'Governance & Audit',
+    name: 'Governance, Compliance & Risk Management',
+    shortName: 'Governance & Compliance',
     blurb:
       'Board effectiveness, enterprise risk and the audit discipline that tests both.',
     modules: [
@@ -196,7 +196,7 @@ export const courses: Array<Course> = [
     modules: 6,
     priceKes: 22000,
     priceUsd: 175,
-    photo: photos.tabletGlass,
+    photo: photos.glassOffice,
     credential: 'Certificate In Financial Literacy',
     outcomes: [
       'Keep books that survive a lender or revenue authority review',
@@ -248,7 +248,7 @@ export const courses: Array<Course> = [
     published: true,
   },
 
-  // -- 2. Governance, Risk & Internal Audit ----------------------------------
+  // -- 2. Governance, Compliance & Risk Management ----------------------------------
   {
     slug: 'corporate-governance-board-effectiveness',
     title: 'Corporate Governance & Board Effectiveness',
@@ -586,7 +586,7 @@ export const courses: Array<Course> = [
     modules: 4,
     priceKes: 45000,
     priceUsd: 355,
-    photo: photos.tabletGlass,
+    photo: photos.glassOffice,
     credential: 'Certificate In Digital Asset & Cyber Oversight',
     outcomes: [
       'Interrogate a cyber risk report at board level',

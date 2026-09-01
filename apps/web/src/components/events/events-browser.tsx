@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { FiCalendar, FiGrid, FiList } from 'react-icons/fi'
 
 import { EventCard } from '@/components/events/event-card'
+import { EventsEmpty } from '@/components/events/events-empty'
 import { SeatReservation } from '@/components/events/seat-reservation'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
@@ -42,6 +43,10 @@ export function EventsBrowser() {
   )
 
   const months = useMemo(() => groupEventsByMonth(filtered), [filtered])
+
+  // Nothing to filter, sort or count while the calendar is empty — show the
+  // notice instead of a toolbar operating on nothing.
+  if (events.length === 0) return <EventsEmpty />
 
   return (
     <div className="shell">

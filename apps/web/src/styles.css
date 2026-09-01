@@ -437,7 +437,7 @@ body {
   .photo-wash {
     position: relative;
     overflow: hidden;
-    background-color: var(--color-ink-900);
+    background-color: var(--color-signal-500);
   }
   .photo-wash > img {
     transition: transform 0.9s var(--ease-out-expo);

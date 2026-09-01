@@ -17,7 +17,7 @@ export function PracticeAreas() {
           title="Advisory Practices"
         />
 
-        <div className="rule-grid-ink mt-8 grid sm:mt-10 lg:grid-cols-3">
+        <div className="rule-grid-ink mt-8 grid sm:mt-10 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((service, index) => (
             <SmartLink
               key={service.slug}

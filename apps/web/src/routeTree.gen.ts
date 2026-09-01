@@ -113,9 +113,9 @@ const ResourcesIndexRoute = ResourcesIndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResourcesSlugRoute = ResourcesSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => ResourcesRoute,
+  id: '/resources/$slug',
+  path: '/resources/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesIndexRoute = ServicesIndexRouteImport.update({
   id: '/services/',
@@ -295,6 +295,7 @@ export interface RootRouteChildren {
   CapacityBuildingBuilderRoute: typeof CapacityBuildingBuilderRoute
   CapacityBuildingCorporateRequestRoute: typeof CapacityBuildingCorporateRequestRoute
   CapacityBuildingCoursesRoute: typeof CapacityBuildingCoursesRoute
+  ResourcesSlugRoute: typeof ResourcesSlugRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   VerifyCertificateIdRoute: typeof VerifyCertificateIdRoute
   CapacityBuildingIndexRoute: typeof CapacityBuildingIndexRoute
@@ -419,10 +420,10 @@ declare module '@tanstack/react-router' {
     }
     '/resources/$slug': {
       id: '/resources/$slug'
-      path: '/$slug'
+      path: '/resources/$slug'
       fullPath: '/resources/$slug'
       preLoaderRoute: typeof ResourcesSlugRouteImport
-      parentRoute: typeof ResourcesRoute
+      parentRoute: typeof rootRouteImport
     }
     '/services/': {
       id: '/services/'
@@ -470,6 +471,7 @@ const rootRouteChildren: RootRouteChildren = {
   CapacityBuildingBuilderRoute: CapacityBuildingBuilderRoute,
   CapacityBuildingCorporateRequestRoute: CapacityBuildingCorporateRequestRoute,
   CapacityBuildingCoursesRoute: CapacityBuildingCoursesRoute,
+  ResourcesSlugRoute: ResourcesSlugRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   VerifyCertificateIdRoute: VerifyCertificateIdRoute,
   CapacityBuildingIndexRoute: CapacityBuildingIndexRoute,

@@ -184,6 +184,81 @@ function ServiceDetail() {
         </Section>
       ) : null}
 
+      {/* Scheduled programmes, where the practice is delivered as a set of
+          them. Each card is the client's own course sheet: objective, who it
+          is for, what it runs to, and what it covers. */}
+      {service.programmes ? (
+        <Section id="programmes">
+          <div className="shell">
+            <SectionHeading
+              eyebrow="Programmes"
+              title="Scheduled Programmes"
+              lede="Delivered in-house for a cohort. Sequence and content are set against a training needs analysis, and additional programmes can be scoped from it."
+            />
+
+            <div className="rule-grid mt-8 grid sm:mt-10 lg:grid-cols-2">
+              {service.programmes.map((programme, index) => (
+                <article
+                  key={programme.name}
+                  className="edge-card flex flex-col bg-white p-6 sm:p-8"
+                >
+                  <div className="flex items-baseline justify-between gap-4">
+                    <IndexLabel n={index + 1} />
+                    <span className="numeric text-[0.6875rem] font-semibold tracking-[0.14em] text-signal-700 uppercase">
+                      {programme.days} {programme.days === 1 ? 'day' : 'days'}
+                    </span>
+                  </div>
+
+                  <h3 className="mt-4 text-xl font-bold text-ink-900">
+                    {programme.name}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                    {programme.objective}
+                  </p>
+
+                  <dl className="mt-5 space-y-2 border-t border-border pt-5 text-sm">
+                    <div className="flex gap-3">
+                      <dt className="w-28 flex-none text-[0.6875rem] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
+                        Audience
+                      </dt>
+                      <dd className="flex-1 leading-relaxed text-ink-800">
+                        {programme.audience}
+                      </dd>
+                    </div>
+                    {programme.prerequisite ? (
+                      <div className="flex gap-3">
+                        <dt className="w-28 flex-none text-[0.6875rem] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
+                          Prerequisite
+                        </dt>
+                        <dd className="flex-1 leading-relaxed text-ink-800">
+                          {programme.prerequisite}
+                        </dd>
+                      </div>
+                    ) : null}
+                  </dl>
+
+                  <div className="mt-5 flex-1">
+                    <p className="text-[0.6875rem] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
+                      Covers
+                    </p>
+                    <ul className="mt-3 flex flex-wrap gap-1.5">
+                      {programme.contents.map((item) => (
+                        <li
+                          key={item}
+                          className="border border-border px-2 py-1 text-[0.6875rem] text-ink-700"
+                        >
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </Section>
+      ) : null}
+
       {/* Capabilities, outcomes and engagement shapes */}
       <Section tone="sand">
         <div className="shell">

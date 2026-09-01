@@ -24,13 +24,21 @@ export const site = {
     whatsapp: '254780333331',
     phone: '+254 780 333331',
     altPhone: '+254 733 313314',
-    email: 'info@calibercode.io',
+    email: 'contact@calibercode.io',
   },
 
+  // Client-supplied accounts. The X and YouTube handles that used to sit here
+  // were invented placeholders and are gone.
+  //
+  // The Facebook and TikTok URLs arrived with share cruft — Facebook's
+  // `?_rdc=1&_rdr#` redirect params and TikTok's `_t` token, which is issued
+  // per share and expires. Both are stripped: the canonical profile URL is
+  // what belongs in a site build.
   social: {
-    linkedin: 'https://www.linkedin.com/company/calibercode',
-    x: 'https://x.com/calibercode',
-    youtube: 'https://www.youtube.com/@calibercode',
+    linkedin: 'https://www.linkedin.com/company/calibercodeltd/',
+    facebook: 'https://web.facebook.com/calibercode/',
+    instagram: 'https://www.instagram.com/calibercode/',
+    tiktok: 'https://www.tiktok.com/@calibercode',
   },
 } as const
 
@@ -86,74 +94,32 @@ export type NavLink = {
   description?: string
 }
 
+/** One group of links inside a mega-menu. */
+export type NavColumn = {
+  heading: string
+  links: Array<NavLink>
+}
+
 export type NavSection = {
   label: string
   to: string
-  /** Rendered as a mega-menu when present. */
-  columns?: Array<{
-    heading: string
-    links: Array<NavLink>
-  }>
-  /** Promoted panel inside the mega-menu. */
-  feature?: {
-    eyebrow: string
-    title: string
-    body: string
-    to: string
-    cta: string
-  }
+  /**
+   * Both open as dropdowns anchored under their trigger, sized to what they
+   * hold rather than to the viewport: `links` renders one narrow column,
+   * `columns` a wider multi-column panel. A section has one or the other.
+   */
+  links?: Array<NavLink>
+  columns?: Array<NavColumn>
 }
 
 export const primaryNav: Array<NavSection> = [
   {
     label: 'About',
     to: '/about',
-    columns: [
-      {
-        heading: 'The Institution',
-        links: [
-          {
-            label: 'Who We Are',
-            to: '/about',
-            description: 'Mandate, history and reach',
-          },
-          {
-            label: 'Leadership & Faculty',
-            to: '/about#leadership',
-            description: 'Partners and senior practitioners',
-          },
-          {
-            label: 'Governance',
-            to: '/about#governance',
-            description: 'How the institute is directed',
-          },
-          {
-            label: 'Accreditation',
-            to: '/about#accreditation',
-            description: 'Recognition and standing',
-          },
-        ],
-      },
-      {
-        heading: 'Working With Us',
-        links: [
-          {
-            label: 'Careers',
-            to: '/about#careers',
-            description: 'Open roles and faculty panel',
-          },
-          {
-            label: 'Contact',
-            to: '/contact',
-            description: 'Offices across the region',
-          },
-          {
-            label: 'Verify A Certificate',
-            to: '/verify',
-            description: 'Check a credential is genuine',
-          },
-        ],
-      },
+    links: [
+      { label: 'About Us', to: '/about' },
+      { label: 'Our Team', to: '/about#leadership' },
+      { label: 'Accreditations', to: '/about#accreditation' },
     ],
   },
   {
@@ -170,19 +136,29 @@ export const primaryNav: Array<NavSection> = [
         heading: 'Advisory',
         links: [
           {
-            label: 'Statutory & Tax Compliance',
+            label: 'Statutory Compliance & Internal Audit',
             to: '/services/statutory-tax-compliance',
             description: 'KRA filings, payroll levies and eTIMS',
           },
           {
-            label: 'Governance, Risk & Internal Audit',
-            to: '/services/governance-risk-internal-audit',
+            label: 'Governance, Compliance & Risk Management',
+            to: '/services/governance-compliance-risk-management',
             description: 'Board effectiveness, ERM and audit',
           },
           {
             label: 'Fraud, Financial Crime & Digital Assets',
             to: '/services/fraud-financial-crime-digital-assets',
             description: 'Anti-fraud, AML/CFT and data protection',
+          },
+          {
+            label: 'Islamic Finance Services',
+            to: '/services/islamic-finance',
+            description: 'Shari’ah-compliant structuring and training',
+          },
+          {
+            label: 'Human Resource Management',
+            to: '/services/human-resource-management',
+            description: 'HR policy, hiring, appraisal and training',
           },
           {
             label: 'All Advisory Practices',
@@ -237,13 +213,6 @@ export const primaryNav: Array<NavSection> = [
         ],
       },
     ],
-    feature: {
-      eyebrow: 'For HR & L&D',
-      title: 'Pro-Forma Invoice In One Step',
-      body: 'Tell us your headcount, modules and delivery mode. The request returns a downloadable pro-forma invoice for your procurement cycle.',
-      to: '/capacity-building/corporate-request',
-      cta: 'Start a request',
-    },
   },
   { label: 'Events', to: '/events' },
   { label: 'Insights', to: '/resources' },
@@ -255,16 +224,21 @@ export const footerNav: Array<{ heading: string; links: Array<NavLink> }> = [
     heading: 'Advisory',
     links: [
       {
-        label: 'Statutory & Tax Compliance',
+        label: 'Statutory Compliance & Internal Audit',
         to: '/services/statutory-tax-compliance',
       },
       {
-        label: 'Governance, Risk & Internal Audit',
-        to: '/services/governance-risk-internal-audit',
+        label: 'Governance, Compliance & Risk Management',
+        to: '/services/governance-compliance-risk-management',
       },
       {
         label: 'Fraud, Financial Crime & Digital Assets',
         to: '/services/fraud-financial-crime-digital-assets',
+      },
+      { label: 'Islamic Finance Services', to: '/services/islamic-finance' },
+      {
+        label: 'Human Resource Management',
+        to: '/services/human-resource-management',
       },
       { label: 'All Advisory Practices', to: '/services' },
     ],
@@ -287,9 +261,7 @@ export const footerNav: Array<{ heading: string; links: Array<NavLink> }> = [
     links: [
       { label: 'About Us', to: '/about' },
       { label: 'Leadership & Faculty', to: '/about#leadership' },
-      { label: 'Governance', to: '/about#governance' },
       { label: 'Accreditation', to: '/about#accreditation' },
-      { label: 'Careers', to: '/about#careers' },
     ],
   },
   {

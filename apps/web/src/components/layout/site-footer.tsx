@@ -2,11 +2,14 @@ import type { ReactNode } from 'react'
 import { Link } from '@tanstack/react-router'
 import {
   FiArrowUpRight,
+  FiFacebook,
+  FiInstagram,
   FiLinkedin,
   FiMail,
   FiMapPin,
-  FiYoutube,
 } from 'react-icons/fi'
+// Feather has no TikTok glyph; fa6 does.
+import { FaTiktok } from 'react-icons/fa6'
 
 import { Logo } from '@/components/layout/logo'
 import { NewsletterForm } from '@/components/layout/newsletter-form'
@@ -53,10 +56,22 @@ export function SiteFooter() {
                 <FiLinkedin className="size-4" aria-hidden="true" />
               </SocialLink>
               <SocialLink
-                href={site.social.youtube}
-                label="YouTube, opens in a new tab"
+                href={site.social.facebook}
+                label="Facebook, opens in a new tab"
               >
-                <FiYoutube className="size-4" aria-hidden="true" />
+                <FiFacebook className="size-4" aria-hidden="true" />
+              </SocialLink>
+              <SocialLink
+                href={site.social.instagram}
+                label="Instagram, opens in a new tab"
+              >
+                <FiInstagram className="size-4" aria-hidden="true" />
+              </SocialLink>
+              <SocialLink
+                href={site.social.tiktok}
+                label="TikTok, opens in a new tab"
+              >
+                <FaTiktok className="size-3.5" aria-hidden="true" />
               </SocialLink>
               <SocialLink
                 href={`mailto:${site.contact.email}`}

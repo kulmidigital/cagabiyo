@@ -174,17 +174,17 @@ export type Metric = {
  * metrics and their evidence/source" as content still to be approved — so none
  * are invented here.
  *
- * Every figure below is instead structural: three advisory practices and five
+ * Every figure below is instead structural: five advisory practices and five
  * training focus areas (both from the corporate overview), the accreditations
  * the firm holds, and five markets (GOAL-04). Swap these for audited impact
  * figures once the evidence exists.
  */
 export const impactMetrics: Array<Metric> = [
   {
-    value: '3',
+    value: '5',
     label: 'Advisory Practices',
     detail:
-      'Statutory and tax compliance, governance and internal audit, fraud and financial crime.',
+      'Statutory and tax compliance, governance and internal audit, fraud and financial crime, Islamic finance.',
   },
   {
     value: '5',
@@ -224,7 +224,11 @@ export type Person = {
   credentials: Array<string>
   /** Supplied headshot in `public/staff`. Absent for anyone who has not sent one. */
   photo?: string
-  /** Leads the section in a feature card rather than the roster grid. */
+  /**
+   * Rendered as a full-width feature card rather than in the roster grid.
+   * More than one may be flagged; each gets the same card, and the extra
+   * bio paragraphs block only appears for whoever has them.
+   */
   lead?: boolean
 }
 
@@ -252,6 +256,18 @@ export const leadership: Array<Person> = [
     ],
   },
   {
+    name: 'Qalid Adow',
+    role: 'Managing Partner',
+    photo: '/staff/qalid.jpg',
+    lead: true,
+    credentials: ['BSc', 'CPA', 'CFE', 'CIA'],
+    bio: [
+      'Qalid is an accomplished finance, risk and compliance specialist with over eight years leading complex, donor-funded humanitarian programmes and driving financial governance across East Africa. Built on a foundation of multidisciplinary financial expertise, his career spans regulatory bodies, international non-profits, accounting firms and non-governmental organizations. He holds a Bachelor of Science in International Business Administration (Finance) from United States International University–Africa (USIU-A), which lets him navigate complex operating structures with strategic vision while keeping the financial detail precise.',
+      'He is a Certified Public Accountant (CPA) registered with the Institute of Certified Public Accountants of Kenya (ICPAK), grounding his practice in IPSAS, IFRS and IAS reporting frameworks. His expertise in organizational governance and internal control is validated by his status as a Certified Internal Auditor (CIA), and his leadership in financial integrity and white-collar crime mitigation is anchored by his designation as a Certified Fraud Examiner (CFE) through the Association of Certified Fraud Examiners (ACFE, USA).',
+      'Throughout his career Qalid has built a reputation for zero-gap budgetary execution, forensic audit readiness and transparent resource allocation. He brings hands-on experience directing multi-million-dollar grant portfolios funded by the European Union, the World Bank, the United Nations Office for the Coordination of Humanitarian Affairs (OCHA) and the Swedish International Development Cooperation Agency (SIDA). By aligning strict donor compliance with broader operational strategy, he turns risk and compliance frameworks into proactive mechanisms for institutional integrity, seamless audit execution and sustainable programme impact.',
+    ],
+  },
+  {
     name: 'Shamsa Haji',
     role: 'Lead Consultant',
     photo: '/staff/shamsa.jpg',
@@ -270,6 +286,15 @@ export const leadership: Array<Person> = [
     ],
   },
   {
+    name: 'Susan Nduta Njogu',
+    role: 'Administration Manager',
+    photo: '/staff/susan.jpg',
+    credentials: ['Diploma in Accounting', 'CPA (in progress)'],
+    bio: [
+      'Susan is an experienced accounting professional with over ten years in accounting and finance. She specializes in tax consultation, bookkeeping, financial reporting and tax compliance, helping businesses maintain accurate financial records and meet their tax obligations. She holds a Diploma in Accounting and is completing her CPA certification, with a commitment to professionalism, accuracy and practical financial solutions for clients.',
+    ],
+  },
+  {
     name: 'Jane Nzyoka',
     role: 'Business Consultant & Marketing Strategic Manager',
     photo: '/staff/jane.jpg',
@@ -281,46 +306,12 @@ export const leadership: Array<Person> = [
   {
     name: 'Christine Kinya Gikunda',
     role: 'HR Consultant & Professional Trainer',
+    photo: '/staff/christine.jpg',
+    lead: true,
     credentials: ['MSc HRM', 'CHRC', 'CPT', 'CPM', 'BCom'],
     bio: [
       'Christine is a results-driven HR consultant, professional trainer and certified mediator with over 25 years in human resource management, organizational development and workforce capacity building. Holding an MSc in Human Resource Management from the University of Nairobi alongside credentials as a Certified HR Consultant (CHRC), Certified Professional Trainer (CPT) and Certified Professional Mediator (CPM), she specializes in HR policy development, leadership training, and aligning workforce management with corporate strategy and compliance. She is an active member of KIHRM and ICPM.',
     ],
-  },
-]
-
-// -- ABOUT-03: governance model ----------------------------------------------
-
-export type GovernanceOrgan = {
-  name: string
-  mandate: string
-  composition: string
-}
-
-export const governanceModel: Array<GovernanceOrgan> = [
-  {
-    name: 'Board Of Directors',
-    mandate:
-      'Sets institutional strategy, approves the annual plan and budget, and appoints the Managing Partner. Meets quarterly.',
-    composition: 'Seven directors, four of whom are independent non-executive.',
-  },
-  {
-    name: 'Academic & Technical Committee',
-    mandate:
-      'Approves curriculum, sets assessment standards and reviews every credential before it is issued. Owns the faculty admission criteria.',
-    composition:
-      'Chaired by the Managing Partner; six senior practitioners and two external academics.',
-  },
-  {
-    name: 'Audit & Risk Committee',
-    mandate:
-      'Oversees internal control, the risk register, data protection compliance and the external audit relationship.',
-    composition: 'Three independent non-executive directors.',
-  },
-  {
-    name: 'Ethics & Quality Panel',
-    mandate:
-      'Handles independence conflicts, complaints and disciplinary matters affecting faculty or credential holders.',
-    composition: 'Two independent directors and one external counsel.',
   },
 ]
 
@@ -479,54 +470,6 @@ export const practitionerCredentials: Array<Credential> = [
   },
 ]
 
-// -- ABOUT-05: careers --------------------------------------------------------
-
-export type Vacancy = {
-  title: string
-  team: string
-  location: string
-  type: 'Full time' | 'Contract' | 'Faculty panel'
-}
-
-export const vacancies: Array<Vacancy> = [
-  {
-    title: 'Senior Manager, Internal Audit',
-    team: 'Assurance',
-    location: 'Nairobi',
-    type: 'Full time',
-  },
-  {
-    title: 'Tax Manager — Statutory Compliance',
-    team: 'Tax',
-    location: 'Nairobi',
-    type: 'Full time',
-  },
-  {
-    title: 'Fraud Risk Associate',
-    team: 'Financial Crime',
-    location: 'Nairobi',
-    type: 'Full time',
-  },
-  {
-    title: 'Programme Coordinator, Executive Education',
-    team: 'Capacity Building',
-    location: 'Kampala',
-    type: 'Full time',
-  },
-  {
-    title: 'Instructional Designer (E-Learning)',
-    team: 'Capacity Building',
-    location: 'Remote — East Africa',
-    type: 'Contract',
-  },
-  {
-    title: 'Associate Faculty — Governance & Risk',
-    team: 'Faculty',
-    location: 'Regional',
-    type: 'Faculty panel',
-  },
-]
-
 // -- PROOF-01/02/03: testimonials ---------------------------------------------
 
 export type Testimonial = {
@@ -580,7 +523,7 @@ export const testimonials: Array<Testimonial> = [
     quote:
       'Their statutory health check found the exposure before KRA did, and the file held up at objection without a single amendment.',
     name: 'Aisha Hassan',
-    role: 'Group Finance Director',
+    role: 'Group Finance Partner',
     organisation: 'Manufacturing group',
     photo: photos.portraitCityWindow,
     audience: 'Executive',

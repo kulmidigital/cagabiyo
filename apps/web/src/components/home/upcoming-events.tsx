@@ -1,5 +1,6 @@
 import { FiArrowRight, FiArrowUpRight, FiMapPin, FiVideo } from 'react-icons/fi'
 
+import { EventsEmpty } from '@/components/events/events-empty'
 import { SectionHeading } from '@/components/common/section'
 import { ButtonLink } from '@/components/common/button-link'
 import { SmartLink } from '@/components/common/smart-link'
@@ -24,6 +25,12 @@ export function UpcomingEvents() {
     <section className="py-6 sm:py-10">
       <div className="shell">
         <SectionHeading eyebrow="Events & workshops" title="Upcoming Dates" />
+
+        {upcoming.length === 0 ? (
+          <div className="mt-8 sm:mt-10">
+            <EventsEmpty />
+          </div>
+        ) : null}
 
         <ul className="mt-8 sm:mt-10">
           {upcoming.map((event, index) => {

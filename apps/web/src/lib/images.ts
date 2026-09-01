@@ -164,9 +164,12 @@ export const photos = define({
     id: 'photo-1573166953836-06864dc70a21',
     alt: 'Analyst reflecting while working at a laptop',
   },
-  tabletGlass: {
-    id: 'photo-1573164713712-03790a178651',
-    alt: 'Consultant reviewing figures on a tablet beside a glass partition',
+  // Replaced 'photo-1573164713712-03790a178651', which Unsplash has removed —
+  // it returned a hard failure while a control id fetched fine in the same
+  // request batch, and it was rendering as alt text on the live site.
+  glassOffice: {
+    id: 'photo-1497366754035-f200968a6e72',
+    alt: 'Glass-partitioned office corridor',
   },
 
   // -- Technology, audit & assurance ---------------------------------------

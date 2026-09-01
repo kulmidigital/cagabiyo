@@ -8,6 +8,7 @@ import type { NavSection } from '@/lib/site'
 import { Logo } from '@/components/layout/logo'
 import { SiteSearch } from '@/components/layout/site-search'
 import { MobileNav } from '@/components/layout/mobile-nav'
+import { CanvasCursor } from '@/components/common/canvas-cursor'
 import { SmartLink } from '@/components/common/smart-link'
 import { ButtonLink } from '@/components/common/button-link'
 
@@ -67,8 +68,11 @@ export function SiteHeader() {
   }
 
   const activeSection = primaryNav.find((s) => s.label === openMenu)
+  // Only a columns section opens the full-width sheet; a `links` section is a
+  // dropdown anchored to its own trigger and must not touch the bar.
+  const sheetSection = activeSection?.columns ? activeSection : undefined
 
-  // The panel tracks the bar, so both share these shape classes.
+  // The sheet tracks the bar, so both share these shape classes.
   const shape = scrolled
     ? 'max-w-full px-5 sm:px-8 xl:px-14'
     : 'max-w-[88rem] px-4 sm:px-5'
@@ -111,19 +115,22 @@ export function SiteHeader() {
             scrolled
               ? 'border-b-white/10 bg-ink-800/97'
               : 'border-white/15 bg-ink-800/94 shadow-[0_10px_40px_-16px_rgb(4_14_29/0.6)]',
-            // Square off the bottom while a panel is attached below it.
-            activeSection && !scrolled && 'border-b-transparent',
+            // Square off the bottom while the sheet is attached below it.
+            sheetSection && !scrolled && 'border-b-transparent',
           )}
         >
           <Logo className="h-9 lg:h-11" />
 
           <nav aria-label="Primary" className="hidden lg:block">
-            <ul className="flex items-center gap-1">
+            <ul className="flex h-full items-center gap-1">
               {primaryNav.map((section) => {
-                const hasPanel = Boolean(section.columns)
+                const hasPanel = Boolean(section.columns ?? section.links)
                 const isOpen = openMenu === section.label
                 return (
-                  <li key={section.label}>
+                  <li
+                    key={section.label}
+                    className="relative flex h-full items-center"
+                  >
                     {hasPanel ? (
                       <button
                         type="button"
@@ -139,12 +146,16 @@ export function SiteHeader() {
                         }}
                         className={cn(
                           'flex items-center gap-1.5 px-3.5 py-2 text-sm font-medium transition-colors',
-                          // Open takes the panel's own off-white so the trigger
-                          // reads as the tab belonging to the sheet below it,
-                          // rather than as a lit-up button on the dark bar.
-                          isOpen
-                            ? 'bg-sand-50 text-ink-950'
-                            : 'text-ink-100 hover:bg-white/5 hover:text-white',
+                          // Open takes its own panel's ground, so the trigger
+                          // reads as the tab belonging to the sheet below it
+                          // rather than a lit-up button on the dark bar — and
+                          // the two menus stay distinguishable at the trigger.
+                          isOpen &&
+                            (section.columns
+                              ? 'bg-sand-50 text-ink-950'
+                              : 'bg-white text-ink-950'),
+                          !isOpen &&
+                            'text-ink-100 hover:bg-white/5 hover:text-white',
                         )}
                       >
                         {section.label}
@@ -156,7 +167,16 @@ export function SiteHeader() {
                           aria-hidden="true"
                         />
                       </button>
-                    ) : (
+                    ) : null}
+
+                    {isOpen && section.links ? (
+                      <NavDropdown
+                        section={section}
+                        id={`meganav-${slug(section.label)}`}
+                      />
+                    ) : null}
+
+                    {!hasPanel ? (
                       <Link
                         to={section.to}
                         onPointerEnter={() => setOpenMenu(null)}
@@ -165,7 +185,7 @@ export function SiteHeader() {
                       >
                         {section.label}
                       </Link>
-                    )}
+                    ) : null}
                   </li>
                 )
               })}
@@ -200,25 +220,21 @@ export function SiteHeader() {
           </div>
         </div>
 
-        {/* Mega panel, shaped to match the bar it hangs from */}
-        {activeSection ? (
+        {/* Sheet, shaped to match the bar it hangs from */}
+        {sheetSection ? (
           <div
-            id={`meganav-${slug(activeSection.label)}`}
+            id={`meganav-${slug(sheetSection.label)}`}
             className={cn(
               // Same rule as the bar: colour changes, widths do not.
-              //
-              // The panel is off-white while the bar above stays ink, so the
-              // seam is a deliberate light/dark boundary. It is opaque — there
-              // is nothing left to blur through — so `backdrop-blur` is gone
-              // along with the alpha.
-              'mx-auto hidden overflow-hidden border border-t-0 border-sand-200 bg-sand-50 lg:block',
+              'relative mx-auto hidden overflow-hidden border border-t-0 border-sand-200 bg-sand-50 lg:block',
               shape,
               scrolled
                 ? 'shadow-[0_18px_40px_-24px_rgb(4_14_29/0.35)]'
                 : 'shadow-[0_24px_60px_-24px_rgb(4_14_29/0.45)]',
             )}
           >
-            <MegaPanelContent section={activeSection} />
+            <CanvasCursor />
+            <MegaPanelContent section={sheetSection} />
           </div>
         ) : null}
       </div>
@@ -229,94 +245,80 @@ export function SiteHeader() {
 }
 
 /**
- * Track widths for the link columns.
+ * The full-width sheet, used by Services.
  *
- * Beside a feature card the columns share eight of twelve, so the count has to
- * drive the tracks — Services runs three, and forcing it into the two-up grid
- * would wrap the third under the first. Without a feature card the grid stays
- * at four tracks whatever the count: a section with two columns then keeps the
- * same column measure as every other panel and simply leaves the remaining
- * tracks empty, which reads better than two columns stretched across the full
- * width.
+ * Runs the width of the bar it hangs from. With the promoted card gone the
+ * three columns take the whole sheet, so each description is held to a
+ * readable measure rather than being allowed to run the full column width.
  */
-const columnTracks: Record<number, string> = {
-  1: 'sm:grid-cols-1',
-  2: 'sm:grid-cols-2',
-  3: 'sm:grid-cols-2 lg:grid-cols-3',
-  4: 'sm:grid-cols-2 lg:grid-cols-4',
+function MegaPanelContent({ section }: Readonly<{ section: NavSection }>) {
+  return (
+    <div className="grid gap-x-14 gap-y-9 py-8 sm:grid-cols-2 sm:py-10 lg:grid-cols-3">
+      {(section.columns ?? []).map((column) => (
+        <div key={column.heading}>
+          <p className="eyebrow text-signal-700">{column.heading}</p>
+          <div className="mt-4 h-px bg-sand-200" aria-hidden="true" />
+
+          <ul className="mt-2">
+            {column.links.map((link) => (
+              <li key={link.to}>
+                <SmartLink
+                  href={link.to}
+                  className="group -mx-3 block border-l-2 border-transparent px-3 py-2.5 transition-colors hover:border-signal-500 hover:bg-white"
+                >
+                  <span className="flex items-center gap-2 text-sm font-semibold text-ink-900">
+                    {link.label}
+                    <FiArrowUpRight
+                      className="size-3.5 -translate-x-1 flex-none text-signal-600 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
+                      aria-hidden="true"
+                    />
+                  </span>
+                  {link.description ? (
+                    <span className="mt-0.5 block max-w-sm text-[0.8125rem] leading-snug text-muted-foreground">
+                      {link.description}
+                    </span>
+                  ) : null}
+                </SmartLink>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  )
 }
 
-function MegaPanelContent({ section }: Readonly<{ section: NavSection }>) {
-  const columns = section.columns ?? []
-
+/**
+ * The compact dropdown, anchored under its own trigger.
+ *
+ * Deliberately not a sheet: a three-entry menu spread across the viewport was
+ * mostly empty space, and made the two menus look like the same component.
+ */
+function NavDropdown({
+  section,
+  id,
+}: Readonly<{ section: NavSection; id: string }>) {
   return (
-    <div className="grid gap-10 py-8 sm:py-10 lg:grid-cols-12 lg:gap-14">
-      <div
-        className={cn(
-          'grid gap-x-10 gap-y-9',
-          section.feature
-            ? cn(
-                'lg:col-span-8',
-                columnTracks[columns.length] ?? 'sm:grid-cols-2',
-              )
-            : 'lg:col-span-12 sm:grid-cols-2 lg:grid-cols-4',
-        )}
-      >
-        {columns.map((column) => (
-          <div key={column.heading}>
-            <p className="eyebrow mb-4 text-signal-700">{column.heading}</p>
-            {/* A hairline under the heading gives each column a spine to hang
-                from; on the old ink panel the surrounding contrast did that. */}
-            <div className="mb-3 h-px bg-sand-200" aria-hidden="true" />
-            <ul className="space-y-0.5">
-              {column.links.map((link) => (
-                <li key={link.to}>
-                  <SmartLink
-                    href={link.to}
-                    className="group -mx-3 block border-l-2 border-transparent px-3 py-2 transition-colors hover:border-signal-500 hover:bg-white"
-                  >
-                    <span className="flex items-center gap-2 text-sm font-semibold text-ink-900">
-                      {link.label}
-                      <FiArrowUpRight
-                        className="size-3.5 -translate-x-1 text-signal-600 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
-                        aria-hidden="true"
-                      />
-                    </span>
-                    {link.description ? (
-                      <span className="mt-0.5 block text-[0.8125rem] leading-snug text-muted-foreground">
-                        {link.description}
-                      </span>
-                    ) : null}
-                  </SmartLink>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-
-      {section.feature ? (
-        <div className="lg:col-span-4">
-          {/* Inverted against the off-white panel: on a light sheet the promoted
-              card has to be the darkest thing present to still read as promoted. */}
-          <div className="h-full bg-linear-to-br from-ink-900 to-ink-950 p-7">
-            <p className="eyebrow text-signal-400">{section.feature.eyebrow}</p>
-            <h3 className="mt-4 text-xl font-bold text-white">
-              {section.feature.title}
-            </h3>
-            <p className="mt-3 text-sm leading-relaxed text-ink-200">
-              {section.feature.body}
-            </p>
+    <div
+      id={id}
+      className="absolute top-full left-0 z-10 w-64 border border-sand-200 bg-white py-2 shadow-[0_24px_48px_-24px_rgb(4_14_29/0.45)]"
+    >
+      <ul>
+        {(section.links ?? []).map((link) => (
+          <li key={link.to}>
             <SmartLink
-              href={section.feature.to}
-              className="link-wipe mt-6 inline-flex items-center gap-2 text-xs font-semibold tracking-[0.14em] text-signal-400 uppercase"
+              href={link.to}
+              className="group flex items-center justify-between gap-3 px-4 py-2.5 text-sm font-medium text-ink-900 transition-colors hover:bg-sand-50 hover:text-signal-700"
             >
-              {section.feature.cta}
-              <FiArrowUpRight className="size-3.5" aria-hidden="true" />
+              {link.label}
+              <FiArrowUpRight
+                className="size-3.5 -translate-x-1 flex-none text-signal-600 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
+                aria-hidden="true"
+              />
             </SmartLink>
-          </div>
-        </div>
-      ) : null}
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }

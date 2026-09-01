@@ -7,8 +7,6 @@ import { PageHero } from '@/components/common/page-hero'
 import {
   AboutOverview,
   AccreditationList,
-  Careers,
-  GovernanceModel,
   LeadershipGrid,
   VisionMission,
   WhoWeServe,
@@ -54,9 +52,7 @@ function AboutPage() {
       <VisionMission />
       <WhoWeServe />
       <LeadershipGrid />
-      <GovernanceModel />
       <AccreditationList />
-      <Careers />
       <ConversionCta />
     </>
   )

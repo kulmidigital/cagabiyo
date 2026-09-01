@@ -173,7 +173,7 @@ export const insights: Array<Insight> = [
     readingMinutes: 3,
     author: AUTHOR,
     authorRole: AUTHOR_ROLE,
-    photo: photos.tabletGlass,
+    photo: photos.glassOffice,
     topics: ['Taxation', 'SMEs', 'Turnover Tax'],
     access: 'open',
     keyPoints: [

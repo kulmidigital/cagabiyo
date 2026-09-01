@@ -1,3 +1,24 @@
 packages:
   - "apps/*"
   - "packages/*"
+
+# Which dependencies may run install scripts.
+#
+# This lived in apps/web/package.json as `pnpm.onlyBuiltDependencies`, where it
+# did nothing: pnpm only ever read that field from the workspace root, and v11
+# removed the field entirely — `onlyBuiltDependencies` and four sibling
+# settings were replaced by `allowBuilds` here. See https://pnpm.io/settings/build
+#
+# esbuild is deliberately false. Its postinstall is a self-check that runs the
+# esbuild binary and compares versions, and this tree resolves two esbuild
+# majors (0.28.1 and 0.28.2). The check picks up whichever binary is hoisted
+# into .bin, reads 0.28.1 while validating 0.28.2, and aborts the whole install
+# before pnpm links any binaries — which is what left `vite` unresolvable.
+# Skipping it is safe here: the platform package @esbuild/win32-x64 ships
+# esbuild.exe prebuilt for both versions, so there is nothing for the script to
+# fetch. If the duplicate esbuild is ever deduped, this can go back to true.
+allowBuilds:
+  esbuild: false
+  lightningcss: true
+  sharp: true
+  workerd: true

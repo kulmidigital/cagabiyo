@@ -16,7 +16,7 @@ export const Route = createFileRoute('/capacity-building/courses')({
       description:
         'Self-paced, blended and live-virtual certificates in finance and tax, governance and internal audit, fraud and financial crime, data protection and digital assets, and SME growth and leadership. Priced in KES and USD.',
       path: '/capacity-building/courses',
-      image: photos.tabletGlass,
+      image: photos.glassOffice,
       keywords: [
         'professional courses Kenya',
         'online certificate East Africa',

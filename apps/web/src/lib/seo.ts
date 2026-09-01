@@ -91,7 +91,12 @@ export function organizationSchema() {
     description: site.description,
     email: site.contact.email,
     telephone: site.contact.phone,
-    sameAs: [site.social.linkedin, site.social.x, site.social.youtube],
+    sameAs: [
+      site.social.linkedin,
+      site.social.facebook,
+      site.social.instagram,
+      site.social.tiktok,
+    ],
     areaServed: ['KE', 'UG', 'TZ', 'RW', 'ET'],
     address: {
       '@type': 'PostalAddress',

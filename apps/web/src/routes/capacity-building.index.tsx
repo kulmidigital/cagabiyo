@@ -14,6 +14,7 @@ import { ButtonLink } from '@/components/common/button-link'
 import { Photo } from '@/components/common/photo'
 import { CapacityOverview } from '@/components/home/capacity-overview'
 import { EventCard } from '@/components/events/event-card'
+import { EventsEmpty } from '@/components/events/events-empty'
 import { ConversionCta } from '@/components/home/conversion-cta'
 import { SmartLink } from '@/components/common/smart-link'
 import { events } from '@/lib/content/events'
@@ -162,11 +163,18 @@ function CapacityBuildingPage() {
             title="Board & C-Suite Intensives"
           />
 
-          <div className="rule-grid mt-8 grid sm:mt-10 lg:grid-cols-2">
-            {masterclasses.map((event) => (
-              <EventCard key={event.slug} event={event} />
-            ))}
-          </div>
+          {masterclasses.length > 0 ? (
+            <div className="rule-grid mt-8 grid sm:mt-10 lg:grid-cols-2">
+              {masterclasses.map((event) => (
+                <EventCard key={event.slug} event={event} />
+              ))}
+            </div>
+          ) : (
+            <div className="mt-8 sm:mt-10">
+              {/* The page already offers a corporate request just above. */}
+              <EventsEmpty action={false} />
+            </div>
+          )}
 
           <div className="mt-8 flex justify-end">
             <ButtonLink

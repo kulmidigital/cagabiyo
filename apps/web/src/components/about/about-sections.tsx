@@ -1,32 +1,20 @@
 import type { CSSProperties } from 'react'
 import {
-  FiArrowRight,
-  FiArrowUpRight,
-  FiCheck,
-  FiClock,
-  FiMapPin,
-} from 'react-icons/fi'
-
-import {
   Section,
   SectionHeading,
   IndexLabel,
   Eyebrow,
 } from '@/components/common/section'
-import { SmartLink } from '@/components/common/smart-link'
-import { ButtonLink } from '@/components/common/button-link'
 import { cn } from '@/lib/utils'
 import { markets } from '@/lib/site'
 import {
   accreditations,
-  governanceModel,
   institution,
   coreValues,
   whyCaliberCode,
   leadership,
   practitionerCredentials,
   segments,
-  vacancies,
 } from '@/lib/content/institution'
 import type { Person } from '@/lib/content/institution'
 
@@ -213,7 +201,7 @@ export function WhoWeServe() {
 }
 
 export function LeadershipGrid() {
-  const lead = leadership.find((person) => person.lead)
+  const leads = leadership.filter((person) => person.lead)
   const team = leadership.filter((person) => !person.lead)
 
   return (
@@ -229,8 +217,11 @@ export function LeadershipGrid() {
             No `h-full` on any portrait. Height comes from the 4:5 ratio alone,
             so nothing beside it can stretch the crop; the facing panel takes
             the slack instead. */}
-        {lead ? (
-          <article className="mt-8 border border-border bg-white p-3 sm:mt-10">
+        {leads.map((lead) => (
+          <article
+            key={lead.name}
+            className="mt-6 border border-border bg-white p-3 first:mt-8 sm:first:mt-10"
+          >
             <div className="grid gap-3 lg:grid-cols-12">
               <div className="lg:col-span-4">
                 <Portrait
@@ -277,7 +268,7 @@ export function LeadershipGrid() {
               </div>
             ) : null}
           </article>
-        ) : null}
+        ))}
 
         {/* One column, not two. Each card sticks under the header as you
             reach it and the next slides over the top, so the roster reads as a
@@ -307,13 +298,12 @@ export function LeadershipGrid() {
                     <h3 className="mt-2 text-xl leading-snug font-bold text-ink-900">
                       {person.name}
                     </h3>
-                    <div className="flex-1">
-                      <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-                        {person.bio[0]}
-                      </p>
-                    </div>
 
-                    <p className="mt-5 border-t border-border pt-4 text-sm font-semibold text-ink-700">
+                    {/* Directly under the name, the way the feature cards read
+                        — the qualifications belong to the person, not to the
+                        foot of the card. Nothing needs to grow to push them
+                        down now, so the bio is a plain paragraph again. */}
+                    <p className="mt-2 text-sm font-semibold text-ink-700">
                       {person.credentials.map((credential, position) => (
                         <span key={credential}>
                           {position > 0 ? (
@@ -324,6 +314,10 @@ export function LeadershipGrid() {
                           {credential}
                         </span>
                       ))}
+                    </p>
+
+                    <p className="mt-4 max-w-3xl border-t border-border pt-4 text-sm leading-relaxed text-muted-foreground">
+                      {person.bio[0]}
                     </p>
                   </div>
                 </div>
@@ -378,40 +372,6 @@ function Portrait({
         className,
       )}
     />
-  )
-}
-
-export function GovernanceModel() {
-  return (
-    <Section id="governance" tone="ink">
-      <div className="grain absolute inset-0" aria-hidden="true" />
-      <div className="shell relative">
-        <SectionHeading
-          tone="ink"
-          eyebrow="Governance"
-          title="Governance Model"
-        />
-
-        <ol className="rule-grid-ink mt-8 grid sm:mt-10 sm:grid-cols-2">
-          {governanceModel.map((organ, index) => (
-            <li key={organ.name} className="p-6 sm:p-8">
-              <div className="flex items-baseline gap-4">
-                <IndexLabel n={index + 1} tone="ink" />
-                <h3 className="text-lg font-bold text-white sm:text-xl">
-                  {organ.name}
-                </h3>
-              </div>
-              <p className="mt-4 text-sm leading-relaxed text-ink-200">
-                {organ.mandate}
-              </p>
-              <p className="mt-4 border-l-2 border-signal-500 pl-4 text-xs leading-relaxed text-ink-300">
-                {organ.composition}
-              </p>
-            </li>
-          ))}
-        </ol>
-      </div>
-    </Section>
   )
 }
 
@@ -482,92 +442,6 @@ export function AccreditationList() {
             Every engagement is led by a specialist holding the relevant
             qualification for the work.
           </p>
-        </div>
-      </div>
-    </Section>
-  )
-}
-
-export function Careers() {
-  return (
-    <Section id="careers" tone="sand">
-      <div className="shell">
-        <SectionHeading eyebrow="Careers" title="Working With Us" />
-
-        <div className="mt-8 grid gap-8 sm:mt-10 lg:grid-cols-2 lg:gap-14">
-          <div>
-            <ul className="space-y-3">
-              {[
-                'Client work and teaching in the same role',
-                'Study support toward CPA, CIA, CISA, ADIT and CFE',
-                'Regional exposure across five markets',
-              ].map((point) => (
-                <li
-                  key={point}
-                  className="flex items-start gap-3 text-sm text-ink-800"
-                >
-                  <FiCheck
-                    className="mt-0.5 size-4 flex-none text-signal-600"
-                    aria-hidden="true"
-                  />
-                  {point}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <div className="border border-border bg-white">
-              <p className="border-b border-border px-5 py-4 text-[0.6875rem] font-semibold tracking-[0.14em] text-muted-foreground uppercase sm:px-6">
-                Open positions
-              </p>
-              <ul className="divide-y divide-border">
-                {vacancies.map((role) => (
-                  <li key={role.title}>
-                    <SmartLink
-                      href="/contact?intent=careers"
-                      className="edge-card group flex items-center justify-between gap-4 px-5 py-4 transition-colors hover:bg-sand-50 sm:px-6 sm:py-5"
-                    >
-                      <div className="min-w-0">
-                        <h3 className="text-sm font-bold text-ink-900">
-                          {role.title}
-                        </h3>
-                        <p className="mt-1.5 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
-                          <span>{role.team}</span>
-                          <span className="inline-flex items-center gap-1.5">
-                            <FiMapPin className="size-3" aria-hidden="true" />
-                            {role.location}
-                          </span>
-                          <span className="inline-flex items-center gap-1.5">
-                            <FiClock className="size-3" aria-hidden="true" />
-                            {role.type}
-                          </span>
-                        </p>
-                      </div>
-                      <FiArrowUpRight
-                        className="size-4 flex-none text-ink-300 transition-colors group-hover:text-signal-600"
-                        aria-hidden="true"
-                      />
-                    </SmartLink>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-8 flex justify-end">
-          <ButtonLink
-            href="/contact?intent=careers"
-            className="w-full bg-signal-500 text-ink-950 hover:bg-signal-400 sm:w-auto"
-          >
-            Send a speculative application
-            <FiArrowRight
-              className="size-3.5"
-              data-icon="inline-end"
-              aria-hidden="true"
-            />
-          </ButtonLink>
         </div>
       </div>
     </Section>

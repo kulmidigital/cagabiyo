@@ -20,7 +20,7 @@ export const Route = createFileRoute('/services/')({
     seo({
       title: 'Advisory services — statutory compliance, governance and fraud',
       description:
-        'Three advisory practices: statutory and tax compliance, governance risk and internal audit, and fraud, financial crime and digital asset advisory, delivered across East Africa.',
+        'Four advisory practices: statutory and tax compliance, governance risk and internal audit, fraud, financial crime and digital assets, and Shari’ah-compliant Islamic finance, delivered across East Africa.',
       path: '/services',
       image: photos.boardroomWide,
       keywords: [
@@ -28,6 +28,7 @@ export const Route = createFileRoute('/services/')({
         'tax compliance Kenya',
         'internal audit East Africa',
         'fraud risk advisory Nairobi',
+        'Islamic finance Kenya',
       ],
     }),
   component: ServicesIndex,
@@ -50,12 +51,12 @@ function ServicesIndex() {
         photo={photos.boardroomWide}
       />
 
-      {/* One section, not one per pillar. With three practices the grouping
+      {/* One section, not one per pillar. With five practices the grouping
           headings outnumbered what they grouped, so the list stands on its own
           and each card carries the full capability set instead of three chips. */}
       <Section>
         <div className="shell">
-          <SectionHeading eyebrow="Practice areas" title="Three Practices" />
+          <SectionHeading eyebrow="Practice areas" title="Five Practices" />
 
           <div className="rule-grid mt-8 grid sm:mt-10">
             {services.map((service, index) => (

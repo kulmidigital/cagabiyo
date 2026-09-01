@@ -166,7 +166,13 @@ function NavRow({
   onNavigate: () => void
 }>) {
   const panelId = useId()
-  const columns = section.columns ?? []
+  // A dropdown section carries a flat `links` list rather than columns; on
+  // mobile both collapse to the same disclosure, so normalise to columns and
+  // drop the heading where there was never one.
+  const columns = section.columns ?? [
+    { heading: '', links: section.links ?? [] },
+  ]
+  const hasChildren = columns.some((column) => column.links.length > 0)
 
   return (
     <div
@@ -178,7 +184,7 @@ function NavRow({
           {String(index + 1).padStart(2, '0')}
         </span>
 
-        {columns.length > 0 ? (
+        {hasChildren ? (
           <>
             <SmartLink
               href={section.to}
@@ -221,15 +227,17 @@ function NavRow({
         )}
       </div>
 
-      {expanded && columns.length > 0 ? (
+      {expanded && hasChildren ? (
         <div
           id={panelId}
           className="animate-in fade-in slide-in-from-top-1 space-y-5 pb-6 pl-9 duration-300"
         >
           {columns.map((column) => (
             <div key={column.heading}>
-              <p className="eyebrow text-signal-500/80">{column.heading}</p>
-              <ul className="mt-3 space-y-2.5">
+              {column.heading ? (
+                <p className="eyebrow text-signal-500/80">{column.heading}</p>
+              ) : null}
+              <ul className={cn('space-y-2.5', column.heading && 'mt-3')}>
                 {column.links.map((link) => (
                   <li key={link.label}>
                     <SmartLink

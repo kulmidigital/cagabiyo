@@ -33,7 +33,7 @@ const routes = [
   {
     title: 'E-Learning Catalog',
     href: '/capacity-building/courses',
-    photo: photos.tabletGlass,
+    photo: photos.glassOffice,
     body: 'Self-paced and blended certificates you can start today, priced in KES and USD, with a QR-verifiable credential on completion.',
     points: [
       'Self-paced and blended',
